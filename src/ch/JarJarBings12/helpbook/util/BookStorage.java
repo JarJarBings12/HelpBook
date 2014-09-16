@@ -19,7 +19,13 @@ public class BookStorage {
 	}
 	
 	public void initialize_BOOKS() {
-		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
 	}
+	
+	
 	
 }

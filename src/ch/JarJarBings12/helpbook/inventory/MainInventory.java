@@ -15,10 +15,16 @@ public class MainInventory {
 	
 	public static void openInventory(Player player, inventorylist inventory) {
 		Player pl = player;
-		inv = pl.getServer().createInventory(null, 9, "§bFAQ");
+		inv = pl.getServer().createInventory(null, 9, "                    §aFAQ");
 		
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK, 1);
 		BookMeta meta = (BookMeta)book.getItemMeta();
+//		meta.setAuthor("TEST");
+		meta.setTitle("Tst");
+		book.setItemMeta(meta);
 		
+		inv.setItem(4, book);
+		
+		pl.openInventory(inv);
 	}
 }
