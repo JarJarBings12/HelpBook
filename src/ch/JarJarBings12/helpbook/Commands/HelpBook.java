@@ -28,6 +28,7 @@ public class HelpBook implements CommandExecutor {
 		}
 		if(args.length == 0) {
 			MainInventory.openInventory(pl, inventorylist.main);
+			Core.inCore.getBookStorage().getBook('1');
 		}
 		if(args.length == 3) {
 			if(pl.hasPermission("helpbook.helpbook.admin")) {
