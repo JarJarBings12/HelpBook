@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+
+import com.mysql.jdbc.Buffer;
 
 import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
@@ -40,10 +43,10 @@ public class BookStorage {
 	 * Load HelpBook.yml
 	 */
 	public void loadBooksFile() {
-		BookFiles.yamlbooks.addDefault("Books.ID", 0);
+		BookFiles.yamlbooks.addDefault("Books.ID", 1);
 		saveBooks();
 		try  {
-			BookFiles.yamlbooks.options().copyDefaults();
+			BookFiles.yamlbooks.options().copyDefaults(true);
 			BookFiles.yamlbooks.save(BookFiles.books);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -68,7 +71,7 @@ public class BookStorage {
 		int id = BookFiles.yamlbooks.getInt("Books.ID");
 		
 	    if (id > 0) {
-			BookFiles.yamlbooks.set("Book.Books", Integer.valueOf(id+1));
+			BookFiles.yamlbooks.set("Books.ID", Integer.valueOf(id + 1));
 	        saveBooks();
 	      }
 		return id;
@@ -76,13 +79,15 @@ public class BookStorage {
 	
 	private int getID(String book) {
 		if(nameindex.containsKey(book)) {
+			Bukkit.broadcastMessage("Delete");
 			return ((Integer) nameindex.get(book)).intValue();
 		}
-	    try
-	    {
+	    try {
 	      int result = Integer.parseInt(book);
+			Bukkit.broadcastMessage("Delete");
 	      if (result < this.index.size() + 1)
-	        return ((Integer)this.index.get(result - 1)).intValue();
+	  		Bukkit.broadcastMessage("Delete");
+	        return ((Integer)this.index.get(result -1)).intValue();
 	    }
 	    catch (NumberFormatException e) {
 	    }
@@ -102,11 +107,12 @@ public class BookStorage {
 	}
 	
 	public boolean deleteBook(String book) {
-		int id = getID(book);
+		int id = '1'; //getID(book);
 		if(id < 0) {
 			return false;
 		}
 		BookFiles.yamlbooks.set("Book."+id, null);
+		Bukkit.broadcastMessage("Delete");
 		saveBooks();
 		update_INDEX();
 		return true;
