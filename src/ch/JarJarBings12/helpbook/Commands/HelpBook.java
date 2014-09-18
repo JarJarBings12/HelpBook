@@ -26,28 +26,51 @@ public class HelpBook implements CommandExecutor {
 		if(!(pl.hasPermission("helpbook.helpbook"))) {
 			
 		}
+		
 		if(args.length == 0) {
-		MainInventory.openInventory(pl, inventorylist.main);
+			
 		}
+		
+		if(args.length == 2) {
+			if(args[0].equalsIgnoreCase("admin")) {
+				if(!(pl.hasPermission(""))) {
+					
+				}
+				
+				if(args[1].equalsIgnoreCase("setTitle")) {
+					pl.sendMessage("rr");
+				} else if(args[1].equalsIgnoreCase("setAuthor")) {
+					pl.sendMessage("rr");
+				} else {
+					pl.sendMessage("err");
+				}
+			}
+		}
+		
 		if(args.length == 3) {
-			if(pl.hasPermission("helpbook.helpbook.admin")) {
-				if(args[0].equalsIgnoreCase("admin")) {
-					if(args[1].equalsIgnoreCase("addBook")) {
-						ItemStack inhand = pl.getItemInHand();
-						if(inhand.getType() != Material.WRITTEN_BOOK) {
-							pl.sendMessage("NO");
-						} else {
-							pl.sendMessage("YES");
-						}
-					} else if (args[1].equalsIgnoreCase("deleteBook")) {
-					} else {
+			if(args[0].equalsIgnoreCase("admin")) {
+				if(!(pl.hasPermission(""))) {
+					
+				}
+				
+				if(args[1].equalsIgnoreCase("setTitle")) {
+					if(pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
+						Core.inCore.getBookStorage().setTitle(pl.getItemInHand(), args[2]);	
+					}
+					
+				} else if(args[1].equalsIgnoreCase("setAuthor")) {
+					if(pl.getItemInHand().getType() != Material.WRITTEN_BOOK) {
 						
 					}
-				}	
-			} else {
-				
-			}	
+					Core.inCore.getBookStorage().setAuthor(pl.getItemInHand(), args[2]);
+				} else {
+					pl.sendMessage("");
+				}
+			}
 		}
+		
+		
+		
 		return true;
 	}
 }
