@@ -18,15 +18,20 @@ public class Core extends JavaPlugin {
 	private static i18n inI18N;
 	private static BookStorage inBookStore;
 	public void onEnable() {
+
+		
 		inCore = this;
-//		inI18N = new i18n(this);
+		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
-	
+		
+		Locale locale = new Locale("de");
+		geti18n().setLanguage(locale);
+		getBookStorage().load_BookFile();
 		
 		CMDExecuter.load_COMMANDS();
-		getBookStorage().loadBooksFile();
-		
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);
+		
+		
 		
 		
 	}
@@ -37,6 +42,7 @@ public class Core extends JavaPlugin {
 	public i18n geti18n() {
 		return inI18N;
 	}
+	
 	public BookStorage getBookStorage() {
 		return inBookStore;
 	}

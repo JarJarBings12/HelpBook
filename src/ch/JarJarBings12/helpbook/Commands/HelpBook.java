@@ -27,8 +27,7 @@ public class HelpBook implements CommandExecutor {
 			
 		}
 		if(args.length == 0) {
-			MainInventory.openInventory(pl, inventorylist.main);
-			Core.inCore.getBookStorage().getBook('1');
+		MainInventory.openInventory(pl, inventorylist.main);
 		}
 		if(args.length == 3) {
 			if(pl.hasPermission("helpbook.helpbook.admin")) {
@@ -39,10 +38,8 @@ public class HelpBook implements CommandExecutor {
 							pl.sendMessage("NO");
 						} else {
 							pl.sendMessage("YES");
-							Core.inCore.getBookStorage().addBook(inhand);
 						}
 					} else if (args[1].equalsIgnoreCase("deleteBook")) {
-						Core.inCore.getBookStorage().deleteBook(args[2]);
 					} else {
 						
 					}
