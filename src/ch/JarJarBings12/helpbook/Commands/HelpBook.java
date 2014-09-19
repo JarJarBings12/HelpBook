@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.Commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -46,6 +47,7 @@ public class HelpBook implements CommandExecutor {
 				} else if(args[1].equalsIgnoreCase("setBookAtSlot")) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
 				} else if(args[1].equalsIgnoreCase("turnmode")) {
+					Bukkit.broadcastMessage("Test");
 					pl.sendMessage(Core.inCore.geti18n().getMessage("pleassaybook"));
 				} else {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("unkowncommand"));
@@ -87,43 +89,50 @@ public class HelpBook implements CommandExecutor {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("nobook"));
 						return true;
 					}
-				} else if(args[1].equalsIgnoreCase("turnmode")) {
-					
-					int i = Integer.parseInt(args[2]);
-					if(i > 9 || i < 0) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
-					}
-					Core.inCore.getBookStorage().setTURNMODUS(i);
-					if(ConfigLoader.getBookBool(i) == true) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§a an§f "));
-					} else {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§4 aus§f "));
-					}
+//				} else if(args[1].equalsIgnoreCase("turnmode")) {
+//					
+//					int i = Integer.parseInt(args[2]);
+//					if(i > 9 || i < 0) {
+//						pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
+//					}
+//					Core.inCore.getBookStorage().setTURNMODUS(i);
+//					if(ConfigLoader.getBookBool(i) == true) {
+//						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§a an§f "));
+//					} else {
+//						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§4 aus§f "));
+//					}
 				
 				} else {
 					
 				}
 			}
-			
-			if(args.length == 4) {
-				if(!(pl.hasPermission("helpbook.helpbook.admin"))) {
-					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
-				}
-				
-				if(args[0].equalsIgnoreCase("admin")) {
-					if(args[1].equalsIgnoreCase("turnmode")) {
-						int slot = Integer.parseInt(args[2]);
-						if(slot > 9 || slot < 0) {
-							pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
-						}
-						if(args[3].equalsIgnoreCase("on") || args[3].equalsIgnoreCase("enable") || args[3].equalsIgnoreCase("ture")) {
-							pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§b an §f"));
-						} else if(args[3].equalsIgnoreCase("off") || args[3].equalsIgnoreCase("disable") || args[3].equalsIgnoreCase("false")) {
-							Core.inCore.getBookStorage().setTURNMODUS(slot);
-							pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§4 aus §f"));
-						} else {
-							pl.sendMessage(Core.inCore.geti18n().getMessage("useonoffelse"));
-						}
+		}
+		if(args.length == 4) {
+			if(args[0].equalsIgnoreCase("admin")) {
+				if(args[1].equalsIgnoreCase("turnmode")) {
+					
+					
+					int slot = Integer.parseInt(args[2]);
+					
+					
+					if(slot > 9 || slot < 0) {
+						pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
+					}
+
+					if(args[3].equalsIgnoreCase("on") || args[3].equalsIgnoreCase("enable") || args[3].equalsIgnoreCase("ture")) {
+						
+						ConfigLoader.setBookBool(slot, true);
+						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§b an §f"));
+						
+					} else if(args[3].equalsIgnoreCase("off") || args[3].equalsIgnoreCase("disable") || args[3].equalsIgnoreCase("false")) {
+						
+						ConfigLoader.setBookBool(slot, false);
+						
+						pl.sendMessage(Core.inCore.geti18n().getMessage("bookchange").replace("%status", "auf§4 aus §f"));
+						
+					} else {
+						
+						pl.sendMessage(Core.inCore.geti18n().getMessage("useonoffelse"));
 					}
 				}
 			}

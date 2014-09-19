@@ -29,8 +29,8 @@ public class Core extends JavaPlugin {
 		geti18n().setLanguage(locale);
 		getBookStorage().load_BookFile();
 		
-		
 		ConfigLoader.setBooleans();
+		
 		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);
 		

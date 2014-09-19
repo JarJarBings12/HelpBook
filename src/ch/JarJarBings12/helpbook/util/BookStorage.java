@@ -3,6 +3,7 @@ package ch.JarJarBings12.helpbook.util;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +19,6 @@ public class BookStorage {
 	public void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
-//			NotificationCenterC.INFO.consoleNOTE(Core.inCore.geti18n().getMessage("overwritebook"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -106,25 +106,17 @@ public class BookStorage {
 	}
 	
 	public ItemStack setTitle(ItemStack book, String Title) {
+		
 		BookMeta metadata = (BookMeta)book.getItemMeta();
 		metadata.setTitle(Title.length() < 16 ? Title : Title.substring(0, 16));
 		book.setItemMeta(metadata);
 		return book;
+		
 	}
 	public ItemStack setAuthor(ItemStack book, String Author){
 		BookMeta metadata = (BookMeta)book.getItemMeta();
 		metadata.setAuthor(Author.length() < 16 ? Author : Author.substring(0, 16));
 		book.setItemMeta(metadata);
 		return book;
-	}
-	
-	public boolean setTURNMODUS(int Book) {
-		if(ConfigLoader.getBookBool(Book) == false) {
-			ConfigLoader.setBookBool(Book, false);
-		} else {
-			ConfigLoader.setBookBool(Book, true);
-		}
-		
-		return ConfigLoader.getBookBool(Book);
 	}
 }

@@ -37,22 +37,6 @@ public class CMDCompleter implements TabCompleter {
 			}
 			return finallist;
 		}
-		if(args.length == 3) {
-			for(String s : slot) {
-				if(s.startsWith(args[2])) {
-					finallist.add(s);
-				}
-			}
-			return finallist;
-		}
-		if(args.length == 4) {
-			for(String s : status) {
-				if(s.startsWith(args[3])) {
-					finallist.add(s);
-				}
-			}
-			return finallist;
-		}
 
 		
 		return null;
