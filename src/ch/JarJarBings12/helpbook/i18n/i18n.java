@@ -46,7 +46,8 @@ public class i18n {
 	 */
 	
 	public String getMessage(String key) {
-		return bundle.getString(key);
+		String r = bundle.getString(key);
+		return "§6[HelpBook]§f"+r;
 	}
 	
 	/**

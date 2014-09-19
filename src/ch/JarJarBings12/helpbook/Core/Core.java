@@ -11,6 +11,7 @@ import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 import ch.JarJarBings12.helpbook.i18n.i18n;
 import ch.JarJarBings12.helpbook.util.BookStorage;
+import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class Core extends JavaPlugin {
 	
@@ -28,6 +29,8 @@ public class Core extends JavaPlugin {
 		geti18n().setLanguage(locale);
 		getBookStorage().load_BookFile();
 		
+		
+		ConfigLoader.setBooleans();
 		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);
 		

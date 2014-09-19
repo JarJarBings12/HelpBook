@@ -18,7 +18,7 @@ public class BookStorage {
 	public void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
-			NotificationCenterC.INFO.consoleNOTE(Core.inCore.geti18n().getMessage("overwritebook"));
+//			NotificationCenterC.INFO.consoleNOTE(Core.inCore.geti18n().getMessage("overwritebook"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,18 +80,17 @@ public class BookStorage {
 	
 	public void addBook(int BookSlot, ItemStack rawbook, Player pl) {
 		ItemStack book = new ItemStack(rawbook);
-		if(!(book.getType() == Material.WRITTEN_BOOK)) {
-			pl.sendMessage(Core.inCore.geti18n().getMessage(""));
-		}
 		
 		BookMeta metadata = (BookMeta)book.getItemMeta();
-		if(BookSlot < 9) {
-			pl.sendMessage(Core.inCore.geti18n().getMessage(""));
+		if(BookSlot > 9) {
+			pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
 		}
 		
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Title", metadata.getTitle());
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Author", metadata.getAuthor());
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", metadata.getPages());
+		
+		save_book();
 	}
 	
 	public ItemStack getBook(int rawbook) {
@@ -117,5 +116,15 @@ public class BookStorage {
 		metadata.setAuthor(Author.length() < 16 ? Author : Author.substring(0, 16));
 		book.setItemMeta(metadata);
 		return book;
+	}
+	
+	public boolean setTURNMODUS(int Book) {
+		if(ConfigLoader.getBookBool(Book) == false) {
+			ConfigLoader.setBookBool(Book, false);
+		} else {
+			ConfigLoader.setBookBool(Book, true);
+		}
+		
+		return ConfigLoader.getBookBool(Book);
 	}
 }
