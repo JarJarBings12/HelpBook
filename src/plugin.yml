@@ -8,3 +8,32 @@ commands:
     HelpBook: 
        usage: /<commands> 
        description: Mute the Chat global 
+       
+permissions:
+  helpbook.*:
+    description: Allows access to all commands.
+    children:
+      helpbook.helpbook: true
+      helpbook.helpbook.admin: true
+      helpbook.helpbook.admin.setTitle: true
+      helpbook.helpbook.admin.setAuthor: true
+      helpbook.helpbook.admin.setBookAtSlot: true
+      helpbook.helpbook.admin.setWindowName: true
+      helpbook.helpbook.admin.turnmode: true
+      helpbook.helpbook.info: true
+  helpbook.helpbook:
+    default: op
+  helpbook.helpbook.admin:
+    default: op
+  helpbook.helpbook.admin.setTitle:
+    default: op
+  helpbook.helpbook.admin.setAuthor:
+    default: op
+  helpbook.helpbook.admin.setBookAtSlot:
+    default: op
+  helpbook.helpbook.admin.setWindowName:
+    default: op
+  helpbook.helpbook.admin.turnmode:
+    default: op
+  helpbook.helpbook.info:
+    default: op

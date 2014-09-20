@@ -37,6 +37,10 @@ public class HelpBook implements CommandExecutor {
 		}
 		
 		if(args.length == 1) {
+			if(!(pl.hasPermission("helpbook.helpbook.info"))) {
+				pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+				return true;
+			}
 			if(args[0].equalsIgnoreCase("info")) {
 				InfoWindow.openINFOWindow(pl);
 				return true;
