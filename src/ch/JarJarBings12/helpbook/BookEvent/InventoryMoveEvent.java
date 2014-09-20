@@ -31,7 +31,7 @@ public class InventoryMoveEvent implements Listener {
 				ItemStack item = e.getCurrentItem();}
 			}
 		ItemStack item = e.getCurrentItem();
-		if(e.getInventory().getName().contains("§aFAQ")) {
+		if(e.getInventory().getName().contains("HelpBook.Window.Name")) {
 			if(item.getType() == Material.WRITTEN_BOOK) {
 				
 				Player pl = (Player)e.getWhoClicked();
