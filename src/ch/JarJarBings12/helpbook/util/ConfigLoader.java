@@ -9,7 +9,7 @@ import com.avaje.ebean.config.dbplatform.HsqldbPlatform;
 
 public class ConfigLoader {
 	public static boolean book1, book2, book3, book4, book5, book6, book7, book8, book9;
-
+	public static String WindowName;
 	public static HashMap<String, Integer> booklist = new HashMap<>();
 	private static void save_book() {
 		try {
@@ -115,5 +115,11 @@ public class ConfigLoader {
 		int titleint;
 		titleint = booklist.get(title);
 		return titleint;
+	}
+	
+	public static void setWindowName(String NewWindowName) {
+		BookFiles.yamlbooks.set("HelpBook.Window.Name", NewWindowName);
+		WindowName = NewWindowName;
+		save_book();
 	}
 }

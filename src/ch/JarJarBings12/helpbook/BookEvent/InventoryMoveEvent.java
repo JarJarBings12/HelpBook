@@ -25,13 +25,13 @@ public class InventoryMoveEvent implements Listener {
 	public void onInvMove(InventoryClickEvent e) {
 		if(e.getSlot() == e.getRawSlot()) {
 			Player pl = (Player) e.getWhoClicked();
-			if(e.getInventory().getName().contains(BookFiles.yamlbooks.getString("HelpBook.Window.Name"))) {
+			if(e.getInventory().getName().contains(ConfigLoader.WindowName)) {
 				e.setCancelled(true);
 				pl.updateInventory();
 				ItemStack item = e.getCurrentItem();}
 			}
 		ItemStack item = e.getCurrentItem();
-		if(e.getInventory().getName().contains("HelpBook.Window.Name")) {
+		if(e.getInventory().getName().contains(ConfigLoader.WindowName)) {
 			if(item.getType() == Material.WRITTEN_BOOK) {
 				
 				Player pl = (Player)e.getWhoClicked();

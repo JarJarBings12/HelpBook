@@ -58,7 +58,10 @@ public class HelpBook implements CommandExecutor {
 				} else if (args[1].equalsIgnoreCase("turnmode")) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("pleassaybook"));
 					return true;
-				} else {
+				} else if (args[1].equalsIgnoreCase("setWindowName")) {
+					pl.sendMessage("");
+					return true;
+				}else {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("unkowncommand"));
 					return true;
 				}
@@ -117,6 +120,13 @@ public class HelpBook implements CommandExecutor {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("nobook"));
 						return true;
 					}
+				} else if (args[1].equalsIgnoreCase("setWindowName")) {
+					if(!(pl.hasPermission("helpbook.helpbook.admin.setWindowName"))) {
+						pl.sendMessage("");
+						return true;
+					}
+					ConfigLoader.setWindowName(args[2].toString());
+					
 				}
 			}
 		}
