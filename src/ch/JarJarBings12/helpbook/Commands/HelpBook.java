@@ -59,7 +59,7 @@ public class HelpBook implements CommandExecutor {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("pleassaybook"));
 					return true;
 				} else if (args[1].equalsIgnoreCase("setWindowName")) {
-					pl.sendMessage("");
+					pl.sendMessage(Core.inCore.geti18n().getMessage("pleassetaname"));
 					return true;
 				}else {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("unkowncommand"));
@@ -122,10 +122,16 @@ public class HelpBook implements CommandExecutor {
 					}
 				} else if (args[1].equalsIgnoreCase("setWindowName")) {
 					if(!(pl.hasPermission("helpbook.helpbook.admin.setWindowName"))) {
-						pl.sendMessage("");
+						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 						return true;
 					}
-					ConfigLoader.setWindowName(args[2].toString());
+						if(args[2].length() > 32) {
+							pl.sendMessage(Core.inCore.geti18n().getMessage("windownametolong"));
+						}
+						ConfigLoader.setWindowName(args[2].toString());
+						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));
+						return true;
+				} else {
 					
 				}
 			}

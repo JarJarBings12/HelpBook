@@ -5,12 +5,18 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 
+import ch.JarJarBings12.helpbook.Core.Core;
+
 import com.avaje.ebean.config.dbplatform.HsqldbPlatform;
 
 public class ConfigLoader {
+	public ConfigLoader(Core inCore) {
+		Core.inCore = inCore;
+	}
 	public static boolean book1, book2, book3, book4, book5, book6, book7, book8, book9;
 	public static String WindowName;
 	public static HashMap<String, Integer> booklist = new HashMap<>();
+
 	private static void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
@@ -19,7 +25,11 @@ public class ConfigLoader {
 		}
 	}
 	
-	public static void setBooleans() {
+	public void update_WINDOWTITLE() {
+		WindowName = BookFiles.yamlbooks.getString("HelpBook.Window.Name");
+	}
+	
+	public void setBooleans() {
 		book1 = BookFiles.yamlbooks.getBoolean("Book.Book1.enable");
 		book2 = BookFiles.yamlbooks.getBoolean("Book.Book2.enable");
 		book3 = BookFiles.yamlbooks.getBoolean("Book.Book3.enable");
@@ -31,7 +41,7 @@ public class ConfigLoader {
 		book9 = BookFiles.yamlbooks.getBoolean("Book.Book9.enable");		
 	}
 	
-	public static void setBookNames() {
+	public void setBookNames() {
 		for(int i = 1; i < 9; i++ ) {
 			booklist.put(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"), i);
 		}
@@ -68,46 +78,47 @@ public class ConfigLoader {
 	public static void setBookBool(int book, boolean status) {
 		if(book > 9) {
 			Bukkit.broadcastMessage("Test");
-			setBooleans();
+			save_book();
+			Core.inCore.getConfigLoader().setBooleans();
 		}
 		if(book == 1 ) {
 			BookFiles.yamlbooks.set("Book.Book1.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 2) {
 			BookFiles.yamlbooks.set("Book.Book2.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 3) {
 			BookFiles.yamlbooks.set("Book.Book3.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 4) {
 			BookFiles.yamlbooks.set("Book.Book4.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 5) {
 			BookFiles.yamlbooks.set("Book.Book5.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 6) {
 			BookFiles.yamlbooks.set("Book.Book6.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 7) {
 			BookFiles.yamlbooks.set("Book.Book7.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 8) {
 			BookFiles.yamlbooks.set("Book.Book8.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else if (book == 9) {
 			BookFiles.yamlbooks.set("Book.Book9.enable", status);
 			save_book();
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		} else {
-			setBooleans();
+			Core.inCore.getConfigLoader().setBooleans();
 		}
 	}
 	

@@ -18,19 +18,23 @@ public class Core extends JavaPlugin {
 	public static Core inCore;
 	private static i18n inI18N;
 	private static BookStorage inBookStore;
+	private static ConfigLoader inConfigLoader;
+	
 	public void onEnable() {
 
 		
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
+		inConfigLoader = new ConfigLoader(this);
 		
 		Locale locale = new Locale("de");
 		geti18n().setLanguage(locale);
 		getBookStorage().load_BookFile();
 		
-		ConfigLoader.setBooleans();
-		ConfigLoader.setBookNames();
+		getConfigLoader().setBooleans();
+		getConfigLoader().setBookNames();
+		getConfigLoader().update_WINDOWTITLE();
 		
 		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);
@@ -49,5 +53,9 @@ public class Core extends JavaPlugin {
 	
 	public BookStorage getBookStorage() {
 		return inBookStore;
+	}
+	
+	public ConfigLoader getConfigLoader() {
+		return inConfigLoader;
 	}
 }

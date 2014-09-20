@@ -21,7 +21,7 @@ public class MainInventory {
 	
 	public static void openInventory(Player player, inventorylist inventory) {
 		Player pl = player;
-		inv = pl.getServer().createInventory(null, 9, BookFiles.yamlbooks.getString("HelpBook.Window.Name"));
+		inv = pl.getServer().createInventory(null, 9, ConfigLoader.WindowName);
 		ItemStack close = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.SILVER.getData());
 		ItemMeta  closemeta = (ItemMeta)close.getItemMeta();
 		closemeta.setDisplayName("Nicht verfügbar");

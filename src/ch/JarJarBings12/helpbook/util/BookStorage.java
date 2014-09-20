@@ -93,7 +93,7 @@ public class BookStorage {
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", metadata.getPages());
 		
 		save_book();
-		ConfigLoader.setBookNames();
+		Core.inCore.getConfigLoader().setBookNames();
 	}
 	
 	public ItemStack getBook(String booktitle) {
