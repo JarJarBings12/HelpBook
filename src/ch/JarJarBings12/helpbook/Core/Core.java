@@ -30,11 +30,12 @@ public class Core extends JavaPlugin {
 		getBookStorage().load_BookFile();
 		
 		ConfigLoader.setBooleans();
+		ConfigLoader.setBookNames();
 		
 		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);
 		
-		
+		System.out.println("Book" + ConfigLoader.booklist.toString());
 		
 		
 	}

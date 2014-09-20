@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.inventory;
 
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -20,8 +21,8 @@ public class MainInventory {
 	
 	public static void openInventory(Player player, inventorylist inventory) {
 		Player pl = player;
-		inv = pl.getServer().createInventory(null, 9, " §aFAQ Unser Minecraft de");
-		ItemStack close = new ItemStack(Material.RECORD_11);
+		inv = pl.getServer().createInventory(null, 9, BookFiles.yamlbooks.getString("HelpBook.Window.Name"));
+		ItemStack close = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.SILVER.getData());
 		ItemMeta  closemeta = (ItemMeta)close.getItemMeta();
 		closemeta.setDisplayName("Nicht verfügbar");
 		close.setItemMeta(closemeta);

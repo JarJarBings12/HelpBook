@@ -1,12 +1,16 @@
 package ch.JarJarBings12.helpbook.util;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 
+import com.avaje.ebean.config.dbplatform.HsqldbPlatform;
+
 public class ConfigLoader {
 	public static boolean book1, book2, book3, book4, book5, book6, book7, book8, book9;
-	
+
+	public static HashMap<String, Integer> booklist = new HashMap<>();
 	private static void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
@@ -14,6 +18,7 @@ public class ConfigLoader {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void setBooleans() {
 		book1 = BookFiles.yamlbooks.getBoolean("Book.Book1.enable");
 		book2 = BookFiles.yamlbooks.getBoolean("Book.Book2.enable");
@@ -24,6 +29,12 @@ public class ConfigLoader {
 		book7 = BookFiles.yamlbooks.getBoolean("Book.Book7.enable");
 		book8 = BookFiles.yamlbooks.getBoolean("Book.Book8.enable");
 		book9 = BookFiles.yamlbooks.getBoolean("Book.Book9.enable");		
+	}
+	
+	public static void setBookNames() {
+		for(int i = 1; i < 9; i++ ) {
+			booklist.put(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"), i);
+		}
 	}
 	
 	public static boolean getBookBool(int book) {
@@ -53,6 +64,7 @@ public class ConfigLoader {
 		}
 	}
 	
+	
 	public static void setBookBool(int book, boolean status) {
 		if(book > 9) {
 			Bukkit.broadcastMessage("Test");
@@ -67,35 +79,41 @@ public class ConfigLoader {
 			save_book();
 			setBooleans();
 		} else if (book == 3) {
-			BookFiles.yamlbooks.set("Book.Book2.enable", status);
+			BookFiles.yamlbooks.set("Book.Book3.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 4) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book4.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 5) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book5.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 6) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book6.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 7) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book7.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 8) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book8.enable", status);
 			save_book();
 			setBooleans();
 		} else if (book == 9) {
-			book1 = status;
+			BookFiles.yamlbooks.set("Book.Book9.enable", status);
 			save_book();
 			setBooleans();
 		} else {
 			setBooleans();
 		}
+	}
+	
+	public static Integer getBookInteger(String title) {
+		int titleint;
+		titleint = booklist.get(title);
+		return titleint;
 	}
 }

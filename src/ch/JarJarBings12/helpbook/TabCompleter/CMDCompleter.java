@@ -12,16 +12,22 @@ import com.google.common.collect.Lists;
 
 public class CMDCompleter implements TabCompleter {
 
+	/**
+	 * Command Tab Completer 
+	 */
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> noargs = Arrays.asList("admin");
 		List<String> admin = Arrays.asList("setTitle", "setAuthor", "setBookAtSlot", "turnmode");
 		List<String> turn = Arrays.asList("turnmode");
 		List<String> slot = Arrays.asList("1","2","3","4","5","6","7","8","9");
-		List<String> status = Arrays.asList("enable","on","true","disable","off","false");
+		List<String> status = Arrays.asList("on","true","off","false");
 		List<String> finallist = Lists.newArrayList();
 		
 		if(args.length == 1) {
+			if(!(sender.hasPermission("admin"))) {
+				return finallist;
+			}
 			for (String s : noargs) {
 				if(s.startsWith(args[0]))
 				finallist.add(s);
@@ -32,6 +38,23 @@ public class CMDCompleter implements TabCompleter {
 		if(args.length == 2) {
 			for(String s : admin) {
 				if(s.startsWith(args[1])) {
+					finallist.add(s);
+				}
+			}
+			return finallist;
+		}
+		
+		if(args.length == 3) {
+			for(String s : slot) {
+				if(s.startsWith(args[2])) {
+					finallist.add(s);
+				}
+			}
+			return finallist;
+		}
+		if(args.length == 4) {
+			for(String s : status) {
+				if(s.startsWith(args[3])) {
 					finallist.add(s);
 				}
 			}

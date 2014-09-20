@@ -25,6 +25,8 @@ public class BookStorage {
 	}
 	
 	public void load_BookFile() {
+		BookFiles.yamlbooks.addDefault("HelpBook.Window.Name", "§aFAQ");
+		
 		BookFiles.yamlbooks.addDefault("Book.Book1.enable", true);
 		BookFiles.yamlbooks.addDefault("Book.Book1.Title", "TestBook");
 		BookFiles.yamlbooks.addDefault("Book.Book1.Author", "TestBook");
@@ -91,15 +93,17 @@ public class BookStorage {
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", metadata.getPages());
 		
 		save_book();
+		ConfigLoader.setBookNames();
 	}
 	
-	public ItemStack getBook(int rawbook) {
+	public ItemStack getBook(String booktitle) {
+		int i = ConfigLoader.getBookInteger(booktitle);
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 		BookMeta metadata = (BookMeta)book.getItemMeta();
 		
-		metadata.setTitle(BookFiles.yamlbooks.getString("Book.Book"+rawbook+".Title"));
-		metadata.setAuthor(BookFiles.yamlbooks.getString("Book.Book"+rawbook+".Author"));
-		metadata.setAuthor(BookFiles.yamlbooks.getString("Book.Book"+rawbook+".Pages"));
+		metadata.setTitle(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"));
+		metadata.setAuthor(BookFiles.yamlbooks.getString("Book.Book"+i+".Author"));
+		metadata.setPages(BookFiles.yamlbooks.getStringList("Book.Book"+i+".Pages"));
 		book.setItemMeta(metadata);
 		
 		return book;
