@@ -53,6 +53,7 @@ public class InventoryMoveEvent implements Listener {
 				ItemMeta itemmeta = item.getItemMeta();
 				if(itemmeta.getDisplayName().equalsIgnoreCase("§aVersion")) {
 					pl.sendMessage("§aVersion: §f1.0.0");
+					pl.sendMessage("Copyright © 2014 JarJarBings12");
 				} else if (itemmeta.getDisplayName().equalsIgnoreCase("§2Author")) {
 					pl.sendMessage("§2Author: §fJarJarBings12");
 				} else if (itemmeta.getDisplayName().equalsIgnoreCase("§bHomepage")) {
