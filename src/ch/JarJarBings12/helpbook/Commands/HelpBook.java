@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import ch.JarJarBings12.helpbook.Core.Core;
+import ch.JarJarBings12.helpbook.inventory.InfoWindow;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
 import ch.JarJarBings12.helpbook.util.BookStorage;
@@ -30,8 +31,16 @@ public class HelpBook implements CommandExecutor {
 		}
 
 		if (args.length == 0) {
-			MainInventory.openInventory(pl, inventorylist.main);
+			MainInventory.openMAINWindow(pl);
 			pl.sendMessage(Core.inCore.geti18n().getMessage("openhelpbook"));
+			return true;
+		}
+		
+		if(args.length == 1) {
+			if(args[0].equalsIgnoreCase("info")) {
+				InfoWindow.openINFOWindow(pl);
+				return true;
+			}
 		}
 		/**
 		 * How to use section
@@ -73,6 +82,7 @@ public class HelpBook implements CommandExecutor {
 		 * in this Section all Commands registered they have three arguments.
 		 * You can say that a User can use Only /helpbook admin setTitle or one of the other Commands.
 		 */
+		
 		if (args.length == 3) {
 			if (!(pl.hasPermission("helpbook.helpbook.admin"))) {
 				pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
@@ -127,6 +137,7 @@ public class HelpBook implements CommandExecutor {
 					}
 						if(args[2].length() > 32) {
 							pl.sendMessage(Core.inCore.geti18n().getMessage("windownametolong"));
+							return true;
 						}
 						ConfigLoader.setWindowName(args[2].toString());
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));

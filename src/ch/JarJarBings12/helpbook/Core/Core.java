@@ -2,8 +2,6 @@ package ch.JarJarBings12.helpbook.Core;
 
 import java.util.Locale;
 
-import net.minecraft.util.io.netty.util.internal.NoOpTypeParameterMatcher;
-
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.JarJarBings12.helpbook.BookEvent.InventoryMoveEvent;
@@ -22,7 +20,6 @@ public class Core extends JavaPlugin {
 	
 	public void onEnable() {
 
-		
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
@@ -37,11 +34,7 @@ public class Core extends JavaPlugin {
 		getConfigLoader().update_WINDOWTITLE();
 		
 		CMDExecuter.load_COMMANDS();
-		InventoryMoveEvent ev = new InventoryMoveEvent(this);
-		
-		System.out.println("Book" + ConfigLoader.booklist.toString());
-		
-		
+		InventoryMoveEvent ev = new InventoryMoveEvent(this);		
 	}
 	
 	public void onDisable() {

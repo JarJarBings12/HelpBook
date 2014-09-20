@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.inventory;
 
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -19,9 +20,12 @@ public class MainInventory {
 	
 	private static Inventory inv = null;
 	
-	public static void openInventory(Player player, inventorylist inventory) {
+	/**
+	 * 
+	 */
+	public static void openMAINWindow(Player player) {
 		Player pl = player;
-		inv = pl.getServer().createInventory(null, 9, ConfigLoader.WindowName);
+		inv = pl.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName));
 		ItemStack close = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.SILVER.getData());
 		ItemMeta  closemeta = (ItemMeta)close.getItemMeta();
 		closemeta.setDisplayName("Nicht verfügbar");

@@ -15,7 +15,7 @@ public class CMDCompleter implements TabCompleter {
 	/**
 	 * Command Tab Completer 
 	 */
-	@Override
+
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> noargs = Arrays.asList("admin");
 		List<String> admin = Arrays.asList("setTitle", "setAuthor", "setBookAtSlot", "turnmode", "setWindowName");
