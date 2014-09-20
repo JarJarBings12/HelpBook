@@ -50,7 +50,17 @@ public class InventoryMoveEvent implements Listener {
 		if(e.getSlot() == e.getRawSlot()) {
 			Player pl = (Player) e.getWhoClicked();
 			if(e.getInventory().getName().contains("§6Plugin Data")) {
-				ItemMeta itemmeta = item.getItemMeta();
+				e.setCancelled(true);
+				pl.updateInventory();
+			}
+		}
+		if(e.getInventory().getName().equalsIgnoreCase("§6Plugin Data")) {
+			ItemMeta itemmeta = item.getItemMeta();
+			if(item.getType() != Material.CARPET || item.getType() != Material.STAINED_GLASS_PANE) {
+				e.setCancelled(true);
+			}
+			Player pl = (Player)e.getWhoClicked();
+			if(item.getType() == Material.CARPET || item.getType() == Material.STAINED_GLASS_PANE) {
 				if(itemmeta.getDisplayName().equalsIgnoreCase("§aVersion")) {
 					pl.sendMessage("§aVersion: §f1.0.0");
 					pl.sendMessage("Copyright © 2014 JarJarBings12");
@@ -68,7 +78,6 @@ public class InventoryMoveEvent implements Listener {
 					pl.closeInventory();
 					pl.chat("/helpbook");
 				}
-				e.setCancelled(true);
 			}
 		}
 		
