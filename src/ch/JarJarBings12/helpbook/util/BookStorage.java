@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -88,10 +89,11 @@ public class BookStorage {
 			pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
 		}
 		
-		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Title", metadata.getTitle());
-		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Author", metadata.getAuthor());
+		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Title", ChatColor.translateAlternateColorCodes('&', metadata.getTitle()));
+		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Author", ChatColor.translateAlternateColorCodes('&', metadata.getAuthor()));
 		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", metadata.getPages());
-		
+		String slot = "" + BookSlot; 
+		pl.sendMessage(Core.inCore.geti18n().getMessage("savebookas").replace("%slot", slot));
 		save_book();
 		Core.inCore.getConfigLoader().setBookNames();
 	}

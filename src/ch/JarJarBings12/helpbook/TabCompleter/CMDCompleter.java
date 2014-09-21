@@ -25,7 +25,7 @@ public class CMDCompleter implements TabCompleter {
 		List<String> finallist = Lists.newArrayList();
 		
 		if(args.length == 1) {
-			if(!(sender.hasPermission("admin"))) {
+			if(!(sender.hasPermission("helpbook.helpbook.admin"))) {
 				return finallist;
 			}
 			for (String s : noargs) {

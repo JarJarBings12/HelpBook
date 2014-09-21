@@ -95,10 +95,6 @@ public class HelpBook implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("admin")) {
 
 				if (args[1].equalsIgnoreCase("setTitle")) {
-					if(!(pl.hasPermission("helpbook.helpbook.admin.setTitle"))) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
-						return true;
-					}
 					if (pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
 						Core.inCore.getBookStorage().setTitle(pl.getItemInHand(), args[2]);
 						pl.sendMessage(Core.inCore.geti18n().getMessage("titleset"));
@@ -109,10 +105,6 @@ public class HelpBook implements CommandExecutor {
 					}
 
 				} else if (args[1].equalsIgnoreCase("setAuthor")) {
-					if(!(pl.hasPermission("helpbook.helpbook.admin.setAuthor"))) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
-						return true;
-					}
 					if (pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
 						Core.inCore.getBookStorage().setAuthor(pl.getItemInHand(), args[2]);
 						pl.sendMessage(Core.inCore.geti18n().getMessage("authorset"));
@@ -122,10 +114,6 @@ public class HelpBook implements CommandExecutor {
 						return true;
 					}
 				} else if (args[1].equalsIgnoreCase("setBookAtSlot")) {
-					if(!(pl.hasPermission("helpbook.helpbook.admin.setBookAtSlot"))) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
-						return true;
-					}
 					if (pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
 						int i = Integer.parseInt(args[2]);
 						Core.inCore.getBookStorage().addBook(i,pl.getItemInHand(), pl);
@@ -135,14 +123,10 @@ public class HelpBook implements CommandExecutor {
 						return true;
 					}
 				} else if (args[1].equalsIgnoreCase("setWindowName")) {
-					if(!(pl.hasPermission("helpbook.helpbook.admin.setWindowName"))) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					if(args[2].length() > 32) {
+						pl.sendMessage(Core.inCore.geti18n().getMessage("windownametolong"));
 						return true;
 					}
-						if(args[2].length() > 32) {
-							pl.sendMessage(Core.inCore.geti18n().getMessage("windownametolong"));
-							return true;
-						}
 						ConfigLoader.setWindowName(args[2].toString());
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));
 						return true;
@@ -157,10 +141,6 @@ public class HelpBook implements CommandExecutor {
 		if (args.length == 4) {
 			if (args[0].equalsIgnoreCase("admin")) {
 				if (args[1].equalsIgnoreCase("turnmode")) {
-					if(!(pl.hasPermission("helpbook.helpbook.admin.turnmode"))) {
-						pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
-						return true;
-					}
 					int slot = Integer.parseInt(args[2]);
 
 					if (slot > 9 || slot < 0) {

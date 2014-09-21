@@ -21,19 +21,3 @@ permissions:
       helpbook.helpbook.admin.setWindowName: true
       helpbook.helpbook.admin.turnmode: true
       helpbook.helpbook.info: true
-  helpbook.helpbook:
-    default: op
-  helpbook.helpbook.admin:
-    default: op
-  helpbook.helpbook.admin.setTitle:
-    default: op
-  helpbook.helpbook.admin.setAuthor:
-    default: op
-  helpbook.helpbook.admin.setBookAtSlot:
-    default: op
-  helpbook.helpbook.admin.setWindowName:
-    default: op
-  helpbook.helpbook.admin.turnmode:
-    default: op
-  helpbook.helpbook.info:
-    default: op

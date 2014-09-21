@@ -1,5 +1,8 @@
 package ch.JarJarBings12.helpbook.inventory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -30,25 +33,55 @@ public class InfoWindow {
 		
 		ItemStack v = new ItemStack(Material.CARPET, 1, DyeColor.LIME.getData());
 		ItemMeta vmeta = v.getItemMeta();
+		List<String> vlore = new ArrayList<String>();
+		vlore.add("§fBeta 1.1.10");
+		vlore.add("§fCopyright © 2014 JarJarBings12");
+		vmeta.setLore(vlore);
 		vmeta.setDisplayName("§aVersion");
 		v.setItemMeta(vmeta);
+		
 		ItemStack a = new ItemStack(Material.CARPET, 1, DyeColor.GREEN.getData());
 		ItemMeta ameta = a.getItemMeta();
+		List<String> alore = new ArrayList<String>();
+		alore.add("§fJarJarBings12");
+		ameta.setLore(alore);
 		ameta.setDisplayName("§2Author");
 		a.setItemMeta(ameta);
+		
 		ItemStack h = new ItemStack(Material.CARPET, 1, DyeColor.LIGHT_BLUE.getData());
 		ItemMeta hmeta = h.getItemMeta();
+		List<String> hlore = new ArrayList<String>();
+		hlore.add("§fwww.unser-minecraft.de");
+		hmeta.setLore(hlore);
 		hmeta.setDisplayName("§bHomepage");
 		h.setItemMeta(hmeta);
+		
 		ItemStack t = new ItemStack(Material.CARPET, 1, DyeColor.MAGENTA.getData());
 		ItemMeta tmeta = t.getItemMeta();
+		List<String> tlore = new ArrayList<String>();
+		tlore.add("§fnone");
+		tmeta.setLore(tlore);
 		tmeta.setDisplayName("§9Twitter");
 		t.setItemMeta(tmeta);
+		
 		ItemStack f = new ItemStack(Material.CARPET, 1, DyeColor.BLUE.getData());
 		ItemMeta fmeta = f.getItemMeta();
-		fmeta.setDisplayName("§1Facebook");
+		List<String> flore = new ArrayList<String>();
+		flore.add("§none");
+		fmeta.setLore(flore);
+		fmeta.setDisplayName("§8Facebook");
+		
 		f.setItemMeta(fmeta);
 		
+		ItemStack info = new ItemStack(Material.REDSTONE,1);
+		ItemMeta infometa = info.getItemMeta();
+		infometa.setDisplayName("§3Betateste §f1.1.10");
+		List<String> lore = new ArrayList<String>();
+		lore.add("§fCopyright © 2014 JarJarBings12");
+		infometa.setLore(lore);
+		info.setItemMeta(infometa);
+		
+		inv.setItem(0, info);
 		inv.setItem(7, switchd);
 		inv.setItem(9, v);
 		inv.setItem(11, a);
