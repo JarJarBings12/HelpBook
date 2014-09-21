@@ -75,7 +75,7 @@ public class InfoWindow {
 		
 		ItemStack info = new ItemStack(Material.REDSTONE,1);
 		ItemMeta infometa = info.getItemMeta();
-		infometa.setDisplayName("§3Betateste §f1.1.10");
+		infometa.setDisplayName("§3Betateste §f1.1.13");
 		List<String> lore = new ArrayList<String>();
 		lore.add("§fCopyright © 2014 JarJarBings12");
 		infometa.setLore(lore);

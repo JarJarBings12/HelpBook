@@ -44,7 +44,8 @@ public class HelpBook implements CommandExecutor {
 			if(args[0].equalsIgnoreCase("info")) {
 				InfoWindow.openINFOWindow(pl);
 				return true;
-			}
+			}			
+			
 		}
 		/**
 		 * How to use section
@@ -74,6 +75,15 @@ public class HelpBook implements CommandExecutor {
 				} else if (args[1].equalsIgnoreCase("setWindowName")) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("pleassetaname"));
 					return true;
+				} else if (args[1].equalsIgnoreCase("getRawBook")) {
+					if(pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
+						pl.getInventory().addItem(Core.inCore.getBookStorage().editBook(pl.getItemInHand()));
+						pl.sendMessage(Core.inCore.geti18n().getMessage("getrawbook"));
+						return true;
+					} else {
+						pl.sendMessage(Core.inCore.geti18n().getMessage("pleaswritebook"));
+						return true;
+					}
 				}else {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("unkowncommand"));
 					return true;
@@ -130,7 +140,7 @@ public class HelpBook implements CommandExecutor {
 						ConfigLoader.setWindowName(args[2].toString());
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));
 						return true;
-				} else {
+				} else {	
 					
 				}
 			}

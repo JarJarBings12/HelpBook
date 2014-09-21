@@ -1,7 +1,9 @@
 package ch.JarJarBings12.helpbook.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -124,5 +126,15 @@ public class BookStorage {
 		metadata.setAuthor(Author.length() < 16 ? Author : Author.substring(0, 16));
 		book.setItemMeta(metadata);
 		return book;
+	}
+	public ItemStack editBook(ItemStack book) {
+		ItemStack unsavebook = new ItemStack(Material.BOOK_AND_QUILL);
+		
+		BookMeta metadataold = (BookMeta)book.getItemMeta();
+		BookMeta metadatanew = (BookMeta)unsavebook.getItemMeta();
+		
+		metadatanew.setPages(metadataold.getPages());
+		unsavebook.setItemMeta(metadatanew);
+		return unsavebook;
 	}
 }
