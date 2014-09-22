@@ -5,8 +5,7 @@ import java.util.Locale;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.JarJarBings12.helpbook.BookEvent.InventoryMoveEvent;
-import ch.JarJarBings12.helpbook.BookEvent.SignClickEvent;
-import ch.JarJarBings12.helpbook.BookEvent.SignOpenInv;
+import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 import ch.JarJarBings12.helpbook.i18n.i18n;
@@ -35,8 +34,7 @@ public class Core extends JavaPlugin {
 		getConfigLoader().setBookNames();
 		getConfigLoader().update_WINDOWTITLE();
 		
-		SignClickEvent evClickEvent = new SignClickEvent(Core.inCore);
-		SignOpenInv evOpenInv = new SignOpenInv(Core.inCore);
+		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent ev = new InventoryMoveEvent(this);		
 	}
