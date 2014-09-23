@@ -67,7 +67,7 @@ public class InfoWindow {
 		ItemStack f = new ItemStack(Material.CARPET, 1, DyeColor.BLUE.getData());
 		ItemMeta fmeta = f.getItemMeta();
 		List<String> flore = new ArrayList<String>();
-		flore.add("§none");
+		flore.add("§fnone");
 		fmeta.setLore(flore);
 		fmeta.setDisplayName("§8Facebook");
 		

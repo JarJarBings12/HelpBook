@@ -27,7 +27,10 @@ public class BookStorage {
 		}
 	}
 	
+//-----
+	
 	public void load_BookFile() {
+		BookFiles.yamlbooks.addDefault("HelpBook.Language", "en");
 		BookFiles.yamlbooks.addDefault("HelpBook.Window.Name", "§aFAQ");
 		
 		BookFiles.yamlbooks.addDefault("Book.Book1.enable", true);
@@ -83,6 +86,8 @@ public class BookStorage {
 		}
 	}
 	
+//-----
+	
 	public void addBook(int BookSlot, ItemStack rawbook, Player pl) {
 		ItemStack book = new ItemStack(rawbook);
 		
@@ -100,6 +105,8 @@ public class BookStorage {
 		Core.inCore.getConfigLoader().setBookNames();
 	}
 	
+//-----
+	
 	public ItemStack getBook(String booktitle) {
 		int i = ConfigLoader.getBookInteger(booktitle);
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
@@ -113,6 +120,8 @@ public class BookStorage {
 		return book;
 	}
 	
+//-----	
+	
 	public ItemStack setTitle(ItemStack book, String Title) {
 		
 		BookMeta metadata = (BookMeta)book.getItemMeta();
@@ -121,12 +130,18 @@ public class BookStorage {
 		return book;
 		
 	}
+	
+//-----
+	
 	public ItemStack setAuthor(ItemStack book, String Author){
 		BookMeta metadata = (BookMeta)book.getItemMeta();
 		metadata.setAuthor(Author.length() < 16 ? Author : Author.substring(0, 16));
 		book.setItemMeta(metadata);
 		return book;
 	}
+	
+//-----
+	
 	public ItemStack editBook(ItemStack book) {
 		ItemStack unsavebook = new ItemStack(Material.BOOK_AND_QUILL);
 		

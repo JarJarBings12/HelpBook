@@ -10,6 +10,7 @@ import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 import ch.JarJarBings12.helpbook.i18n.i18n;
 import ch.JarJarBings12.helpbook.inventory.MSGWindow;
+import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
@@ -26,10 +27,11 @@ public class Core extends JavaPlugin {
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
 		inConfigLoader = new ConfigLoader(this);
-		
-		Locale locale = new Locale("de");
-		geti18n().setLanguage(locale);
 		getBookStorage().load_BookFile();
+		
+		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
+		Locale locale = new Locale(slocale);
+		geti18n().setLanguage(locale);
 		
 		getConfigLoader().setBooleans();
 		getConfigLoader().setBookNames();

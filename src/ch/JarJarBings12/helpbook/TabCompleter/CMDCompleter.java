@@ -18,7 +18,8 @@ public class CMDCompleter implements TabCompleter {
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> noargs = Arrays.asList("admin", "info");
-		List<String> admin = Arrays.asList("setTitle", "setAuthor", "setBookAtSlot", "turnmode", "setWindowName", "getrawbook");
+		List<String> admin = Arrays.asList("setTitle", "setAuthor", "setBookAtSlot", "turnmode", "setWindowName", "getRawBook", "Language");
+		List<String> nextadmin = Arrays.asList("getLanguage", "setLanguage", "languagelist");
 		List<String> turn = Arrays.asList("turnmode");
 		List<String> slot = Arrays.asList("1","2","3","4","5","6","7","8","9");
 		List<String> status = Arrays.asList("on","true","off","false");

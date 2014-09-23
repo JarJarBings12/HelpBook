@@ -1,5 +1,7 @@
 package ch.JarJarBings12.helpbook.Commands;
 
+import java.util.Locale;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,6 +17,7 @@ import ch.JarJarBings12.helpbook.inventory.MSGWindow.BUTTON;
 import ch.JarJarBings12.helpbook.inventory.MSGWindow.EXEPTION;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
+import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
@@ -49,11 +52,8 @@ public class HelpBook implements CommandExecutor {
 				return true;
 			}	
 			if(args[0].equalsIgnoreCase("msg")) {
-				 ItemStack i = new ItemStack(Material.AIR);
-				MSGWindow.openMSGHandler(pl, BUTTON.YESNO, EXEPTION.INFO, "Ist das gut", i);
-				return true;
-			}	
-			
+				MSGWindow.openMSGHandler(pl, BUTTON.YESNO, EXEPTION.WARNING, "Test Frage", Core.inCore.getBookStorage().getBook("TestBook"));
+			}
 		}
 		/**
 		 * How to use section
@@ -152,8 +152,17 @@ public class HelpBook implements CommandExecutor {
 						ConfigLoader.setWindowName(newwindowname);
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));
 						return true;
-				} else {	
-					
+				} else if(args[2].equalsIgnoreCase("getLanguage")) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("getlanguage"));
+					return true;
+				} else if (args[2].equalsIgnoreCase("Languageslist")) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("languagelist"));
+					pl.sendMessage("§6Deutsch=de, §fEnglisch=en");
+					return true;
+				} else if (args[2].equalsIgnoreCase("setLanguage")) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("languagelist"));
+					pl.sendMessage("§6Deutsch=de, §fEnglisch=en");
+					return true;
 				}
 			}
 		}
@@ -181,10 +190,32 @@ public class HelpBook implements CommandExecutor {
 						return true;
 					} else {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("useonoffelse"));
-						pl.sendMessage("         §6on,§f off,§6 enable,§f disable,§6 ture,§f false");
+						pl.sendMessage("         §6on,§f off,§6 ture,§f false");
 						return true;
 					}
+				} else if (args[1].equalsIgnoreCase("Language")) {
+					if(args[2].equalsIgnoreCase("setLanguage")) {
+						if(args[3].equalsIgnoreCase("de")) {
+							pl.sendMessage(Core.inCore.geti18n().getMessage("setlanguage").replace("%language", "Deutsch"));
+							BookFiles.yamlbooks.set("HelpBook.Language", "de");
+							Locale de = new Locale("de");
+							Core.inCore.geti18n().setLanguage(de);
+							return true;
+						} else if (args[3].equalsIgnoreCase("en")) {
+							pl.sendMessage(Core.inCore.geti18n().getMessage("setlanguage").replace("%language", "english"));
+							BookFiles.yamlbooks.set("HelpBook.Language", "en");
+							Locale en = new Locale("en");
+							Core.inCore.geti18n().setLanguage(en);
+							return true;
+						} else {
+							pl.sendMessage(Core.inCore.geti18n().getMessage("unkownlanguage"));
+							pl.sendMessage(Core.inCore.geti18n().getMessage("languagelist"));
+							pl.sendMessage("§6Deutsch=de, §fEnglisch=en");
+							return true;
+						}
+					} 
 				}
+				
 			}
 		}
 		return true;
