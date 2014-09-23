@@ -41,10 +41,14 @@ public class InventoryMoveEvent implements Listener {
 				
 				Player pl = (Player)e.getWhoClicked();
 				BookMeta metadata = (BookMeta)item.getItemMeta();
+				if(pl.getInventory().contains(Core.inCore.getBookStorage().getBook(metadata.getTitle()))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("coontainsbook"));
+					return;
+				}
 				pl.getInventory().addItem(Core.inCore.getBookStorage().getBook(metadata.getTitle()));
 				pl.updateInventory();
 				pl.sendMessage(Core.inCore.geti18n().getMessage("givebookmessage").replace("%buch", ChatColor.translateAlternateColorCodes('&', metadata.getTitle())));
-			}	
+			}
 		}
 
 		if(e.getSlot() == e.getRawSlot()) {
@@ -62,7 +66,7 @@ public class InventoryMoveEvent implements Listener {
 			Player pl = (Player)e.getWhoClicked();
 			if(item.getType() == Material.CARPET || item.getType() == Material.STAINED_GLASS_PANE) {
 				if(itemmeta.getDisplayName().equalsIgnoreCase("§aVersion")) {
-					pl.sendMessage("§aVersion: §f1.0.0");
+					pl.sendMessage("§aVersion: §f1.2.25");
 					pl.sendMessage("Copyright © 2014 JarJarBings12");
 				} else if (itemmeta.getDisplayName().equalsIgnoreCase("§2Author")) {
 					pl.sendMessage("§2Author: §fJarJarBings12");

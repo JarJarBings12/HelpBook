@@ -34,7 +34,7 @@ public class InfoWindow {
 		ItemStack v = new ItemStack(Material.CARPET, 1, DyeColor.LIME.getData());
 		ItemMeta vmeta = v.getItemMeta();
 		List<String> vlore = new ArrayList<String>();
-		vlore.add("§fBeta 1.2.24");
+		vlore.add("§fBeta 1.2.25");
 		vlore.add("§fCopyright © 2014 JarJarBings12");
 		vmeta.setLore(vlore);
 		vmeta.setDisplayName("§aVersion");
@@ -75,7 +75,7 @@ public class InfoWindow {
 		
 		ItemStack info = new ItemStack(Material.REDSTONE,1);
 		ItemMeta infometa = info.getItemMeta();
-		infometa.setDisplayName("§3Betateste §f1.2.24");
+		infometa.setDisplayName("§3Betateste §f1.2.25");
 		List<String> lore = new ArrayList<String>();
 		lore.add("§fCopyright © 2014 JarJarBings12");
 		infometa.setLore(lore);

@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.inventory.InfoWindow;
+import ch.JarJarBings12.helpbook.inventory.MSGWindow;
+import ch.JarJarBings12.helpbook.inventory.MSGWindow.BUTTON;
+import ch.JarJarBings12.helpbook.inventory.MSGWindow.EXEPTION;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
 import ch.JarJarBings12.helpbook.util.BookStorage;
@@ -44,7 +47,12 @@ public class HelpBook implements CommandExecutor {
 			if(args[0].equalsIgnoreCase("info")) {
 				InfoWindow.openINFOWindow(pl);
 				return true;
-			}			
+			}	
+			if(args[0].equalsIgnoreCase("msg")) {
+				 ItemStack i = new ItemStack(Material.AIR);
+				MSGWindow.openMSGHandler(pl, BUTTON.YESNO, EXEPTION.INFO, "Ist das gut", i);
+				return true;
+			}	
 			
 		}
 		/**
@@ -137,7 +145,11 @@ public class HelpBook implements CommandExecutor {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownametolong"));
 						return true;
 					}
-						ConfigLoader.setWindowName(args[2].toString());
+						String newwindowname = null;
+						if(args[2].contains("_")) {
+							newwindowname = args[2].replace("_", " ");
+						}
+						ConfigLoader.setWindowName(newwindowname);
 						pl.sendMessage(Core.inCore.geti18n().getMessage("windownameset").replace("%name", ConfigLoader.WindowName));
 						return true;
 				} else {	
