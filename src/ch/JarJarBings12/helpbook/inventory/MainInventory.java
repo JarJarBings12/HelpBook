@@ -3,6 +3,7 @@ package ch.JarJarBings12.helpbook.inventory;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -130,6 +131,8 @@ public class MainInventory {
 		} else {
 			inv.setItem(8, close);
 		}
+		pl.playSound(pl.getLocation(), Sound.HORSE_ARMOR, 1, 1);
 		pl.openInventory(inv);
+		
 	}
 }

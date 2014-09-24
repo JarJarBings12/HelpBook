@@ -6,11 +6,14 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.PluginDescriptionFile;
 
+import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class InfoWindow {
@@ -34,7 +37,7 @@ public class InfoWindow {
 		ItemStack v = new ItemStack(Material.CARPET, 1, DyeColor.LIME.getData());
 		ItemMeta vmeta = v.getItemMeta();
 		List<String> vlore = new ArrayList<String>();
-		vlore.add("§fBeta 1.2.25");
+		vlore.add("§fBeta " + Core.inCore.getPluginDescription().getVersion());
 		vlore.add("§fCopyright © 2014 JarJarBings12");
 		vmeta.setLore(vlore);
 		vmeta.setDisplayName("§aVersion");
@@ -72,10 +75,9 @@ public class InfoWindow {
 		fmeta.setDisplayName("§8Facebook");
 		
 		f.setItemMeta(fmeta);
-		
 		ItemStack info = new ItemStack(Material.REDSTONE,1);
 		ItemMeta infometa = info.getItemMeta();
-		infometa.setDisplayName("§3Betateste §f1.2.25");
+		infometa.setDisplayName("§3Betateste §f"+Core.inCore.getPluginDescription().getVersion());
 		List<String> lore = new ArrayList<String>();
 		lore.add("§fCopyright © 2014 JarJarBings12");
 		infometa.setLore(lore);
@@ -90,7 +92,7 @@ public class InfoWindow {
 		inv.setItem(17, f);
 		inv.setItem(8, close);
 		
-		
+		pl.playSound(pl.getLocation(), Sound.HORSE_ARMOR, 1, 1);
 		pl.openInventory(inv);
 	}
 }

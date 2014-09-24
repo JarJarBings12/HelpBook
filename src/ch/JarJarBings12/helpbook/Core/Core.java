@@ -2,9 +2,11 @@ package ch.JarJarBings12.helpbook.Core;
 
 import java.util.Locale;
 
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.JarJarBings12.helpbook.BookEvent.InventoryMoveEvent;
+import ch.JarJarBings12.helpbook.BookEvent.PlayerBookOpen;
 import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
@@ -21,11 +23,14 @@ public class Core extends JavaPlugin {
 	private static BookStorage inBookStore;
 	private static ConfigLoader inConfigLoader;
 	
+	public static PluginDescriptionFile desc;
+	
 	public void onEnable() {
 
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
+		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
 		getBookStorage().load_BookFile();
 		
@@ -40,7 +45,8 @@ public class Core extends JavaPlugin {
 		
 		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 		CMDExecuter.load_COMMANDS();
-		InventoryMoveEvent ev = new InventoryMoveEvent(this);		
+		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
+		PlayerBookOpen evPBO = new PlayerBookOpen(this);
 	}
 	
 	public void onDisable() {
@@ -56,5 +62,9 @@ public class Core extends JavaPlugin {
 	
 	public ConfigLoader getConfigLoader() {
 		return inConfigLoader;
+	}
+	
+	public PluginDescriptionFile getPluginDescription() {
+		return desc;
 	}
 }

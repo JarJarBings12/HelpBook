@@ -70,7 +70,7 @@ public class InventoryMoveEvent implements Listener {
 			Player pl = (Player)e.getWhoClicked();
 			if(item.getType() == Material.CARPET || item.getType() == Material.STAINED_GLASS_PANE) {
 				if(itemmeta.getDisplayName().equalsIgnoreCase("§aVersion")) {
-					pl.sendMessage("§aVersion: §f1.2.25");
+					pl.sendMessage("§aVersion: §f"+Core.inCore.getPluginDescription().getVersion());
 					pl.sendMessage("Copyright © 2014 JarJarBings12");
 				} else if (itemmeta.getDisplayName().equalsIgnoreCase("§2Author")) {
 					pl.sendMessage("§2Author: §fJarJarBings12");
