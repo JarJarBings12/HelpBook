@@ -86,6 +86,13 @@ public class BookStorage {
 		}
 	}
 	
+	public void resetBook(int BookSlot) {
+		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Title", "TestBook");
+		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Author", "TestBook");
+		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", "TestBook");
+		save_book();
+		Core.inCore.getConfigLoader().setBookNames();
+	}
 //-----
 	
 	public void addBook(int BookSlot, ItemStack rawbook, Player pl) {

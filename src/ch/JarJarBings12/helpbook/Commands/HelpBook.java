@@ -92,7 +92,11 @@ public class HelpBook implements CommandExecutor {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("pleaswritebook"));
 						return true;
 					}
-				}else {
+				} else if (args[1].equalsIgnoreCase("resetBookSlot")) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
+					return true;
+				} else {
+				
 					pl.sendMessage(Core.inCore.geti18n().getMessage("unkowncommand"));
 					return true;
 				}
@@ -159,6 +163,14 @@ public class HelpBook implements CommandExecutor {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("languagelist"));
 					pl.sendMessage("§6Deutsch=de, §fEnglisch=en");
 					return true;
+				} else if (args[1].equalsIgnoreCase("resetBookSlot")) {
+					int i = Integer.parseInt(args[2]);
+					if(i > 9 || i < 0) {
+						pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
+						return true;
+					} else {
+						Core.inCore.getBookStorage().resetBook(i);
+					}
 				} else if (args[2].equalsIgnoreCase("setLanguage")) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("languagelist"));
 					pl.sendMessage("§6Deutsch=de, §fEnglisch=en");
