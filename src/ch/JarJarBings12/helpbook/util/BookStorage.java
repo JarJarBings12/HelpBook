@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.server.v1_7_R3.IBlockAccess;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -85,11 +87,12 @@ public class BookStorage {
 			
 		}
 	}
-	
+//-----
 	public void resetBook(int BookSlot) {
-		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Title", "TestBook");
-		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Author", "TestBook");
-		BookFiles.yamlbooks.set("Book.Book"+BookSlot+".Pages", "TestBook");
+		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".enable", true);
+		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".Title", "TestBook");
+		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".Author", "TestBook");
+		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".Pages", "");
 		save_book();
 		Core.inCore.getConfigLoader().setBookNames();
 	}

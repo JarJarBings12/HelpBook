@@ -18,11 +18,8 @@ public class CMDCompleter implements TabCompleter {
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> noargs = Arrays.asList("admin", "info");
-		List<String> admin = Arrays.asList("setTitle", "setAuthor", "setBookAtSlot", "turnmode", "setWindowName", "getRawBook", "Language", "resetBookSlot");
-		List<String> nextadmin = Arrays.asList("getLanguage", "setLanguage", "languagelist");
-		List<String> turn = Arrays.asList("turnmode");
-		List<String> slot = Arrays.asList("1","2","3","4","5","6","7","8","9");
-		List<String> status = Arrays.asList("on","true","off","false");
+		List<String> admin = Arrays.asList("resetBookSlot", "setTitle", "setAuthor", "setBookAtSlot", "setWindowName", "turnmode", "getRawBook", "Language");
+		List<String> nextadmin = Arrays.asList("setLanguage", "languagelist", "getLanguage", "Languageslist");
 		List<String> finallist = Lists.newArrayList();
 		
 		if(args.length == 1) {
@@ -46,16 +43,8 @@ public class CMDCompleter implements TabCompleter {
 		}
 		
 		if(args.length == 3) {
-			for(String s : slot) {
+			for(String s : nextadmin) {
 				if(s.startsWith(args[2])) {
-					finallist.add(s);
-				}
-			}
-			return finallist;
-		}
-		if(args.length == 4) {
-			for(String s : status) {
-				if(s.startsWith(args[3])) {
 					finallist.add(s);
 				}
 			}

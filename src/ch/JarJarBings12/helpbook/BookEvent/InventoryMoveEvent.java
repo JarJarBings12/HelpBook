@@ -35,8 +35,6 @@ public class InventoryMoveEvent implements Listener {
 		if(e.getCurrentItem() == null) {
 			return;
 		}
-		
-		Bukkit.broadcastMessage("dwdwdwdw");
 		if(e.getSlot() == e.getRawSlot()) {
 			Player pl = (Player) e.getWhoClicked();
 			if(e.getInventory().getName().contains(ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName))) {

@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.Commands;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import org.bukkit.Bukkit;
@@ -165,7 +166,7 @@ public class HelpBook implements CommandExecutor {
 					return true;
 				} else if (args[1].equalsIgnoreCase("resetBookSlot")) {
 					int i = Integer.parseInt(args[2]);
-					if(i > 9 || i < 0) {
+					if(9 < i || 0 > i) {
 						pl.sendMessage(Core.inCore.geti18n().getMessage("tohighnummber"));
 						return true;
 					} else {
@@ -210,12 +211,22 @@ public class HelpBook implements CommandExecutor {
 						if(args[3].equalsIgnoreCase("de")) {
 							pl.sendMessage(Core.inCore.geti18n().getMessage("setlanguage").replace("%language", "Deutsch"));
 							BookFiles.yamlbooks.set("HelpBook.Language", "de");
+							try {
+								BookFiles.yamlbooks.save(BookFiles.books);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							Locale de = new Locale("de");
 							Core.inCore.geti18n().setLanguage(de);
 							return true;
 						} else if (args[3].equalsIgnoreCase("en")) {
 							pl.sendMessage(Core.inCore.geti18n().getMessage("setlanguage").replace("%language", "english"));
 							BookFiles.yamlbooks.set("HelpBook.Language", "en");
+							try {
+								BookFiles.yamlbooks.save(BookFiles.books);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							Locale en = new Locale("en");
 							Core.inCore.geti18n().setLanguage(en);
 							return true;

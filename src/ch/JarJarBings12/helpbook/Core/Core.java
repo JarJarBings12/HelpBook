@@ -17,7 +17,9 @@ import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class Core extends JavaPlugin {
-	
+	/**
+	 * @author JarJarBings12
+	 */
 	public static Core inCore;
 	private static i18n inI18N;
 	private static BookStorage inBookStore;

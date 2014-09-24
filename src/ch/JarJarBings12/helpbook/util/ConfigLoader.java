@@ -42,6 +42,7 @@ public class ConfigLoader {
 	}
 	
 	public void setBookNames() {
+		booklist.clear();
 		for(int i = 1; i < 9; i++ ) {
 			booklist.put(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"), i);
 		}
