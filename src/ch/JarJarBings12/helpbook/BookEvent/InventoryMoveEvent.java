@@ -5,6 +5,7 @@ import java.time.DayOfWeek;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,15 +43,20 @@ public class InventoryMoveEvent implements Listener {
 		ItemStack item = e.getCurrentItem();
 		if(e.getInventory().getName().contains(ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName))) {
 			if(item.getType() == Material.WRITTEN_BOOK) {
-				
 				Player pl = (Player)e.getWhoClicked();
 				BookMeta metadata = (BookMeta)item.getItemMeta();
 				if(pl.getInventory().contains(Core.inCore.getBookStorage().getBook(metadata.getTitle()))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("coontainsbook"));
+					pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 1, 1);
+					pl.playSound(pl.getLocation(), Sound.ITEM_PICKUP, 1, 1);
+					pl.playSound(pl.getLocation(), Sound.FIZZ, 1, 1);
+					pl.playSound(pl.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
+
 					return;
 				}
 				pl.getInventory().addItem(Core.inCore.getBookStorage().getBook(metadata.getTitle()));
 				pl.updateInventory();
+				pl.playSound(pl.getLocation(), Sound.ITEM_PICKUP, 1, 1);
 				pl.sendMessage(Core.inCore.geti18n().getMessage("givebookmessage").replace("%buch", ChatColor.translateAlternateColorCodes('&', metadata.getTitle())));
 			}
 		}
