@@ -2,6 +2,7 @@ package ch.JarJarBings12.helpbook.BookEvent;
 
 import java.time.DayOfWeek;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -31,6 +32,11 @@ public class InventoryMoveEvent implements Listener {
 	
 	@EventHandler
 	public void onInvMove(InventoryClickEvent e) {
+		if(e.getCurrentItem() == null) {
+			return;
+		}
+		
+		Bukkit.broadcastMessage("dwdwdwdw");
 		if(e.getSlot() == e.getRawSlot()) {
 			Player pl = (Player) e.getWhoClicked();
 			if(e.getInventory().getName().contains(ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName))) {
@@ -40,8 +46,8 @@ public class InventoryMoveEvent implements Listener {
 				}
 			}
 		
-		ItemStack item = e.getCurrentItem();
 		if(e.getInventory().getName().contains(ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName))) {
+			ItemStack item = e.getCurrentItem();
 			if(item.getType() == Material.WRITTEN_BOOK) {
 				Player pl = (Player)e.getWhoClicked();
 				BookMeta metadata = (BookMeta)item.getItemMeta();
@@ -51,13 +57,13 @@ public class InventoryMoveEvent implements Listener {
 					pl.playSound(pl.getLocation(), Sound.ITEM_PICKUP, 1, 1);
 					pl.playSound(pl.getLocation(), Sound.FIZZ, 1, 1);
 					pl.playSound(pl.getLocation(), Sound.NOTE_BASS_DRUM, 1, 1);
-
-					return;
+				} else {
+					pl.getInventory().addItem(Core.inCore.getBookStorage().getBook(metadata.getTitle()));
+					pl.playSound(pl.getLocation(), Sound.ITEM_PICKUP, 1, 1);
+					pl.sendMessage(Core.inCore.geti18n().getMessage("givebookmessage").replace("%buch", ChatColor.translateAlternateColorCodes('&', metadata.getTitle())));
+			
 				}
-				pl.getInventory().addItem(Core.inCore.getBookStorage().getBook(metadata.getTitle()));
-				pl.updateInventory();
-				pl.playSound(pl.getLocation(), Sound.ITEM_PICKUP, 1, 1);
-				pl.sendMessage(Core.inCore.geti18n().getMessage("givebookmessage").replace("%buch", ChatColor.translateAlternateColorCodes('&', metadata.getTitle())));
+			} else {
 			}
 		}
 
@@ -69,6 +75,7 @@ public class InventoryMoveEvent implements Listener {
 			}
 		}
 		if(e.getInventory().getName().equalsIgnoreCase("§6Plugin Data")) {
+			ItemStack item = e.getCurrentItem();
 			ItemMeta itemmeta = item.getItemMeta();
 			if(item.getType() != Material.CARPET || item.getType() != Material.STAINED_GLASS_PANE) {
 				e.setCancelled(true);
@@ -96,6 +103,8 @@ public class InventoryMoveEvent implements Listener {
 		}
 		Player pl = (Player)e.getWhoClicked();
 		if(MSGWindow.MSGWINDOWLIST.containsKey(pl)) {
+			
+			ItemStack item = e.getCurrentItem();
 			ItemStack gpane = new ItemStack(Material.STAINED_GLASS_PANE);
 			ItemMeta metapane = (ItemMeta)item.getItemMeta();
 			if(metapane.getDisplayName().contains("Yes")) {
