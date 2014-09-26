@@ -28,29 +28,48 @@ public class Core extends JavaPlugin {
 	public static PluginDescriptionFile desc;
 	
 	public void onEnable() {
-
+		
+		System.out.println("[UserHelper]Load UserHelper" );
+		
+//Define the Variables
+		
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
 		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
+		
+//Load Book File
 		getBookStorage().load_BookFile();
+		
+//Load Language
 		
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		Locale locale = new Locale(slocale);
 		geti18n().setLanguage(locale);
 		
+//Load Book File 
+		
 		getConfigLoader().setBooleans();
 		getConfigLoader().setBookNames();
 		getConfigLoader().update_WINDOWTITLE();
+
+//Load Buttons
+		
 		MSGWindow.load_BUTTONS();
+	
+//Load Events
 		
 		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
-		CMDExecuter.load_COMMANDS();
 		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 		PlayerBookOpen evPBO = new PlayerBookOpen(this);
+
+//Load Commands
+		
+		CMDExecuter.load_COMMANDS();
 	}
 	
+
 	public void onDisable() {
 	}
 	

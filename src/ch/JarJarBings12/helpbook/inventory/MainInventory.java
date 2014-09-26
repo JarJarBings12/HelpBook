@@ -15,6 +15,9 @@ import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class MainInventory {
+	/**
+	 * @author JarJarBings12
+	 */
 	public enum inventorylist{
 		main
 	};

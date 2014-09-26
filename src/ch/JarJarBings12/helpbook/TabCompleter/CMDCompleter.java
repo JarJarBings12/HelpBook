@@ -14,6 +14,7 @@ public class CMDCompleter implements TabCompleter {
 
 	/**
 	 * Command Tab Completer 
+	 * @author JarJarBings12
 	 */
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {

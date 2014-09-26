@@ -43,6 +43,8 @@ public class InventoryMoveEvent implements Listener {
 				ItemStack item = e.getCurrentItem();
 				}
 			}
+
+//Main Inventory
 		
 		if(e.getInventory().getName().contains(ChatColor.translateAlternateColorCodes('&', ConfigLoader.WindowName))) {
 			ItemStack item = e.getCurrentItem();
@@ -65,6 +67,8 @@ public class InventoryMoveEvent implements Listener {
 			}
 		}
 
+//Plugin Inventory
+		
 		if(e.getSlot() == e.getRawSlot()) {
 			Player pl = (Player) e.getWhoClicked();
 			if(e.getInventory().getName().contains("§6Plugin Data")) {
@@ -99,6 +103,9 @@ public class InventoryMoveEvent implements Listener {
 				}
 			}
 		}
+
+//MSG Window
+		
 		Player pl = (Player)e.getWhoClicked();
 		if(MSGWindow.MSGWINDOWLIST.containsKey(pl)) {
 			

@@ -17,6 +17,13 @@ public class ConfigLoader {
 	public static String WindowName;
 	public static HashMap<String, Integer> booklist = new HashMap<>();
 
+	
+//-----
+	
+	/**
+	 * Try to save the Book File
+	 * @author JarJarBings12
+	 */
 	private static void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
@@ -25,10 +32,22 @@ public class ConfigLoader {
 		}
 	}
 	
+//-----
+	
+	/**
+	 * Update the Window name of the Invs.
+	 * @author JarJarBings12
+	 */
 	public void update_WINDOWTITLE() {
 		WindowName = BookFiles.yamlbooks.getString("HelpBook.Window.Name");
 	}
+
+//-----
 	
+	/**
+	 * set the enable Booleans of the Book slots.
+	 * @author JarJarBings12
+	 */
 	public void setBooleans() {
 		book1 = BookFiles.yamlbooks.getBoolean("Book.Book1.enable");
 		book2 = BookFiles.yamlbooks.getBoolean("Book.Book2.enable");
@@ -41,13 +60,25 @@ public class ConfigLoader {
 		book9 = BookFiles.yamlbooks.getBoolean("Book.Book9.enable");		
 	}
 	
+//-----
+	
+	/**
+	 * Load the Book Index
+	 * @author JarJarBings12
+	 */
 	public void setBookNames() {
 		booklist.clear();
 		for(int i = 1; i < 9; i++ ) {
 			booklist.put(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"), i);
 		}
 	}
+
+//-----
 	
+	/**
+	 * get a Status of a Book by a @param Integer of a Book. @return Bool
+	 * @author JarJarBings12
+	 */
 	public static boolean getBookBool(int book) {
 		if(book < 9 || book == 0) {
 			return false;
@@ -74,8 +105,13 @@ public class ConfigLoader {
 			return false;
 		}
 	}
+
+//-----
 	
-	
+	/**
+	 * Turn a Book on or off by a @param Book_int and a @param Boolean
+	 * @author JarJarBings12
+	 */
 	public static void setBookBool(int book, boolean status) {
 		if(book > 9) {
 			Bukkit.broadcastMessage("Test");
@@ -123,12 +159,25 @@ public class ConfigLoader {
 		}
 	}
 	
+//-----
+	
+	/**
+	 * get a  @return Book_Integer by a @param Book title
+	 * @author JarJarBings12
+	 */
 	public static Integer getBookInteger(String title) {
 		int titleint;
 		titleint = booklist.get(title);
 		return titleint;
 	}
+
+//-----
 	
+	/**
+	 * set the Window name with a @param String you can use the "_" for a space.
+	 * You can also use Colors
+	 * @author JarJarBings12
+	 */
 	public static void setWindowName(String NewWindowName) {
 		BookFiles.yamlbooks.set("HelpBook.Window.Name", NewWindowName);
 		WindowName = NewWindowName;

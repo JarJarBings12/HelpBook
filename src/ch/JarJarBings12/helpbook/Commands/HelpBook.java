@@ -26,17 +26,23 @@ public class HelpBook implements CommandExecutor {
 	public HelpBook(Core inCore) {
 		Core.inCore = inCore;
 	}
+	
+	/**
+	 * @author JarJarBings12
+	 */
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!cmd.getName().equalsIgnoreCase("HelpBook")) return true;
 		if (!(sender instanceof Player)) {
 			return true;
 		}
 		Player pl = (Player) sender;
+		
 		if (!(pl.hasPermission("helpbook.helpbook"))) {
 			pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 			return true;
 		}
-
+		
 		if (args.length == 0) {
 			MainInventory.openMAINWindow(pl);
 			pl.sendMessage(Core.inCore.geti18n().getMessage("openhelpbook"));

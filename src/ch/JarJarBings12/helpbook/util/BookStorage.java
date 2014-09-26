@@ -21,6 +21,11 @@ public class BookStorage {
 	public BookStorage(Core inCore) {
 		Core.inCore = inCore;
 	}
+	
+	/**
+	 * Try to save the Book File
+	 */
+	
 	public void save_book() {
 		try {
 			BookFiles.yamlbooks.save(BookFiles.books);
@@ -30,6 +35,11 @@ public class BookStorage {
 	}
 	
 //-----
+	
+	/**
+	 * Setup the Default configuration  
+	 * @author JarJarBings12
+	 */
 	
 	public void load_BookFile() {
 		BookFiles.yamlbooks.addDefault("HelpBook.Language", "en");
@@ -87,7 +97,14 @@ public class BookStorage {
 			
 		}
 	}
+	
 //-----
+	
+	/**
+	 * reset a Book slot by a Integer 
+	 * If you delete a Book slot it is deletet it can't be undo 
+	 * @author JarJarBings12
+	 */
 	public void resetBook(int BookSlot) {
 		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".enable", true);
 		BookFiles.yamlbooks.addDefault("Book.Book"+BookSlot+".Title", "TestBook");
@@ -96,8 +113,13 @@ public class BookStorage {
 		save_book();
 		Core.inCore.getConfigLoader().setBookNames();
 	}
+	
 //-----
 	
+	/**
+	 * add a Book by a @param Integer with a @param ItemStack and a @param Player.
+	 * @author JarJarBings12
+	 */
 	public void addBook(int BookSlot, ItemStack rawbook, Player pl) {
 		ItemStack book = new ItemStack(rawbook);
 		
@@ -117,6 +139,10 @@ public class BookStorage {
 	
 //-----
 	
+	/**
+	 * get a Book by a @param BookTitle and @return ItemStack.
+	 * @author JarJarBings12
+	 */
 	public ItemStack getBook(String booktitle) {
 		int i = ConfigLoader.getBookInteger(booktitle);
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
@@ -132,6 +158,10 @@ public class BookStorage {
 	
 //-----	
 	
+	/**
+	 * set a Book title with a @param ItemStack and a @param title.
+	 * @author JarJarBings12
+	 */
 	public ItemStack setTitle(ItemStack book, String Title) {
 		
 		BookMeta metadata = (BookMeta)book.getItemMeta();
@@ -143,6 +173,11 @@ public class BookStorage {
 	
 //-----
 	
+	/**
+	 * set the Author of a Book with ha @param ItemStack and a @param Author.
+	 * @return ItemStack
+	 * @author JarJarBings12   
+	 */
 	public ItemStack setAuthor(ItemStack book, String Author){
 		BookMeta metadata = (BookMeta)book.getItemMeta();
 		metadata.setAuthor(Author.length() < 16 ? Author : Author.substring(0, 16));
@@ -152,6 +187,11 @@ public class BookStorage {
 	
 //-----
 	
+	/**
+	 * 
+	 * Give you a Writable Book with @param ItemStack.
+	 * @return ItemStack
+	 */
 	public ItemStack editBook(ItemStack book) {
 		ItemStack unsavebook = new ItemStack(Material.BOOK_AND_QUILL);
 		

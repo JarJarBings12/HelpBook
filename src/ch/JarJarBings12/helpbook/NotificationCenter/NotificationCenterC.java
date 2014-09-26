@@ -6,6 +6,10 @@ import org.bukkit.ChatColor;
 import ch.JarJarBings12.helpbook.Core.Core;
 
 public class NotificationCenterC {
+	/**
+	 * @see Unused
+	 * @author JarJarBings12
+	 */
 	public NotificationCenterC(Core inCore) {
 		Core.inCore = inCore;
 	}

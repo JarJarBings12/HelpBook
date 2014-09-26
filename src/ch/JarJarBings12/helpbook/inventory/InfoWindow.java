@@ -17,6 +17,12 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class InfoWindow {
+	
+	/**
+	 * Info Winodw
+	 * @author JarJarBings12
+	 */
+	
 	private static Inventory inv = null;
 	
 	public static void openINFOWindow(Player player) {
