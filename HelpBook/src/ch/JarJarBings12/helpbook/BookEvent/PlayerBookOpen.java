@@ -24,7 +24,7 @@ public class PlayerBookOpen implements Listener {
 		if(e.getAction() == e.getAction().RIGHT_CLICK_AIR || e.getAction() == e.getAction().RIGHT_CLICK_BLOCK) {
 			if(pl.getItemInHand().getType() == Material.WRITTEN_BOOK) {
 				pl.playSound(pl.getLocation(), Sound.HORSE_SADDLE, 1, 1);
-			}ddddd
+			}
 		}
 	}
 }
