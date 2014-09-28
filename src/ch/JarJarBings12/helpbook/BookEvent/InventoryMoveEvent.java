@@ -29,7 +29,7 @@ public class InventoryMoveEvent implements Listener {
 	public InventoryMoveEvent(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
-	
+	ddd
 	@EventHandler
 	public void onInvMove(InventoryClickEvent e) {
 		if(e.getCurrentItem() == null) {
