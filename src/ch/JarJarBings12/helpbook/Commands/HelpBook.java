@@ -13,9 +13,6 @@ import org.bukkit.inventory.ItemStack;
 
 import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.inventory.InfoWindow;
-import ch.JarJarBings12.helpbook.inventory.MSGWindow;
-import ch.JarJarBings12.helpbook.inventory.MSGWindow.BUTTON;
-import ch.JarJarBings12.helpbook.inventory.MSGWindow.EXEPTION;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
 import ch.JarJarBings12.helpbook.util.BookFiles;
@@ -59,7 +56,6 @@ public class HelpBook implements CommandExecutor {
 				return true;
 			}	
 			if(args[0].equalsIgnoreCase("msg")) {
-				MSGWindow.openMSGHandler(pl, BUTTON.YESNO, EXEPTION.WARNING, "Test Frage", Core.inCore.getBookStorage().getBook("TestBook"));
 			}
 		}
 		/**

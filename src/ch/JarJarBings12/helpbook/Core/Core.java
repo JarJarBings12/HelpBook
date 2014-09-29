@@ -11,7 +11,6 @@ import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 import ch.JarJarBings12.helpbook.i18n.i18n;
-import ch.JarJarBings12.helpbook.inventory.MSGWindow;
 import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
@@ -56,7 +55,6 @@ public class Core extends JavaPlugin {
 
 //Load Buttons
 		
-		MSGWindow.load_BUTTONS();
 	
 //Load Events
 		

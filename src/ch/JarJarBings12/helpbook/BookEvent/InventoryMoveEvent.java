@@ -21,7 +21,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.inventory.InfoWindow;
-import ch.JarJarBings12.helpbook.inventory.MSGWindow;
 import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
@@ -101,24 +100,6 @@ public class InventoryMoveEvent implements Listener {
 					pl.chat("/helpbook");
 				}
 			}
-		}
-
-//MSG Window
-		
-		Player pl = (Player)e.getWhoClicked();
-		if(MSGWindow.MSGWINDOWLIST.containsKey(pl)) {
-			
-			ItemStack item = e.getCurrentItem();
-			ItemStack gpane = new ItemStack(Material.STAINED_GLASS_PANE);
-			ItemMeta metapane = (ItemMeta)item.getItemMeta();
-			if(metapane.getDisplayName().contains("Yes")) {
-				MSGWindow.msgyes(item, pl);
-			} else if (metapane.getDisplayName().contains("No")) {
-				MSGWindow.msgno(pl);
-			} else if (metapane.getDisplayName().contains("Cancel")) {
-				MSGWindow.msgcanccle(pl);
-			}
-			e.setCancelled(true);
 		}
 		
 	}	
