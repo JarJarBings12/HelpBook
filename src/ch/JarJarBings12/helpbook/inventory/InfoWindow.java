@@ -28,7 +28,7 @@ public class InfoWindow {
 	public static void openINFOWindow(Player player) {
 		Player pl = player;
 		
-		inv = pl.getServer().createInventory(null, 18, "§6Plugin Data");
+		inv = pl.getServer().createInventory(null,54 , "§6Plugin Data");
 		
 		ItemStack close = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData());
 		ItemMeta closemeta = close.getItemMeta();

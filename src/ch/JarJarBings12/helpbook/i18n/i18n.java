@@ -16,7 +16,7 @@ public class i18n {
 	 */
 	
 	private static ResourceBundle bundle = ResourceBundle.getBundle("i18n/messages");
-	private static String activelang;
+	private static String activelang = null;
 
 	/**
 	 * set Language 
