@@ -12,8 +12,6 @@ import ch.JarJarBings12.helpbook.BookEvent.PlayerBookOpen;
 import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
-import ch.JarJarBings12.helpbook.dynamicwindows.dynConfig;
-import ch.JarJarBings12.helpbook.dynamicwindows.dynFilelist;
 import ch.JarJarBings12.helpbook.i18n.exceptionHandler;
 import ch.JarJarBings12.helpbook.i18n.i18n;
 import ch.JarJarBings12.helpbook.util.BookFiles;
@@ -81,9 +79,7 @@ public class Core extends JavaPlugin {
 		CMDExecuter.load_COMMANDS();
 		
 //Test loader
-		dynConfig.genConfig();
-		dynConfig.genDefaultInv();
-		dynConfig.createCache();
+
 	}
 	
 
