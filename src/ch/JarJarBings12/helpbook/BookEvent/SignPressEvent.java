@@ -12,6 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import ch.JarJarBings12.helpbook.Core.Core;
+import ch.JarJarBings12.helpbook.i18n.exceptionHandler;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 
 public class SignPressEvent implements Listener {
@@ -19,9 +20,11 @@ public class SignPressEvent implements Listener {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
 	
+	
 	@EventHandler
 	public void SignPress(PlayerInteractEvent e){
 		Player pl = e.getPlayer();
+		
 		Action a = e.getAction();
 		Block b = e.getClickedBlock();
 		if(e.getAction() == a.RIGHT_CLICK_BLOCK) {

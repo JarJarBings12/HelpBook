@@ -14,8 +14,4 @@ public class util {
 		RUN, ISRUN, ERROR
 	};
 	
-	public static void exeption(Exceptions Exception) {
-		System.out.println(helpbook+"[Error]"+ Core.inCore.getExeptionHandler().getException(Exception.toString()));
-	}
-	
 }

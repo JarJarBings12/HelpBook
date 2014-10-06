@@ -3,6 +3,7 @@ package ch.JarJarBings12.helpbook.Core;
 import java.util.Locale;
 
 import org.bukkit.Material;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,7 +40,6 @@ public class Core extends JavaPlugin {
 		
 		inCore = this;
 		inI18N = new i18n(this);
-		inException = new exceptionHandler(this);
 		inBookStore = new BookStorage(this);
 		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
@@ -57,7 +57,6 @@ public class Core extends JavaPlugin {
 //Load Exceptions
 		
 		Locale exception = new Locale("en");	
-		getExeptionHandler().setLanguage(exception);
 		
 //Load Book File 
 		
