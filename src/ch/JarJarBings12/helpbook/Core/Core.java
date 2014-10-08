@@ -20,8 +20,6 @@ import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 import ch.JarJarBings12.helpbook.util.util;
 import ch.JarJarBings12.helpbook.util.util.Exceptions;
-import ch.JarJarBings12.helpbook.util.update.updateservice;
-
 public class Core extends JavaPlugin {
 	/**
 	 * @author JarJarBings12
@@ -74,7 +72,6 @@ public class Core extends JavaPlugin {
 		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 		PlayerBookOpen evPBO = new PlayerBookOpen(this);
 		
-		updateservice.updateCheck();
 
 //Load Commands
 		
