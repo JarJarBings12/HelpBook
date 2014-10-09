@@ -13,6 +13,8 @@ import ch.JarJarBings12.helpbook.BookEvent.PlayerBookOpen;
 import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
+import ch.JarJarBings12.helpbook.Windows.dynConfig;
+import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.i18n.exceptionHandler;
 import ch.JarJarBings12.helpbook.i18n.i18n;
 import ch.JarJarBings12.helpbook.util.BookFiles;
@@ -20,6 +22,7 @@ import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 import ch.JarJarBings12.helpbook.util.util;
 import ch.JarJarBings12.helpbook.util.util.Exceptions;
+
 public class Core extends JavaPlugin {
 	/**
 	 * @author JarJarBings12
@@ -29,7 +32,7 @@ public class Core extends JavaPlugin {
 	private static exceptionHandler inException;
 	private static BookStorage inBookStore;
 	private static ConfigLoader inConfigLoader;
-	
+	private static dynConfig inDynConfig;
 	public static PluginDescriptionFile desc;
 	
 	public void onEnable() {
@@ -42,7 +45,7 @@ public class Core extends JavaPlugin {
 		inBookStore = new BookStorage(this);
 		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
-		
+		inDynConfig = new dynConfig(this);
 //Load Book File
 		getBookStorage().load_BookFile();
 		
@@ -78,7 +81,16 @@ public class Core extends JavaPlugin {
 		CMDExecuter.load_COMMANDS();
 		
 //Test loader
-
+		dynConfig.loadConfig();
+		inDynConfig.createCACHE();
+		inDynConfig.createCONFIG();
+		inDynConfig.createSTORAG();
+		
+		if(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") == true) {
+			for (String s : dynConfig.INVENTORYS) {
+				System.out.println(s);
+			}
+		}
 	}
 	
 
