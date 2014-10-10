@@ -17,10 +17,6 @@ public class dynConfig {
 	
 	public static void loadConfig() {
 		INVENTORYS.clear();
-		INVENTORYS.add("dddddd");
-		INVENTORYS.add("ddddwdw");
-		INVENTORYS.add("dd2f1f");
-		INVENTORYS.add("dd1qfed");
 		if(df.ca.getStringList("windows.cache") != null) {
 			
 			for (String s : df.ca.getStringList("windows.cache")) {
@@ -34,9 +30,10 @@ public class dynConfig {
 	}
 	
 	public void createCACHE() {
+		df.ca.addDefault("windows.cache", "test0");
 		try {
 			dynFILELIST.ca.options().copyDefaults(true);
-			dynFILELIST.ca.save(dynFILELIST.storage);
+			dynFILELIST.ca.save(dynFILELIST.cache);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
