@@ -91,6 +91,12 @@ public class Core extends JavaPlugin {
 				System.out.println(s);
 			}
 		}
+		
+		dynConfig.loadConfig();
+		System.out.println("Contains: ");
+		for (String out : dynConfig.INVENTORYS) {
+			System.out.println("Contains: " + out.replace("[", "").replace("]", ""));
+		}
 	}
 	
 

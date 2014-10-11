@@ -1,10 +1,14 @@
 package ch.JarJarBings12.helpbook.Windows;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import ch.JarJarBings12.helpbook.Core.Core;
+import ch.JarJarBings12.helpbook.util.util;
 
 public class dynConfig {
 	public dynConfig(Core inCore) {
@@ -17,11 +21,12 @@ public class dynConfig {
 	
 	public static void loadConfig() {
 		INVENTORYS.clear();
-		if(df.ca.getStringList("windows.cache") != null) {
-			
-			for (String s : df.ca.getStringList("windows.cache")) {
-				INVENTORYS.add(s);
-			}
+		if(df.ca.getList("windows.cache") != null) {
+			List INV = df.ca.getList("windows.cache");
+			INVENTORYS.add(INV.toString());	
+			return;
+		} else {
+			System.out.println(util.helpbook + "Window list is empty!");
 		}
 	}
 	
