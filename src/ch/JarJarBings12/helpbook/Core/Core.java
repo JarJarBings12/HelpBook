@@ -46,19 +46,22 @@ public class Core extends JavaPlugin {
 		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
 		inDynConfig = new dynConfig(this);
+		
+		System.out.println(util.helpbook + "[Info]Load Config...");
+		inDynConfig.createCACHE();
+		inDynConfig.createCONFIG();
+		inDynConfig.createSTORAG();
+		
 //Load Book File
 		getBookStorage().load_BookFile();
 		
 //Load Language
 		
+		System.out.println(util.helpbook + "[Info]Setup Language...");
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		Locale locale = new Locale(slocale);
 		
 		geti18n().setLanguage(locale);		
-
-//Load Exceptions
-		
-		Locale exception = new Locale("en");	
 		
 //Load Book File 
 		
@@ -70,32 +73,24 @@ public class Core extends JavaPlugin {
 		
 	
 //Load Events
-		
+		System.out.println(util.helpbook + "[Info]Start Listeners...");
 		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 		PlayerBookOpen evPBO = new PlayerBookOpen(this);
 		
 
 //Load Commands
-		
+		System.out.println(util.helpbook + "[Info]Prepare Commands...");
 		CMDExecuter.load_COMMANDS();
 		
 //Test loader
-		dynConfig.loadConfig();
-		inDynConfig.createCACHE();
-		inDynConfig.createCONFIG();
-		inDynConfig.createSTORAG();
 		
-		if(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") == true) {
-			for (String s : dynConfig.INVENTORYS) {
-				System.out.println(s);
-			}
-		}
-		
-		dynConfig.loadConfig();
-		System.out.println("Contains: ");
-		for (String out : dynConfig.INVENTORYS) {
-			System.out.println("Contains: " + out.replace("[", "").replace("]", ""));
+		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
+			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
+			return;
+		} else {
+			System.out.println(util.helpbook + "[Info]Save Window names into Ram...");
+			dynConfig.initializeCacheList();
 		}
 	}
 	

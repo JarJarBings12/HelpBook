@@ -1,6 +1,7 @@
 package ch.JarJarBings12.helpbook.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -16,7 +17,7 @@ public class ConfigLoader {
 	public static boolean book1, book2, book3, book4, book5, book6, book7, book8, book9;
 	public static String WindowName;
 	public static HashMap<String, Integer> booklist = new HashMap<>();
-
+	public static ArrayList<String> bookforchat = new ArrayList<>();
 	
 //-----
 	
@@ -70,6 +71,7 @@ public class ConfigLoader {
 		booklist.clear();
 		for(int i = 1; i < 9; i++ ) {
 			booklist.put(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"), i);
+			bookforchat.add(BookFiles.yamlbooks.getString("Book.Book"+i+".Title"));
 		}
 	}
 
@@ -182,5 +184,15 @@ public class ConfigLoader {
 		BookFiles.yamlbooks.set("HelpBook.Window.Name", NewWindowName);
 		WindowName = NewWindowName;
 		save_book();
+	}
+	
+//-----
+	
+	public static boolean existBookByName(String BookName) {
+		if(bookforchat.contains(BookName)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

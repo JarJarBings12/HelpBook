@@ -14,16 +14,20 @@ public class dynConfig {
 	public dynConfig(Core inCore) {
 		Core.inCore = inCore;
 	}
-	
-	public static List<String> INVENTORYS = new ArrayList();
+
 	
 	private static dynFILELIST df;
-	
-	public static void loadConfig() {
-		INVENTORYS.clear();
+	private static dynWindowCore dwc;
+	/**
+	 * @author JarJarBings12
+	 * Load the Cache
+	 */
+	public static void initializeCacheList() {
+		
+		dwc.INVENTORYS.clear();
 		if(df.ca.getList("windows.cache") != null) {
 			List INV = df.ca.getList("windows.cache");
-			INVENTORYS.add(INV.toString());	
+			dwc.INVENTORYS.add(INV.toString());	
 			return;
 		} else {
 			System.out.println(util.helpbook + "Window list is empty!");
