@@ -13,8 +13,13 @@ import ch.JarJarBings12.helpbook.BookEvent.PlayerBookOpen;
 import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
+import ch.JarJarBings12.helpbook.Windows.BuildWindows;
+import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
+import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
+import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserKickEvent;
+import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserQuitEvent;
 import ch.JarJarBings12.helpbook.i18n.exceptionHandler;
 import ch.JarJarBings12.helpbook.i18n.i18n;
 import ch.JarJarBings12.helpbook.util.BookFiles;
@@ -78,13 +83,19 @@ public class Core extends JavaPlugin {
 		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 		PlayerBookOpen evPBO = new PlayerBookOpen(this);
 		
-
+		dynamicWindowUserKickEvent evDWUK = new dynamicWindowUserKickEvent(this);
+		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
+		
 //Load Commands
 		System.out.println(util.helpbook + "[Info]Prepare Commands...");
 		CMDExecuter.load_COMMANDS();
 		
 //Test loader
 		
+		
+//		BuildWindows.BuildNewWindow(3, "wdwdw");
+		dynWindowCore.StartOS();
+		HBOS.setDisplayName("HELLO", "DEFAULT");
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;

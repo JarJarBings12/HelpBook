@@ -23,7 +23,6 @@ public class dynConfig {
 	 * Load the Cache
 	 */
 	public static void initializeCacheList() {
-		
 		dwc.INVENTORYS.clear();
 		if(df.ca.getList("windows.cache") != null) {
 			List INV = df.ca.getList("windows.cache");
