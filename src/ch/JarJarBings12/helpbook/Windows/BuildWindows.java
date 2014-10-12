@@ -28,6 +28,7 @@ public class BuildWindows {
 		for(int i = 0; i < x; i++) {
 			df.s.set("windows.window."+name+".ObjList.object"+i, "");
 		}
+		
 		saveCACHEandSTORAGE();
 	}
 }

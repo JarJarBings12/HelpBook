@@ -94,8 +94,7 @@ public class Core extends JavaPlugin {
 		
 		
 //		BuildWindows.BuildNewWindow(3, "wdwdw");
-		dynWindowCore.StartOS();
-		HBOS.setDisplayName("HELLO", "DEFAULT");
+		HBOS.setSlotValue("DEFAULT", 4);
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;
