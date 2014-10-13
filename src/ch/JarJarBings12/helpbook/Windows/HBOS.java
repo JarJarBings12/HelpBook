@@ -102,4 +102,19 @@ public class HBOS {
 		
 	}
 	
+	public static String getSlotAction(String inv, int slot) {
+		return dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+slot+".ACTION.TYPE");
+	}
+	
+	/**
+	 * Actions
+	 * 
+	 * @show_X_window Open window X
+	 * @close_USER_windoow / Close the window of "USER"
+	 * @give_ITEM_USER / Give a User a Item
+	 * @HelpBook_give_BOOK_USER
+	 * @HelpBook_send_MESSAGE_USER
+	 * @HelpBook_send_INFO
+	 */
+	
 }
