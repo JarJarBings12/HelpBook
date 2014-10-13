@@ -35,6 +35,7 @@ public class HBOS {
 				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i, "");
 				save();
 			}
+			System.out.println("@HelpBook.:@");
 		}
 	}
 	

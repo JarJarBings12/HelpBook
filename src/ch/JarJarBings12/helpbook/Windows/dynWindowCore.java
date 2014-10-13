@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.util.util;
@@ -62,6 +63,49 @@ public class dynWindowCore {
 				item.setItemMeta(bookmeta);
 				tempinv.setItem(i, item);
 			
+			}
+		}
+	}
+	
+	public static void renderWindow(String inv, Player pl) {
+		int x = getSlots(INHBSystem.get(pl))*9;
+		Inventory tempinv = pl.getServer().createInventory(null, x, getDisplayName(INHBSystem.get(pl)));
+		for (int i = 0; i < x; i++) {
+			if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "BOOK")) {
+				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
+				ItemStack item = new ItemStack(m);
+				BookMeta  meta = (BookMeta)item.getItemMeta();
+				meta.setAuthor("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".AUTHOR");
+				meta.setTitle("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TITLE");
+				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
+				meta.setLore(lore);
+				item.setItemMeta(meta);
+				
+			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "BUTTON")) {
+				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
+				ItemStack item = new ItemStack(m);
+				ItemMeta  meta = (ItemMeta)item.getItemMeta();
+				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
+				meta.setDisplayName(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".DISPLAYNAME"));
+				meta.setLore(lore);
+				item.setItemMeta(meta);
+			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "ITEM")) {
+				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
+				ItemStack item = new ItemStack(m);
+				ItemMeta  meta = (ItemMeta)item.getItemMeta();
+				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
+				meta.setDisplayName(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".DISPLAYNAME"));
+				meta.setLore(lore);
+				item.setItemMeta(meta);
+				
+			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "TOOL")) {
+				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
+				ItemStack item = new ItemStack(m);
+				ItemMeta  meta = (ItemMeta)item.getItemMeta();
+				meta.setDisplayName(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".DISPLAYNAME"));
+				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
+				meta.setLore(lore);
+				item.setItemMeta(meta);
 			}
 		}
 	}
