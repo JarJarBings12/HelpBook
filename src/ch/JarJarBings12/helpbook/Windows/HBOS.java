@@ -1,8 +1,10 @@
 package ch.JarJarBings12.helpbook.Windows;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
@@ -35,7 +37,6 @@ public class HBOS {
 				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i, "");
 				save();
 			}
-			System.out.println("@HelpBook.:@");
 		}
 	}
 	
@@ -64,8 +65,37 @@ public class HBOS {
 	 * @INPUT Inventory, Slot and ItemStack
 	 * @OUTPUT None 
 	 */
-	public static void setAsSlot(String inv, int slot, ItemStack item) {
+	public static void setAsSlot(String inv, String Type,  int slot, ItemStack item, Player pl) {
 		int maxslot = dynFILELIST.s.getInt("windows.window."+inv+".lines")*9;
+		if(Type.equalsIgnoreCase("BOOK")) {
+			if(!(item.getType() == Material.WRITTEN_BOOK)) {
+				return;
+			}
+			BookMeta meta = (BookMeta)item.getItemMeta();
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "BOOK");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TITLE", meta.getTitle());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".AUTHOR", meta.getAuthor());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".PAGES", meta.getPages());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
+		} else if (Type.equalsIgnoreCase("BUTTON")) {
+			
+		} else if (Type.equalsIgnoreCase("ITEM")) {
+			
+		} else if (Type.equalsIgnoreCase("TOOL")) {
+			ItemMeta meta =item.getItemMeta();
+			Material m = item.getType();
+			List<String> lore = meta.getLore();
+			String displayname = meta.getDisplayName();
+			
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".DISPLAYNAME", displayname);
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "TOOL");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.toString());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", lore);
+			
+			save();
+		} else {
+			pl.sendMessage(Type + " is not Avible");
+		}
 		if(item.getType() == Material.WRITTEN_BOOK) {
 			BookMeta meta = (BookMeta)item.getItemMeta();
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "BOOK");

@@ -80,7 +80,7 @@ public class dynWindowCore {
 				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
 				meta.setLore(lore);
 				item.setItemMeta(meta);
-				
+				tempinv.setItem(i, item);
 			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "BUTTON")) {
 				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
 				ItemStack item = new ItemStack(m);
@@ -89,6 +89,7 @@ public class dynWindowCore {
 				meta.setDisplayName(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".DISPLAYNAME"));
 				meta.setLore(lore);
 				item.setItemMeta(meta);
+				tempinv.setItem(i, item);
 			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "ITEM")) {
 				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
 				ItemStack item = new ItemStack(m);
@@ -97,7 +98,7 @@ public class dynWindowCore {
 				meta.setDisplayName(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".DISPLAYNAME"));
 				meta.setLore(lore);
 				item.setItemMeta(meta);
-				
+				tempinv.setItem(i, item);
 			} else if((dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".TYPE") == "TOOL")) {
 				Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".MATERIAL"));
 				ItemStack item = new ItemStack(m);
@@ -106,7 +107,12 @@ public class dynWindowCore {
 				List<String> lore = dynFILELIST.s.getStringList("windows.window."+INHBSystem.get(pl)+".ObjList.object"+i+".LORE");
 				meta.setLore(lore);
 				item.setItemMeta(meta);
+				tempinv.setItem(i, item);
+			} else {
+				System.out.println("@HelpBook.:@WindowRender.:@ErrorCast@"+inv+".ObjList.Object"+i);
+				System.out.println("@HelpBook.:@WindowRender.:@INFO.:Pleas Fix the Error for Debug Tippe /helpbook @SlotReport_<SLOT>");
 			}
 		}
+		System.out.println("@HelpBook.:@WindowRender@Player_"+pl.getName());
 	}
 }
