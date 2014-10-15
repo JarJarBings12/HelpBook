@@ -2,7 +2,9 @@ package ch.JarJarBings12.helpbook.Core;
 
 import java.util.Locale;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -91,10 +93,9 @@ public class Core extends JavaPlugin {
 		CMDExecuter.load_COMMANDS();
 		
 //Test loader
-		
-		
-//		BuildWindows.BuildNewWindow(3, "wdwdw");
-		HBOS.setSlotValue("DEFAULT", 4);
+		ItemStack d = new ItemStack(Material.BUCKET);
+		Player pl = Bukkit.getPlayer("TEST");
+		HBOS.setAsSlot("TEST", "BUTTON", 1, d, pl);
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;

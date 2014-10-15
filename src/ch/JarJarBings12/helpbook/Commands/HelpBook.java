@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import ch.JarJarBings12.helpbook.Core.Core;
+import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 import ch.JarJarBings12.helpbook.inventory.InfoWindow;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
@@ -56,6 +57,7 @@ public class HelpBook implements CommandExecutor {
 				return true;
 			}	
 			if(args[0].equalsIgnoreCase("msg")) {
+				dynWindowCore.renderWindow("TEST", pl);
 			}
 		}
 		/**

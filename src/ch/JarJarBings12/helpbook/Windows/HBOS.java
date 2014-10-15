@@ -19,6 +19,7 @@ public class HBOS {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * <h3>INFO</h3>
 	 * @AUTHOR JarJarBings12
@@ -65,51 +66,51 @@ public class HBOS {
 	 * @INPUT Inventory, Slot and ItemStack
 	 * @OUTPUT None 
 	 */
-	public static void setAsSlot(String inv, String Type,  int slot, ItemStack item, Player pl) {
+	public static void setAsSlot(String inv, String Type,  int slots, ItemStack item, Player pl) {
 		int maxslot = dynFILELIST.s.getInt("windows.window."+inv+".lines")*9;
+		int slot = slots-1;
 		if(Type.equalsIgnoreCase("BOOK")) {
 			if(!(item.getType() == Material.WRITTEN_BOOK)) {
 				return;
 			}
 			BookMeta meta = (BookMeta)item.getItemMeta();
+			Material m = item.getType();
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.name());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "BOOK");
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TITLE", meta.getTitle());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".AUTHOR", meta.getAuthor());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".PAGES", meta.getPages());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
-		} else if (Type.equalsIgnoreCase("BUTTON")) {
+			save();
 			
-		} else if (Type.equalsIgnoreCase("ITEM")) {
+		} else if (Type.equalsIgnoreCase("BUTTON")) {
+			ItemMeta meta = item.getItemMeta();
+			Material m = item.getType();
+			if(meta.getDisplayName() == null) {
+				meta.setDisplayName(m.name());
+			}
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".DISPLAYNAME", meta.getDisplayName());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "BUTTON");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.name());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ACTION", "none");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ACTION.MESSAGE", "none");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ACTION.GIVE", "none");
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
+			save();
 			
 		} else if (Type.equalsIgnoreCase("TOOL")) {
 			ItemMeta meta =item.getItemMeta();
 			Material m = item.getType();
 			List<String> lore = meta.getLore();
 			String displayname = meta.getDisplayName();
-			
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".DISPLAYNAME", displayname);
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "TOOL");
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.toString());
+			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.name());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", lore);
-			
 			save();
+			
 		} else {
 			pl.sendMessage(Type + " is not Avible");
-		}
-		if(item.getType() == Material.WRITTEN_BOOK) {
-			BookMeta meta = (BookMeta)item.getItemMeta();
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "BOOK");
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TITLE", meta.getTitle());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".AUTHOR", meta.getAuthor());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".PAGES", meta.getPages());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
-		} else {
-			ItemMeta meta = (ItemMeta)item.getItemMeta();
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "ITEM");
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", item.getType().name());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".DISPLAYNAME", meta.getDisplayName());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ENCHANTMENTS", meta.getEnchants());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
 		}
 	}
 	
