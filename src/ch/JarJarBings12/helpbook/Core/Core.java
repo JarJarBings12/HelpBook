@@ -42,10 +42,8 @@ public class Core extends JavaPlugin {
 	public static PluginDescriptionFile desc;
 	
 	public void onEnable() {
-		
-		System.out.println("[UserHelper]Load UserHelper" );
-//Define the Variables
-		
+			System.out.println("[UserHelper]Load UserHelper" );
+	//Define Variables
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
@@ -53,46 +51,43 @@ public class Core extends JavaPlugin {
 		inConfigLoader = new ConfigLoader(this);
 		inDynConfig = new dynConfig(this);
 		
-		System.out.println(util.helpbook + "[Info]Load Config...");
+			System.out.println(util.helpbook + "[Info]Load Config...");
+	//Setup Configurations and Storage
 		inDynConfig.createCACHE();
 		inDynConfig.createCONFIG();
 		inDynConfig.createSTORAG();
 		
-//Load Book File
+			System.out.println(util.helpbook + "[Info]Load Book Files...");
+	//Load Book Storage
 		getBookStorage().load_BookFile();
 		
-//Load Language
-		
-		System.out.println(util.helpbook + "[Info]Setup Language...");
+			System.out.println(util.helpbook + "[Info]Setup Language...");
+	//Load Language
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		Locale locale = new Locale(slocale);
-		
 		geti18n().setLanguage(locale);		
 		
-//Load Book File 
-		
+			System.out.println(util.helpbook + "[Info]Setup Config Datas");	
+	//Setup Booleanas 
 		getConfigLoader().setBooleans();
 		getConfigLoader().setBookNames();
 		getConfigLoader().update_WINDOWTITLE();
-
-//Load Buttons
 		
-	
-//Load Events
-		System.out.println(util.helpbook + "[Info]Start Listeners...");
+			System.out.println(util.helpbook + "[Info]Start Listeners...");
+	//Setup Listeners
 		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 		PlayerBookOpen evPBO = new PlayerBookOpen(this);
-		
+			
 		dynamicWindowUserKickEvent evDWUK = new dynamicWindowUserKickEvent(this);
 		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
 		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
 		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
 		
-//Load Commands
-		System.out.println(util.helpbook + "[Info]Prepare Commands...");
+			System.out.println(util.helpbook + "[Info]Prepare Commands...");
+	//Setup Commands
 		CMDExecuter.load_COMMANDS();
-//Test loader
+
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;

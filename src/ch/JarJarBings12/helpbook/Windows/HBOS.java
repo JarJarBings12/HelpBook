@@ -104,16 +104,6 @@ public class HBOS {
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ACTION.GIVE", "none");
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
 			save();
-		} else if (Type.equalsIgnoreCase("TOOL")) {
-			ItemMeta meta =item.getItemMeta();
-			Material m = item.getType();
-			List<String> lore = meta.getLore();
-			String displayname = meta.getDisplayName();
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".DISPLAYNAME", displayname);
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".TYPE", "TOOL");
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.name());
-			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", lore);
-			save();
 		} else {
 			pl.sendMessage(Type + " is not Avible");
 		}
@@ -182,7 +172,6 @@ public class HBOS {
 		BuildWindows.BuildNewWindow(2, window);
 		save();
 	}
-	
 	
 	public static String getSlotAction(String inv, int slot) {
 		return dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+slot+".ACTION.TYPE");
