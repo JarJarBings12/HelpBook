@@ -90,7 +90,6 @@ public class HBOS {
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".PAGES", meta.getPages());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
 			save();
-			
 		} else if (Type.equalsIgnoreCase("BUTTON")) {
 			ItemMeta meta = item.getItemMeta();
 			Material m = item.getType();
@@ -105,7 +104,6 @@ public class HBOS {
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".ACTION.GIVE", "none");
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", meta.getLore());
 			save();
-			
 		} else if (Type.equalsIgnoreCase("TOOL")) {
 			ItemMeta meta =item.getItemMeta();
 			Material m = item.getType();
@@ -116,7 +114,6 @@ public class HBOS {
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".MATERIAL", m.name());
 			dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+slot+".LORE", lore);
 			save();
-			
 		} else {
 			pl.sendMessage(Type + " is not Avible");
 		}
@@ -138,8 +135,54 @@ public class HBOS {
 		} else {
 			return false;
 		}
-		
 	}
+	
+	/**
+	 * <h3>INFO</h3>
+	 * @AUTHOR JarJarBings12
+	 * @VERSION 1.0.0
+	 * @DATE 12.10.14
+	 * <h3>PROPERTIES</h3>
+	 * @USAGE Disable a Window
+	 * @INPUT Window and a Boolean
+	 * @OUTPUT None 
+	 */
+	public static void disableWindow(String Window, Boolean enabled) {
+		dynFILELIST.s.set("windows.window."+Window+".enabled", enabled);
+		save();
+	}
+	
+	/**
+	 * <h3>INFO</h3>
+	 * @AUTHOR JarJarBings12
+	 * @VERSION 1.0.0
+	 * @DATE 12.10.14
+	 * <h3>PROPERTIES</h3>
+	 * @USAGE Remove a Window
+	 * @INPUT Window
+	 * @OUTPUT None 
+	 */
+	public static void removeWindow(String window) {
+		dynFILELIST.s.set("windows.window."+window, null);
+		save();
+	}
+	
+	/**
+	 * <h3>INFO</h3>
+	 * @AUTHOR JarJarBings12
+	 * @VERSION 1.0.0
+	 * @DATE 12.10.14
+	 * <h3>PROPERTIES</h3>
+	 * @USAGE Reset Window
+	 * @INPUT Window
+	 * @OUTPUT None 
+	 */
+	public static void resetWindow(String window) {
+		dynFILELIST.s.set("windows.window."+window, null);
+		BuildWindows.BuildNewWindow(2, window);
+		save();
+	}
+	
 	
 	public static String getSlotAction(String inv, int slot) {
 		return dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+slot+".ACTION.TYPE");

@@ -92,7 +92,6 @@ public class Core extends JavaPlugin {
 //Load Commands
 		System.out.println(util.helpbook + "[Info]Prepare Commands...");
 		CMDExecuter.load_COMMANDS();
-		
 //Test loader
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");

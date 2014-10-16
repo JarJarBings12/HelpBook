@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -89,6 +90,9 @@ public class dynWindowCore {
 			} else {
 				System.out.println("@HelpBook.:@WindowRender.:@ErrorCast@"+inv+".ObjList.Object"+i);
 				System.out.println("@HelpBook.:@WindowRender.:@INFO.:Pleas Fix the Error for Debug Tippe /helpbook @SlotReport_<SLOT>");
+			}
+			if((dynFILELIST.s.getBoolean("windows.window."+inv+".windowopensound")) != false ) {
+				pl.playSound(pl.getLocation(), Sound.HORSE_ARMOR, 1, 1);
 			}
 			pl.openInventory(tempinv);
 		} 
