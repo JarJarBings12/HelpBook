@@ -2,7 +2,10 @@ package ch.JarJarBings12.helpbook.Windows;
 
 import java.io.IOException;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class BuildWindows {
 	private static dynFILELIST df;
@@ -24,9 +27,15 @@ public class BuildWindows {
 		df.s.set("windows.window."+name+".permission", "none");
 		
 		int x = lines*9;
-		
+		ItemStack d = new ItemStack(Material.AIR);
 		for(int i = 0; i < x; i++) {
-			df.s.set("windows.window."+name+".ObjList.object"+i, "");
+			df.s.set("windows.window."+name+".ObjList.object"+i+".DISPLAYNAME", "dd" );
+			df.s.set("windows.window."+name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
+			df.s.set("windows.window."+name+".ObjList.object"+i+".TYPE", "BUTTON");		
+			df.s.set("windows.window."+name+".ObjList.object"+i+".LORE", "");	
+			df.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.TYPE", "NONE");
+			df.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.USEPERMISSION", "NONE");
+			df.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.MESSAGE", "NONE");
 		}
 		
 		saveCACHEandSTORAGE();

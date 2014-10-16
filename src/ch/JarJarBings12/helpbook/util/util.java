@@ -4,14 +4,4 @@ import ch.JarJarBings12.helpbook.Core.Core;
 
 public class util {
 	public static String helpbook = "[HelpBook]";
-	
-	public enum Exceptions {
-		SIZETOHIGE, SIZETOLOW, PERMISSIONSEXECUTEERROR, OBJECTEXECUTE, MESSAGEECECUTE, ACTIONTYPEEXECUTE, ACTIONEXECUTE, 
-		NAMEEXECUTE, WINDOWNAMETOLONG
-	};
-	
-	private enum reloadstatus {
-		RUN, ISRUN, ERROR
-	};
-	
 }

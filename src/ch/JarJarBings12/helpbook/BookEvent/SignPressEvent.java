@@ -12,7 +12,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import ch.JarJarBings12.helpbook.Core.Core;
-import ch.JarJarBings12.helpbook.i18n.exceptionHandler;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 
 public class SignPressEvent implements Listener {

@@ -3,6 +3,8 @@ package ch.JarJarBings12.helpbook.Windows;
 import java.io.IOException;
 import java.util.List;
 
+import net.minecraft.server.v1_7_R3.Item;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -32,10 +34,16 @@ public class HBOS {
 	 */
 	public static void setSlotValue(String inv, int lines) {
 		if(dynFILELIST.s.getInt("windows.window."+inv+".lines") < lines) {
+			ItemStack d = new ItemStack(Material.AIR);
 			int oldlines = dynFILELIST.s.getInt("windows.window."+inv+".lines");
 			int newlines = lines*9;
 			for (int i = oldlines; i < newlines; i++) {
-				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i, "");
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i+".TYPE", "BUTTON");
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.onject"+i+".DISPLAYNAME", d.getItemMeta().getDisplayName());
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i+".MATERIAL", d.getType().name());			
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i+".ACTION.TYPE", "NONE");
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i+".ACTION.USEPERMISSION", "NONE");
+				dynFILELIST.s.set("windows.window."+inv+".ObjList.object"+i+".ACTION.MESSAGE", "NONE");
 				save();
 			}
 		}
