@@ -33,7 +33,7 @@ public class dynamicWindowMoveEvent implements Listener {
 		String type = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TYPE"); 
 		switch (type) {
 		case "BUTTON":
-				runAction(pl, rawslot);
+			analyseAction(pl, rawslot);
 			break;
 		case "BOOK":
 			ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
