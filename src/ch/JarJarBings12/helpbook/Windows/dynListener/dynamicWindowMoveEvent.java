@@ -57,9 +57,19 @@ public class dynamicWindowMoveEvent implements Listener {
 		}
 	}
 	
-	private static void runAction(Player pl, int slot) {
+	private static void analyseAction(Player pl, int slot) {
 		String action = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(pl)+".ObjList.object"+slot+".ACTION.TYPE");
-		if(action.equalsIgnoreCase("hb_open_DEFAULT_window")) {
+		String tempaction = null;
+		for(String in : dynWindowCore.INVENTORYS) {
+			tempaction = action.replace(in, "");
+		}
+		switch (tempaction) {
+		case "hb_open_windpw_":
+			break;
+		case "hb_window_close":
+			break;
+		default:
+			break;
 		}
 		
 	}
