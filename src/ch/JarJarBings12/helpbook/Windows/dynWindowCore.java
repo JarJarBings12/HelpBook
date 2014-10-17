@@ -31,19 +31,7 @@ public class dynWindowCore {
 	
 	public static List<String> INVENTORYS = new ArrayList();
 	public static HashMap<Player, String> INHBSystem = new HashMap();
-	public static ArrayList<String> inwindow = new ArrayList<>();
-	
-	public static void ShowWindow(Player pl, String INV) {
-		INHBSystem.put(pl, INV);
-	}
-	
-	public static void StartOS() {
-		if(dynFILELIST.s.getString("windows.window.default") == null) {
-			BuildWindows.BuildNewWindow(3, "DEFAULT");
-		}
-	}	
-	
-	
+		
 	private static int getSlots(String inv) {
 		return dynFILELIST.s.getInt("windows.window."+inv+".lines");
 	}
@@ -66,11 +54,9 @@ public class dynWindowCore {
 				meta.setLore(lore);
 				item.setItemMeta(meta);
 				tempinv.setItem(i, item);
-				inwindow.add(pl.getName());
 			} else if (m == Material.AIR) {
 				ItemStack item = new ItemStack(Material.AIR);
 				tempinv.setItem(i, item);
-				inwindow.add(pl.getName());
 			} else if (m != Material.WRITTEN_BOOK){
 				try {
 					ItemStack item = new ItemStack(Material.getMaterial(m.name()));
@@ -81,7 +67,6 @@ public class dynWindowCore {
 					System.out.println(m.name());
 					meta.setLore(lore);
 					item.setItemMeta(meta);
-					inwindow.add(pl.getName());
 					tempinv.setItem(i, item);
 				} catch (NullPointerException e) {
 					
@@ -98,6 +83,5 @@ public class dynWindowCore {
 		} 
 		System.out.println("@HelpBook.:@WindowRender@Player_"+pl.getName());
 		INHBSystem.put(pl, inv);
-		inwindow.add(pl.getName());
 	}
 }

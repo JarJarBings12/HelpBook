@@ -16,6 +16,9 @@ public class dynamicWindowUserQuitEvent implements Listener {
 	public void onPlayerLeave(PlayerQuitEvent e) {
 		if(dynWindowCore.INHBSystem.containsKey(e.getPlayer())) {
 			dynWindowCore.INHBSystem.remove(e.getPlayer());
+			return;
+		} else {
+			return;
 		}
 	}
 	

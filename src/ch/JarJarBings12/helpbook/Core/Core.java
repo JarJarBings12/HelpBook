@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.Core;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.bukkit.Bukkit;
@@ -84,8 +85,10 @@ public class Core extends JavaPlugin {
 		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
 		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
 			System.out.println(util.helpbook + "[Info]Prepare Commands...");
+			dynConfig.initializeCacheList();
 	//Setup Commands
 		CMDExecuter.load_COMMANDS();
+		
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;
@@ -97,6 +100,9 @@ public class Core extends JavaPlugin {
 	
 
 	public void onDisable() {
+		Object[] d = dynWindowCore.INVENTORYS.toArray();
+		dynFILELIST.ca.set("windows.cache", d);
+		BuildWindows.saveCACHEandSTORAGE();
 	}
 	
 	public i18n geti18n() {

@@ -16,6 +16,9 @@ public class dynamicWindowUserKickEvent implements Listener {
 	public void onPlayerKick(PlayerKickEvent e) {
 		if(dynWindowCore.INHBSystem.containsKey(e.getPlayer())) {
 			dynWindowCore.INHBSystem.remove(e.getPlayer());
+			return;
+		} else {
+			return;
 		}
 	}
 

@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
 import ch.JarJarBings12.helpbook.Core.Core;
+import ch.JarJarBings12.helpbook.Windows.HBActions;
 import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
@@ -64,12 +65,23 @@ public class dynamicWindowMoveEvent implements Listener {
 			tempaction = action.replace(in, "");
 		}
 		switch (tempaction) {
-		case "hb_open_windpw_":
-			break;
-		case "hb_window_close":
-			break;
-		default:
-			break;
+			case "hb_open_window_":
+				HBActions.runOPENWINDOW(pl, action);
+				break;
+			case "hb_window_close":
+				pl.closeInventory();
+				break;
+			case "hb_window_list":
+				HBActions.runWINDOWLIST(pl);
+				break;
+			case "hb_window_start":
+
+				break;
+			case "hb_runcommand_":
+				HBActions.runEXECUTECOMMAND(action);
+				break;
+			default:
+				break;
 		}
 		
 	}
