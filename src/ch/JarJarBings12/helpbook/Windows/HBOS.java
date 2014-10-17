@@ -177,6 +177,7 @@ public class HBOS {
 		return dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+slot+".ACTION.TYPE");
 	}
 	
+	
 	/**
 	 * Actions
 	 * 

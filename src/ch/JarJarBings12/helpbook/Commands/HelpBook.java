@@ -57,7 +57,7 @@ public class HelpBook implements CommandExecutor {
 				return true;
 			}	
 			if(args[0].equalsIgnoreCase("msg")) {
-				dynWindowCore.renderWindow("MYPLUGINTEST", pl);
+				dynWindowCore.renderWindow("DEFAULT", pl);
 			}
 		}
 		/**

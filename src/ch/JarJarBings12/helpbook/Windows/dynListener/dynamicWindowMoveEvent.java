@@ -1,9 +1,11 @@
 package ch.JarJarBings12.helpbook.Windows.dynListener;
 
+import java.awt.Desktop.Action;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -23,14 +25,17 @@ public class dynamicWindowMoveEvent implements Listener {
 	}
 	@EventHandler
 	public void onInvMove(InventoryClickEvent e) {
-		if(dynWindowCore.INHBSystem.containsKey(e.getWhoClicked())) {
-			e.setCancelled(true);
-		}
 		if(e.getCurrentItem() == null) {
 			return;
 		}
 		int rawslot = e.getRawSlot();
-		if(dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TYPE") == "BOOK") {
+		Player pl = (Player) e.getWhoClicked();
+		String type = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TYPE"); 
+		switch (type) {
+		case "BUTTON":
+				runAction(pl, rawslot);
+			break;
+		case "BOOK":
 			ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
 			BookMeta meta = (BookMeta)item.getItemMeta();
 			meta.setTitle("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TITLE");
@@ -40,9 +45,22 @@ public class dynamicWindowMoveEvent implements Listener {
 			meta.setLore(lore);
 			item.setItemMeta(meta);
 			e.getWhoClicked().getInventory().addItem(item);
-		} else if(dynFILELIST.s.getString("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".TYPE") == "BUTTON") {
-			String action = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".ACTION");
-			
+			break;
+		
+		default:
+			System.out.println("@HelpBook.:@GetClickedObject.:@"+dynWindowCore.INHBSystem.get(pl)+".:Object"+rawslot);
+			System.out.println("@HelpBook.:@Caused by.:@ObjectActionType{unkown}");
+			break;
 		}
+		if(dynWindowCore.INHBSystem.containsKey(e.getWhoClicked())) {
+			e.setCancelled(true);
+		}
+	}
+	
+	private static void runAction(Player pl, int slot) {
+		String action = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(pl)+".ObjList.object"+slot+".ACTION.TYPE");
+		if(action.equalsIgnoreCase("hb_open_DEFAULT_window")) {
+		}
+		
 	}
 }

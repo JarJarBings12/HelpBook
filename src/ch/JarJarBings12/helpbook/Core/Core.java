@@ -83,11 +83,9 @@ public class Core extends JavaPlugin {
 		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
 		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
 		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
-		
 			System.out.println(util.helpbook + "[Info]Prepare Commands...");
 	//Setup Commands
 		CMDExecuter.load_COMMANDS();
-
 		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
 			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
 			return;
