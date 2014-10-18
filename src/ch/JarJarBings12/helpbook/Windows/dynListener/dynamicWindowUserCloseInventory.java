@@ -12,6 +12,9 @@ import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 
 public class dynamicWindowUserCloseInventory implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public dynamicWindowUserCloseInventory(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}

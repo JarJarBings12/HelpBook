@@ -15,6 +15,9 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.inventory.MainInventory;
 
 public class SignPressEvent implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public SignPressEvent(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}

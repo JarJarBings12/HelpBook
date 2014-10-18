@@ -21,6 +21,9 @@ import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 
 public class dynamicWindowMoveEvent implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public dynamicWindowMoveEvent(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
@@ -49,7 +52,7 @@ public class dynamicWindowMoveEvent implements Listener {
 			e.getWhoClicked().getInventory().addItem(item);
 			e.setCancelled(true);
 			break;
-		
+		    
 		default:
 			System.out.println("@HelpBook.:@GetClickedObject.:@"+dynWindowCore.INHBSystem.get(pl)+".:Object"+rawslot);
 			System.out.println("@HelpBook.:@Caused by.:@ObjectActionType{unkown}");

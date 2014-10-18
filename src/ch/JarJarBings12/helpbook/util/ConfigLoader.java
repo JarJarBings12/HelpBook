@@ -11,6 +11,9 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import com.avaje.ebean.config.dbplatform.HsqldbPlatform;
 
 public class ConfigLoader {
+	/**
+	 * @author JarJarBings12
+	 */
 	public ConfigLoader(Core inCore) {
 		Core.inCore = inCore;
 	}

@@ -25,6 +25,9 @@ import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class InventoryMoveEvent implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public InventoryMoveEvent(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
@@ -39,8 +42,8 @@ public class InventoryMoveEvent implements Listener {
 				e.setCancelled(true);
 				pl.updateInventory();
 				ItemStack item = e.getCurrentItem();
-				}
-			}
+				} 
+			}      
 
 //Main Inventory
 		

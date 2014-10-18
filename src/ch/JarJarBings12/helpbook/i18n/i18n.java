@@ -6,6 +6,10 @@ import java.util.ResourceBundle;
 import ch.JarJarBings12.helpbook.Core.Core;
 
 public class i18n {
+	/**	
+	 * @
+	 */
+	
 	public i18n(Core inCore) {
 		Core.inCore = inCore;
 	}

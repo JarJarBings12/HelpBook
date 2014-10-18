@@ -25,21 +25,34 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.util.util;
 
 public class dynWindowCore {
+	/**
+	 * @author JarJarBings12
+	 */
 	public dynWindowCore(Core inCore) {
 		Core.inCore = inCore;
 	}
 	
 	public static List<String> INVENTORYS = new ArrayList();
 	public static HashMap<Player, String> INHBSystem = new HashMap();
-		
+	
+	/**
+	 * Get Slots
+	 */
 	private static int getSlots(String inv) {
 		return dynFILELIST.s.getInt("windows.window."+inv+".lines");
 	}
 	
+	/**
+	 * GetDisplayName
+	 */
 	private static String getDisplayName(String inv) {
 		return dynFILELIST.s.getString("windows.window."+inv+".displayname");
 	}
 	
+/*/Window/*/
+	/**
+	 * Render the Window
+	 */
 	public static void renderWindow(String inv, Player pl) {
 		int x = getSlots(inv)*9;
 		Inventory tempinv = pl.getServer().createInventory(null, x, inv);

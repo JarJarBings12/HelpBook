@@ -15,6 +15,9 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class PlayerBookOpen implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public PlayerBookOpen(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}

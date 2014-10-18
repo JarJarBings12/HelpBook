@@ -18,6 +18,9 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 
 public class BookStorage {
+	/**
+	 * @author JarJarBings12
+	 */
 	public BookStorage(Core inCore) {
 		Core.inCore = inCore;
 	}

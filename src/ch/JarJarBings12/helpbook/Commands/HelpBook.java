@@ -21,13 +21,13 @@ import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 
 public class HelpBook implements CommandExecutor {
-	public HelpBook(Core inCore) {
-		Core.inCore = inCore;
-	}
-	
 	/**
 	 * @author JarJarBings12
 	 */
+	
+	public HelpBook(Core inCore) {
+		Core.inCore = inCore;
+	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!cmd.getName().equalsIgnoreCase("HelpBook")) return true;
@@ -60,6 +60,7 @@ public class HelpBook implements CommandExecutor {
 				dynWindowCore.renderWindow("DEFAULT", pl);
 			}
 		}
+		
 		/**
 		 * How to use section
 		 * If a User tipped /helpbook admin setBookAtSlot this Section say the User how he must use the Command alsow:

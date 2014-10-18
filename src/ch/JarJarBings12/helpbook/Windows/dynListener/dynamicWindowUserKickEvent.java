@@ -8,6 +8,9 @@ import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 
 public class dynamicWindowUserKickEvent implements Listener {
+	/**
+	 * @author JarJarBings12
+	 */
 	public dynamicWindowUserKickEvent(Core inCore) {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
