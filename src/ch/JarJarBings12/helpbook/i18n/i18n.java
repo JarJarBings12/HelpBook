@@ -40,7 +40,6 @@ public class i18n {
 	}
 	
 	/**
-	 * 
 	 * @param Need a key word
 	 * @return Return the message of the key 
 	 */
@@ -50,8 +49,7 @@ public class i18n {
 		return "§6[HelpBook]§f"+r;
 	}
 	
-	/**
-	 * 
+	/** 
 	 * @param Need a key of a message
 	 * @return Return a boolean True = key word exist false = contain this key not
 	 */

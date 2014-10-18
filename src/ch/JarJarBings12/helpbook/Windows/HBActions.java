@@ -19,13 +19,7 @@ public class HBActions {
 		for (String s : dynWindowCore.INVENTORYS) {
 			String c = "o";
 			for (int i = 0; i < dynWindowCore.INVENTORYS.size(); i++) {
-				if(c == "o") {
 					finalstring = finalstring + "§6"+s+", ";
-					c = "w";
-				} else {
-					finalstring = finalstring + "§f"+s+", ";
-					c = "o";
-				}
 			}
 		}
 		if(finalstring == null) {
@@ -42,5 +36,9 @@ public class HBActions {
 	
 	public static void runEXECUTECOMMAND(String Action) {
 		
+	}
+	
+	public static void actionBreake(String Action) {
+		System.out.println("@HelpBook.:@WindowActionHandler.:@ActionBroken.:@RUN:>" + Action + "> {Unkown action}");
 	}
 }

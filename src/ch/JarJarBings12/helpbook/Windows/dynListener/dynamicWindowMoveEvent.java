@@ -35,6 +35,7 @@ public class dynamicWindowMoveEvent implements Listener {
 		switch (type) {
 		case "BUTTON":
 			analyseAction(pl, rawslot);
+			e.setCancelled(true);
 			break;
 		case "BOOK":
 			ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
@@ -46,6 +47,7 @@ public class dynamicWindowMoveEvent implements Listener {
 			meta.setLore(lore);
 			item.setItemMeta(meta);
 			e.getWhoClicked().getInventory().addItem(item);
+			e.setCancelled(true);
 			break;
 		
 		default:
@@ -81,8 +83,8 @@ public class dynamicWindowMoveEvent implements Listener {
 				HBActions.runEXECUTECOMMAND(action);
 				break;
 			default:
+				HBActions.actionBreake(action);
 				break;
-		}
-		
+		}	
 	}
 }

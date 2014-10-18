@@ -35,7 +35,7 @@ public class BuildWindows {
 		int x = lines*9;
 		ItemStack d = new ItemStack(Material.AIR);
 		for(int i = 0; i < x; i++) {
-			df.s.set("windows.window."+name+".ObjList.object"+i+".DISPLAYNAME", "dd" );
+			df.s.set("windows.window."+name+".ObjList.object"+i+".DISPLAYNAME", "DEFAULT" );
 			df.s.set("windows.window."+name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
 			df.s.set("windows.window."+name+".ObjList.object"+i+".TYPE", "BUTTON");		
 			df.s.set("windows.window."+name+".ObjList.object"+i+".LORE", "");	

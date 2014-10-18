@@ -57,7 +57,6 @@ public class Core extends JavaPlugin {
 		inDynConfig.createCACHE();
 		inDynConfig.createCONFIG();
 		inDynConfig.createSTORAG();
-		
 			System.out.println(util.helpbook + "[Info]Load Book Files...");
 	//Load Book Storage
 		getBookStorage().load_BookFile();
