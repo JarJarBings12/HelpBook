@@ -27,6 +27,10 @@ public class dynConfig {
 	 * Save the Cache File	
 	 */
 	public static void saveCache() {
+		List windowstosave = new ArrayList();
+		for(String w : dynWindowCore.INVENTORYS) {
+			windowstosave.add(w);
+		}
 		try {
 			dynFILELIST.ca.save(dynFILELIST.cache);
 		} catch (IOException e) {
@@ -56,7 +60,9 @@ public class dynConfig {
 		
 		if(dynFILELIST.ca.getList("windows.cache") != null) {
 			List INV = dynFILELIST.ca.getList("windows.cache");
-			dynWindowCore.INVENTORYS.add(INV.toString());	
+			for(Object w : INV) {
+				dynWindowCore.INVENTORYS.add(w.toString());
+			}
 			return;
 		} else {
 			System.out.println(util.helpbook + "Window list is empty!");

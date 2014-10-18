@@ -1,5 +1,6 @@
 package ch.JarJarBings12.helpbook.Core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -99,23 +100,42 @@ public class Core extends JavaPlugin {
 	
 
 	public void onDisable() {
-		Object[] d = dynWindowCore.INVENTORYS.toArray();
-		dynFILELIST.ca.set("windows.cache", d);
-		BuildWindows.saveCACHEandSTORAGE();
+		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
+		dynWindowCore.INVENTORYS.add("d");
+		dynConfig.saveCache();
+		dynConfig.saveStorage();
 	}
 	
+/*/Class returns/*/
+	
+	/**
+	 * Return Language Class
+	 * @ClassPath ch.JarJarBings12.helpbook.i18n.i18n
+	 */
 	public i18n geti18n() {
 		return inI18N;
 	}
 	
+	/**
+	 * Return BookStorage Class
+	 * @ClassPath ch.JarJarBings12.helpbook.util.BookStorage
+	 */
 	public BookStorage getBookStorage() {
 		return inBookStore;
 	}
 	
+	/**
+	 * Return Configuration Loader
+	 *@ClassPath ch.JarJarBings12.helpbook.util.ConfigLoader
+	 */
 	public ConfigLoader getConfigLoader() {
 		return inConfigLoader;
 	}
 	
+	/**
+	 * Return Configuration Loader
+	 *@ClassPath plugin.yml
+	 */
 	public PluginDescriptionFile getPluginDescription() {
 		return desc;
 	}
