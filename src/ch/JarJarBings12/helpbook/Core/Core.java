@@ -22,6 +22,7 @@ import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
+import ch.JarJarBings12.helpbook.Windows.dynListener.d;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowMoveEvent;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserCloseInventory;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserKickEvent;
@@ -84,6 +85,7 @@ public class Core extends JavaPlugin {
 		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
 		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
 		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
+		d dd = new d(this);
 			System.out.println(util.helpbook + "[Info]Prepare Commands...");
 			dynConfig.initializeCacheList();
 	//Setup Commands

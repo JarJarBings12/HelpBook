@@ -1,5 +1,7 @@
 package ch.JarJarBings12.helpbook.Windows.dynListener;
 
+import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +25,7 @@ public class dynamicWindowUserCloseInventory implements Listener {
 	public void onPlayerCloseInventory(InventoryCloseEvent e) {
 		if(dynWindowCore.INHBSystem.containsKey(e.getPlayer())) {
 			dynWindowCore.INHBSystem.remove(e.getPlayer());
+			Player pl = (Player)e.getPlayer();
 			return;
 		} else {
 			return;
