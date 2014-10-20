@@ -65,29 +65,18 @@ public class dynamicWindowMoveEvent implements Listener {
 	
 	private static void analyseAction(Player pl, int slot) {
 		String action = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(pl)+".ObjList.object"+slot+".ACTION.TYPE");
-		String tempaction = null;
-		for(String in : dynWindowCore.INVENTORYS) {
-			tempaction = action.replace(in, "");
+		String tempaction = "";
+		
+		if(action.contains("hb_open_window_")) {
+			HBActions.runOPENWINDOW(pl, action);
+		} else if(action.contains("hb_close_window")) {
+			pl.closeInventory();
+		} else if(action.contains("hb_give_item")) {
+			
+		} else if(action.contains("hb_cmd_")) {
+			
+		} else {
+			HBActions.actionBreake(action);
 		}
-		switch (tempaction) {
-			case "hb_open_window_":
-				HBActions.runOPENWINDOW(pl, action);
-				break;
-			case "hb_window_close":
-				pl.closeInventory();
-				break;
-			case "hb_window_list":
-				HBActions.runWINDOWLIST(pl);
-				break;
-			case "hb_window_start":
-
-				break;
-			case "hb_runcommand_":
-				HBActions.runEXECUTECOMMAND(action);
-				break;
-			default:
-				HBActions.actionBreake(action);
-				break;
-		}	
 	}
 }

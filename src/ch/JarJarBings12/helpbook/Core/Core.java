@@ -87,7 +87,9 @@ public class Core extends JavaPlugin {
 		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
 		d dd = new d(this);
 			System.out.println(util.helpbook + "[Info]Prepare Commands...");
-			dynConfig.initializeCacheList();
+		
+		
+		dynConfig.initializeCacheList();
 	//Setup Commands
 		CMDExecuter.load_COMMANDS();
 		

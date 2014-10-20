@@ -1,6 +1,8 @@
 package ch.JarJarBings12.helpbook.Windows;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.omg.CORBA.portable.RemarshalException;
 
 import ch.JarJarBings12.helpbook.util.util;
 
@@ -44,8 +46,33 @@ public class HBActions {
 		
 	}
 	
-	public static void runEXECUTECOMMAND(String Action) {
-		
+	/**
+	 * Run Command
+	 */
+	public static void runEXECUTECOMMAND(String Action, Player pl) {
+		String cmd = "/helpbook_print_no_command_error";
+		boolean console = false;
+	/*/Define Player/*/
+		if(Action.contains("CONSOLE")) {
+			console = true;
+		} else if (pl.isOnline()) {
+			console = false;
+		} else {
+			actionBreake(Action);
+			System.out.println("@HelpBook.:@WindowActionHandler.:@Error:> {No Player Object found!}");
+			return;
+		}
+	/*/Define Command/*/
+		String temp = Action;
+			temp.replace("hb_cmd_CONSOLE_", "");
+			temp.replace("hb_cmd_PLAYER_", "");
+		cmd = temp.replace("_", " ");
+	/*/Run Command/*/
+		if(console = true) {
+			Bukkit.getServer().dispatchCommand(pl, cmd);
+		} else {
+			pl.sendMessage("/"+cmd);
+		}
 	}
 	
 /*/Action Broken/*/
