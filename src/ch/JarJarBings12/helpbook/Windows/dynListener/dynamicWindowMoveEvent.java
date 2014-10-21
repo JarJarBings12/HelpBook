@@ -19,6 +19,7 @@ import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
+import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Action_System;
 
 public class dynamicWindowMoveEvent implements Listener {
 	/**
@@ -37,7 +38,7 @@ public class dynamicWindowMoveEvent implements Listener {
 		String type = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TYPE"); 
 		switch (type) {
 		case "BUTTON":
-			analyseAction(pl, rawslot);
+			Windows_Action_System.runAction(pl, rawslot);
 			e.setCancelled(true);
 			break;
 		case "BOOK":
@@ -60,23 +61,6 @@ public class dynamicWindowMoveEvent implements Listener {
 		}
 		if(dynWindowCore.INHBSystem.containsKey(e.getWhoClicked())) {
 			e.setCancelled(true);
-		}
-	}
-	
-	private static void analyseAction(Player pl, int slot) {
-		String action = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(pl)+".ObjList.object"+slot+".ACTION.TYPE");
-		String tempaction = "";
-		
-		if(action.contains("hb_open_window_")) {
-			HBActions.runOPENWINDOW(pl, action);
-		} else if(action.contains("hb_close_window")) {
-			pl.closeInventory();
-		} else if(action.contains("hb_give_item")) {
-			
-		} else if(action.contains("hb_cmd_")) {
-			
-		} else {
-			HBActions.actionBreake(action);
 		}
 	}
 }

@@ -22,6 +22,9 @@ import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
+import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Action_System;
+import ch.JarJarBings12.helpbook.Windows.Windows.Windows_System;
+import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Utils;
 import ch.JarJarBings12.helpbook.Windows.dynListener.d;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowMoveEvent;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserCloseInventory;
@@ -88,6 +91,7 @@ public class Core extends JavaPlugin {
 		d dd = new d(this);
 			System.out.println(util.helpbook + "[Info]Prepare Commands...");
 		
+			Windows_Utils.startAutoSave();
 		
 		dynConfig.initializeCacheList();
 	//Setup Commands

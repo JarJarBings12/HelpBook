@@ -14,15 +14,6 @@ public class HBActions {
 	/**
 	 * Open Book
 	 */
-	public static void runOPENWINDOW(Player pl, String Action) {
-		String a = Action.replace("hb_open_window_", "");
-		pl.closeInventory();
-		if(HBOS.existInventory(a) != true) {
-			return;
-		}
-		dynWindowCore.renderWindow(a, pl);
-	}
-	
 	/**
 	 * List all Windows
 	 */
@@ -49,31 +40,6 @@ public class HBActions {
 	/**
 	 * Run Command
 	 */
-	public static void runEXECUTECOMMAND(String Action, Player pl) {
-		String cmd = "/helpbook_print_no_command_error";
-		boolean console = false;
-	/*/Define Player/*/
-		if(Action.contains("CONSOLE")) {
-			console = true;
-		} else if (pl.isOnline()) {
-			console = false;
-		} else {
-			actionBreake(Action);
-			System.out.println("@HelpBook.:@WindowActionHandler.:@Error:> {No Player Object found!}");
-			return;
-		}
-	/*/Define Command/*/
-		String temp = Action;
-			temp.replace("hb_cmd_CONSOLE_", "");
-			temp.replace("hb_cmd_PLAYER_", "");
-		cmd = temp.replace("_", " ");
-	/*/Run Command/*/
-		if(console = true) {
-			Bukkit.getServer().dispatchCommand(pl, cmd);
-		} else {
-			pl.sendMessage("/"+cmd);
-		}
-	}
 	
 /*/Action Broken/*/
 	/**

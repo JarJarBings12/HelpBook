@@ -111,55 +111,6 @@ public class HBOS {
 			pl.sendMessage(Type + " is not Avible");
 		}
 	}
-	
-	/**
-	 * <h3>INFO</h3>
-	 * @AUTHOR JarJarBings12
-	 * @VERSION 1.0.0
-	 * @DATE 12.10.14
-	 * <h3>PROPERTIES</h3>
-	 * @USAGE Do Inv exist
-	 * @INPUT Inventory
-	 * @OUTPUT boolean 
-	 */
-	public static boolean existInventory(String inv) {
-		if(dynFILELIST.s.getString("windows.window."+inv) != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	/**
-	 * <h3>INFO</h3>
-	 * @AUTHOR JarJarBings12
-	 * @VERSION 1.0.0
-	 * @DATE 12.10.14
-	 * <h3>PROPERTIES</h3>
-	 * @USAGE Disable a Window
-	 * @INPUT Window and a Boolean
-	 * @OUTPUT None 
-	 */
-	public static void disableWindow(String Window, Boolean enabled) {
-		dynFILELIST.s.set("windows.window."+Window+".enabled", enabled);
-		save();
-	}
-	
-	/**
-	 * <h3>INFO</h3>
-	 * @AUTHOR JarJarBings12
-	 * @VERSION 1.0.0
-	 * @DATE 12.10.14
-	 * <h3>PROPERTIES</h3>
-	 * @USAGE Remove a Window
-	 * @INPUT Window
-	 * @OUTPUT None 
-	 */
-	public static void removeWindow(String window) {
-		dynFILELIST.s.set("windows.window."+window, null);
-		save();
-	}
-	
 	/**
 	 * <h3>INFO</h3>
 	 * @AUTHOR JarJarBings12
