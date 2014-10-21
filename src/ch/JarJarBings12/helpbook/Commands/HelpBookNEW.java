@@ -75,8 +75,8 @@ public class HelpBookNEW implements CommandExecutor {
 				return true;
 			} else if (args[1].equalsIgnoreCase("config") || args[1].equalsIgnoreCase("c")) {
 				pl.sendMessage(util.helpbook + "§f~~~~~~~~~~~~§c[HelpBook]§f~~~~~~~~~~~~");
-				pl.sendMessage(util.helpbook + "§c/HelpBook admin config setautosave <true/false>");
-				pl.sendMessage(util.helpbook + "§c/HelpBook admin config setautosaverepeteall <min>");
+				pl.sendMessage(util.helpbook + "§c/HelpBook admin config §3setautosave §f<true/false>");
+				pl.sendMessage(util.helpbook + "§c/HelpBook admin config §3setautosaverepeteall §f<min>");
 				return true;
 			} else if (args[1].equalsIgnoreCase("reload") || args[1].equalsIgnoreCase("r")) {
 				return true;
@@ -87,7 +87,7 @@ public class HelpBookNEW implements CommandExecutor {
 		if(args.length == 3) {
 			if(args[2].equalsIgnoreCase("list")) {
 				/*/WINDOW/*/
-				if(pl.hasPermission("helpbook.admin.windows.list")) {
+				if(!(pl.hasPermission("helpbook.admin.windows.list"))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
@@ -95,38 +95,81 @@ public class HelpBookNEW implements CommandExecutor {
 				
 			} else if(args[2].equalsIgnoreCase("create")) {
 				/*/WINDOW/*/
-				if(pl.hasPermission("helpbook.admin.windows.create")) {
+				if(!(pl.hasPermission("helpbook.admin.windows.create"))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
 				pl.sendMessage(util.helpbook + "/HelpBook admin windows create <name> <lines(1-9)>");
 			} else if(args[2].equalsIgnoreCase("disable")) {
 				/*/WINDOW/*/
-				if(pl.hasPermission("helpbook.admin.windows.disable")) {
+				if(!(pl.hasPermission("helpbook.admin.windows.disable"))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
 				pl.sendMessage(util.helpbook + "/HelpBook admin windows disable <name> <disabled(true/false)>");
 			} else if(args[2].equalsIgnoreCase("remove")) {
 				/*/WINDOW/*/
-				if(pl.hasPermission("helpbook.admin.windows.remove")) {
+				if(!(pl.hasPermission("helpbook.admin.windows.remove"))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
 				pl.sendMessage(util.helpbook + "/HelpBook admin windows remove <name>");
 			} else if(args[2].equalsIgnoreCase("reset")) {
 				/*/WINDOW/*/
-				if(pl.hasPermission("helpbook.admin.windows.reset")) {
+				if(!(pl.hasPermission("helpbook.admin.windows.reset"))) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
-			} else if(args[2].equalsIgnoreCase("addToWindoow")) {
+			} else if(args[2].equalsIgnoreCase("addToWindow")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.addToWindow"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
 			} else if(args[2].equalsIgnoreCase("setItemAtWindowSlot")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.setitematwindowslot"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
 			} else if(args[2].equalsIgnoreCase("disableItemFromWindowSlot")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.disableitemfromwindowslot"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
 			} else if(args[2].equalsIgnoreCase("removeItemFromWindowSlot")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.removeitemfromwindowslot"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
 			} else if(args[2].equalsIgnoreCase("setautosave")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.setautosave"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
 			} else if(args[2].equalsIgnoreCase("setautosaverepeteall")) {
-				
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.setautosaverepeteall"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
+			} else if(args[2].equalsIgnoreCase("setautosave")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.setautosave"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
+				pl.sendMessage(util.helpbook + "§c/HelpBook admin config §3setautosave §f<true/false>");
+			} else if(args[2].equalsIgnoreCase("setautosaverepeteall")) {
+				/*/ITEM/*/
+				if(!(pl.hasPermission("helpbook.admin.item.setautosaverepeteall"))) {
+					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
+					return true;
+				}
+				pl.sendMessage(util.helpbook + "§c/HelpBook admin config §3setautosaverepeteall §f<min>");
 			} else {
 				pl.sendMessage(util.helpbook + "§f~~~~~~~~~~~~§c[HelpBook]§f~~~~~~~~~~~~");
 				pl.sendMessage(util.helpbook + "§fHelpBook > admin > §ainfo");
@@ -134,9 +177,9 @@ public class HelpBookNEW implements CommandExecutor {
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin §3item    §f> List of Commands for Items");
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin §3config §f> Commands to edit the Config");
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin §3reload §f> Reload HelpBook");
+				return true;
 			}
 		}
-		
 		return true;
 	}
 }
