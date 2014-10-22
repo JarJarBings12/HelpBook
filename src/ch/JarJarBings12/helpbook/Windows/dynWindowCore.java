@@ -33,6 +33,5 @@ public class dynWindowCore {
 	}
 	
 	public static List<String> INVENTORYS = new ArrayList();
-	public static HashMap<String, Boolean> WINDOWS = new HashMap();
 	public static HashMap<Player, String> INHBSystem = new HashMap();
 }

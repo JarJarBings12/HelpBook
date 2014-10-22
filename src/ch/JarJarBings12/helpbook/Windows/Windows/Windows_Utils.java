@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import ch.JarJarBings12.helpbook.Windows.BuildWindows;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
+import ch.JarJarBings12.helpbook.util.util;
 
 public class Windows_Utils {
 	public static void startAutoSave() {
@@ -45,6 +46,35 @@ public class Windows_Utils {
 				runSave();
 			}
 		}
+	}
+	
+	/**
+	 * <h3>INFO</h3>
+	 * @AUTHOR JarJarBings12
+	 * @VERSION 1.0.0
+	 * @DATE 12.10.14
+	 * <h3>PROPERTIES</h3>
+	 * @USAGE get the Slots of the Window
+	 * @INPUT Name of the Window
+	 * @OUTPUT Slots
+	 */
+	public static int getSlots(String Window) {
+		return dynFILELIST.s.getInt("windows.window."+Window+".lines");
+		
+	}
+	
+	/**
+	 * <h3>INFO</h3>
+	 * @AUTHOR JarJarBings12
+	 * @VERSION 1.0.0
+	 * @DATE 12.10.14
+	 * <h3>PROPERTIES</h3>
+	 * @USAGE Set the Display name of a Window
+	 * @INPUT Name of the Inventory
+	 * @OUTPUT Display name 
+	 */
+	public static String getDisplayName(String Window) {
+		return dynFILELIST.s.getString("windows.window."+Window+".displayname");
 	}
 	
 	/**
@@ -126,6 +156,18 @@ public class Windows_Utils {
 	public static void listWindows(Player pl) {
 		
 	}
+	
+	public static boolean getBooleanByString(String string) {
+		if(string.equalsIgnoreCase("true")) {
+			return true;
+		} else if(string.equalsIgnoreCase("false")) {
+			return false;
+		} else {
+			System.out.println(util.helpbook + "Can't get Boolean by String");
+			return false;
+		}
+	}
+	
 	private static void runSave() {
 		try {
 			dynFILELIST.s.save(dynFILELIST.storage);

@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 
-public class Windows_System {
+public class Windows_System extends Windows_Utils {
 	/**
 	 * @author JarJarBings12
 	 * @since 21.10.1014
@@ -29,17 +29,17 @@ public class Windows_System {
 	 * @INPUT Window name and Player (Object)
 	 * @OUTPUT None
 	 */
-	public static void renderWindow(String inv, Player pl) {
-		int x = getSlots(inv)*9;
-		Inventory tempinv = pl.getServer().createInventory(null, x, getDisplayName(inv));
+	public static void renderWindow(String Window, Player player) {
+		int x = getSlots(Window)*9;
+		Inventory tempinv = player.getServer().createInventory(null, x, getDisplayName(Window));
 		for (int i = 0; i < x; i++) {
-			Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+i+".MATERIAL"));
+			Material m = Material.getMaterial(dynFILELIST.s.getString("windows.window."+Window+".ObjList.object"+i+".MATERIAL"));
 			if(m == Material.WRITTEN_BOOK) {
 				ItemStack item = new ItemStack(m);
 				BookMeta  meta = (BookMeta)item.getItemMeta();
-				meta.setAuthor("windows.window."+inv+".ObjList.object"+i+".AUTHOR");
-				meta.setTitle("windows.window."+inv+".ObjList.object"+i+".TITLE");
-				List<String> lore = dynFILELIST.s.getStringList("windows.window."+inv+".ObjList.object"+i+".LORE");
+				meta.setAuthor("windows.window."+Window+".ObjList.object"+i+".AUTHOR");
+				meta.setTitle("windows.window."+Window+".ObjList.object"+i+".TITLE");
+				List<String> lore = dynFILELIST.s.getStringList("windows.window."+Window+".ObjList.object"+i+".LORE");
 				meta.setLore(lore);
 				item.setItemMeta(meta);
 				tempinv.setItem(i, item);
@@ -50,8 +50,8 @@ public class Windows_System {
 				try {
 					ItemStack item = new ItemStack(Material.getMaterial(m.name()));
 					ItemMeta  meta = (ItemMeta)item.getItemMeta();
-					List<String> lore = dynFILELIST.s.getStringList("windows.window."+inv+".ObjList.object"+i+".LORE");
-					String dn = dynFILELIST.s.getString("windows.window."+inv+".ObjList.object"+i+".DISPLAYNAME");
+					List<String> lore = dynFILELIST.s.getStringList("windows.window."+Window+".ObjList.object"+i+".LORE");
+					String dn = dynFILELIST.s.getString("windows.window."+Window+".ObjList.object"+i+".DISPLAYNAME");
 						meta.setDisplayName(dn);
 					System.out.println(m.name());
 					meta.setLore(lore);
@@ -60,18 +60,17 @@ public class Windows_System {
 				} catch (NullPointerException e) {
 					
 				}
-				
 			} else {
-				System.out.println("@HelpBook.:@WindowRender.:@ErrorCast@"+inv+".ObjList.Object"+i);
+				System.out.println("@HelpBook.:@WindowRender.:@ErrorCast@"+Window+".ObjList.Object"+i);
 				System.out.println("@HelpBook.:@WindowRender.:@INFO.:Pleas Fix the Error for Debug Tippe /helpbook @SlotReport_<SLOT>");
 			}
-			if((dynFILELIST.s.getBoolean("windows.window."+inv+".windowopensound")) != false ) {
-				pl.playSound(pl.getLocation(), Sound.HORSE_ARMOR, 1, 1);
+			if((dynFILELIST.s.getBoolean("windows.window."+Window+".windowopensound")) != false ) {
+				player.playSound(player.getLocation(), Sound.HORSE_ARMOR, 1, 1);
 			}
-			pl.openInventory(tempinv);
+			player.openInventory(tempinv);
 		} 
-		System.out.println("@HelpBook.:@WindowRender@Player_"+pl.getName());
-		dynWindowCore.INHBSystem.put(pl, inv);
+		System.out.println("@HelpBook.:@WindowRender@Player_"+player.getName());
+		dynWindowCore.INHBSystem.put(player, Window);
 	}
 	
 	/**
@@ -83,25 +82,26 @@ public class Windows_System {
 	 * @INPUT lines and Window name
 	 * @OUTPUT None
 	 */
-	public static void createNewWindow(int lines, String name) {
-		dynFILELIST.s.set("windows.window."+name+".displayname", name);
-		dynFILELIST.s.set("windows.window."+name+".enabled", true);
-		dynFILELIST.s.set("windows.window."+name+".windowopensound", true);
-		dynFILELIST.s.set("windows.window."+name+".lines", lines);
-		dynFILELIST.s.set("windows.window."+name+".permission", "none");
+	public static void createNewWindow(String Name, int lines) {
+		dynFILELIST.s.set("windows.window."+Name+".displayname", Name);
+		dynFILELIST.s.set("windows.window."+Name+".enabled", true);
+		dynFILELIST.s.set("windows.window."+Name+".windowopensound", true);
+		dynFILELIST.s.set("windows.window."+Name+".lines", lines);
+		dynFILELIST.s.set("windows.window."+Name+".permission", "none");
 		
 		int x = lines*9;
 		ItemStack d = new ItemStack(Material.AIR);
 		for(int i = 0; i < x; i++) {
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".DISPLAYNAME", "DEFAULT" );
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".TYPE", "BUTTON");		
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".LORE", "");	
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.TYPE", "NONE");
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.USEPERMISSION", "NONE");
-			dynFILELIST.s.set("windows.window."+name+".ObjList.object"+i+".ACTION.MESSAGE", "NONE");
+			
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".DISPLAYNAME", "DEFAULT" );
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".TYPE", "BUTTON");		
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".LORE", "");	
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".ACTION.TYPE", "NONE");
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".ACTION.USEPERMISSION", "NONE");
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".ACTION.MESSAGE", "NONE");
 		}
-		registerWindow(name);
+		registerWindow(Name);
 		runSave();
 	}
 	
@@ -122,9 +122,9 @@ public class Windows_System {
 	 * @INPUT Window in String form and Boolean
 	 * @OUTPUT None
 	 */
-	public static void disableWindow(String name, boolean enabled) {
-		dynWindowCore.WINDOWS.put(name, enabled);
-		dynFILELIST.s.set("windows.window."+name+".enabled", enabled);
+	public static void disableWindow(String Name, Boolean enabled) {
+		dynFILELIST.s.set("windows.window."+Name+".enabled", enabled);
+		System.out.println("2d");
 		runSave();
 	}
 	
@@ -138,14 +138,11 @@ public class Windows_System {
 	 * @INPUT Window in String Form
 	 * @OUTPUT None
 	 */
-	public static void removeWindow(String name) {
-		dynFILELIST.s.set("windows.window."+name, null);
-		unregisterWindow(name);
+	public static void removeWindow(String Name) {
+		dynFILELIST.s.set("windows.window."+Name, null);
+		unregisterWindow(Name);
 		runSave();
 	}
-	
-
-/*/Private void /*/
 	
 	
 	/**
@@ -157,13 +154,15 @@ public class Windows_System {
 	 * @INPUT Window in String Form
 	 * @OUTPUT Boolean
 	 */
-	private static boolean existWindow(String name) {
-		if(dynWindowCore.INVENTORYS.contains(name)) {
+	public static boolean existWindow(String Name) {
+		if(dynWindowCore.INVENTORYS.contains(Name)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+/*/Private void /*/
 	
 	
 	/**
@@ -175,8 +174,9 @@ public class Windows_System {
 	 * @INPUT Window in String Form
 	 * @OUTPUT None
 	 */
-	private  static void registerWindow(String name) {
-		dynWindowCore.INVENTORYS.add(name);
+	private static void registerWindow(String Name) {
+		dynWindowCore.INVENTORYS.add(Name);
+		runSave();
 	}
 	
 	
@@ -189,17 +189,8 @@ public class Windows_System {
 	 * @INPUT Window in String Form
 	 * @OUTPUT None
 	 */
-	private  static void unregisterWindow(String name) {
-		dynWindowCore.INVENTORYS.remove(name);
-	}
-	
-	private static int getSlots(String inv) {
-		return dynFILELIST.s.getInt("windows.window."+inv+".lines");
-		
-	}
-	
-	private static String getDisplayName(String inv) {
-		return dynFILELIST.s.getString("windows.window."+inv+".displayname");
+	private static void unregisterWindow(String Name) {
+		dynWindowCore.INVENTORYS.remove(Name);
 	}
 	
 	/**
