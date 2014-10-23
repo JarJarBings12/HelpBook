@@ -84,7 +84,7 @@ public class HelpBookNEW implements CommandExecutor {
 					|| args[1].equalsIgnoreCase("i")) {
 				pl.sendMessage(util.helpbook + "§f~~~~~~~~~~~~§c[HelpBook]§f~~~~~~~~~~~~");
 				pl.sendMessage(util.helpbook + "§fHelpBook > admin > item > §aHelp");
-				pl.sendMessage(util.helpbook + "§c/HelpBook admin item §3addToWindow §f>Add a Item to a Window ");
+//				pl.sendMessage(util.helpbook + "§c/HelpBook admin item §3addToWindow §f>Add a Item to a Window ");
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin item §3setItemAtWindowSlot §f> Set a Item to a Window Slot");
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin item §3disableItemFromWindowSlot §f> disable a Item from a Slot");
 				pl.sendMessage(util.helpbook + "§c/HelpBook admin item §3removeItemFromWindowSlot §f> Remove a Item from a Slot");
@@ -203,7 +203,6 @@ public class HelpBookNEW implements CommandExecutor {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
-				
 				if(Windows_System.existWindow(args[3].toString()) == false) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("windownotexist"));
 					return true;
@@ -217,7 +216,7 @@ public class HelpBookNEW implements CommandExecutor {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("noperm"));
 					return true;
 				}
-			} else if (args[2].equalsIgnoreCase("")) {
+			} else if (args[2].equalsIgnoreCase("reset")) {
 
 			} else {
 
@@ -227,7 +226,8 @@ public class HelpBookNEW implements CommandExecutor {
 		if (args.length == 5) {
 			if (args[2].equalsIgnoreCase("create")) {
 			
-				if (Windows_System.existWindow(args[3].toString()) == true) {
+				if (
+						Windows_System.existWindow(args[3].toString()) == true) {
 					pl.sendMessage(Core.inCore.geti18n().getMessage("windowexist").replace("%window", args[3].toString()));
 					return true;
 					}

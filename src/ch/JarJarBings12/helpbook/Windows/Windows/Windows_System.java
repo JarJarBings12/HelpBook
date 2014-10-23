@@ -94,6 +94,7 @@ public class Windows_System extends Windows_Utils {
 		for(int i = 0; i < x; i++) {
 			
 			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".DISPLAYNAME", "DEFAULT" );
+			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".DISABLED", false);	
 			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
 			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".TYPE", "BUTTON");		
 			dynFILELIST.s.set("windows.window."+Name+".ObjList.object"+i+".LORE", "");	
