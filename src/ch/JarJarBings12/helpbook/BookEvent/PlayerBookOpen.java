@@ -18,8 +18,8 @@ public class PlayerBookOpen implements Listener {
 	/**
 	 * @author JarJarBings12
 	 */
-	public PlayerBookOpen(Core inCore) {
-		inCore.getServer().getPluginManager().registerEvents(this, inCore);
+	public PlayerBookOpen(Core core2) {
+		core2.getServer().getPluginManager().registerEvents(this, core2);
 	}
 	@EventHandler
 	public void playerOpenBook(PlayerInteractEvent e) {

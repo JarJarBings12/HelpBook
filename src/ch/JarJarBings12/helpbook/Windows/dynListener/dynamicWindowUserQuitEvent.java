@@ -15,6 +15,7 @@ public class dynamicWindowUserQuitEvent implements Listener {
 		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
 	
+
 	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent e) {
 		if(dynWindowCore.INHBSystem.containsKey(e.getPlayer())) {

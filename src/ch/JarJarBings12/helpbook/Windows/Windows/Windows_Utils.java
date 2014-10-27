@@ -13,13 +13,13 @@ import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.util.util;
 
 public class Windows_Utils {
-	public static void startAutoSave() {
-		if(dynFILELIST.co.getBoolean("options.autosave.enabled") == true) {
-			int min = dynFILELIST.co.getInt("options.autosave.saveallXmin");
-			long savetaskafter = min*60L;
-			Windows_Save_Task.start_SaveTask(savetaskafter);
-		}
-	}
+//	public static void startAutoSave() {
+//		if(dynFILELIST.co.getBoolean("options.autosave.enabled") == true) {
+//			int min = dynFILELIST.co.getInt("options.autosave.saveallXmin");
+//			long savetaskafter = min*60L;
+//			Windows_Save_Task.start_SaveTask(savetaskafter);
+//		}
+//	}
 	
 	/**
 	 * <h3>INFO</h3>

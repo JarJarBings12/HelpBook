@@ -30,6 +30,7 @@ public class dynWindowCore {
 	 */
 	public dynWindowCore(Core inCore) {
 		Core.inCore = inCore;
+		
 	}
 	
 	public static List<String> INVENTORYS = new ArrayList();

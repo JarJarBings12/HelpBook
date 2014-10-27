@@ -25,7 +25,6 @@ import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Action_System;
 import ch.JarJarBings12.helpbook.Windows.Windows.Windows_System;
 import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Utils;
-import ch.JarJarBings12.helpbook.Windows.dynListener.d;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowMoveEvent;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserCloseInventory;
 import ch.JarJarBings12.helpbook.Windows.dynListener.dynamicWindowUserKickEvent;
@@ -48,70 +47,39 @@ public class Core extends JavaPlugin {
 	public static PluginDescriptionFile desc;
 	
 	public void onEnable() {
-			System.out.println("[UserHelper]Load UserHelper" );
-	//Define Variables
 		inCore = this;
 		inI18N = new i18n(this);
 		inBookStore = new BookStorage(this);
 		desc = this.getDescription();
 		inConfigLoader = new ConfigLoader(this);
 		inDynConfig = new dynConfig(this);
-		
-			System.out.println(util.helpbook + "[Info]Load Config...");
-	//Setup Configurations and Storage
 		inDynConfig.createCACHE();
 		inDynConfig.createCONFIG();
 		inDynConfig.createSTORAG();
-			System.out.println(util.helpbook + "[Info]Load Book Files...");
-	//Load Book Storage
-		getBookStorage().load_BookFile();
 		
-			System.out.println(util.helpbook + "[Info]Setup Language...");
-	//Load Language
+		getBookStorage().load_BookFile();
+
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		Locale locale = new Locale(slocale);
 		geti18n().setLanguage(locale);		
+
+//		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
+//		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
+//		PlayerBookOpen evPBO = new PlayerBookOpen(this);
+//			
+//		dynamicWindowUserKickEvent evDWUK = new dynamicWindowUserKickEvent(this);
+//		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
+//		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
+//		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
 		
-			System.out.println(util.helpbook + "[Info]Setup Config Datas");	
-	//Setup Booleanas 
-		getConfigLoader().setBooleans();
-		getConfigLoader().setBookNames();
-		getConfigLoader().update_WINDOWTITLE();
 		
-			System.out.println(util.helpbook + "[Info]Start Listeners...");
-	//Setup Listeners
-		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
-		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
-		PlayerBookOpen evPBO = new PlayerBookOpen(this);
-			
-		dynamicWindowUserKickEvent evDWUK = new dynamicWindowUserKickEvent(this);
-		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
-		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
-		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
-		d dd = new d(this);
-			System.out.println(util.helpbook + "[Info]Prepare Commands...");
 		
-			Windows_Utils.startAutoSave();
-		
-		dynConfig.initializeCacheList();
-	//Setup Commands
 		CMDExecuter.load_COMMANDS();
-		
-		if(!(dynFILELIST.co.getBoolean("options.storage.cache.OPTIONS.ReadByStart") != true)) {
-			System.out.println(util.helpbook + "[Info]Windows cache don't load by start!");
-			return;
-		} else {
-			System.out.println(util.helpbook + "[Info]Save Window names into Ram...");
-			dynConfig.initializeCacheList();
-		}
 	}
 	
 
 	public void onDisable() {
 		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
-		dynWindowCore.INVENTORYS.add("d");
-		dynConfig.saveCache();
-		dynConfig.saveStorage();
 	}
 	
 /*/Class returns/*/
@@ -147,4 +115,5 @@ public class Core extends JavaPlugin {
 	public PluginDescriptionFile getPluginDescription() {
 		return desc;
 	}
+
 }

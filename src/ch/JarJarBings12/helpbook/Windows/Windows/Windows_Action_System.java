@@ -25,7 +25,6 @@ public class Windows_Action_System {
 	}
 	
 	public static void setActionAtWindowObj(String Window, int slot, String Action) {
-		
 	}
 	
 	public static void removeActionFromWindowObj(String Window, int slot, String Action) {

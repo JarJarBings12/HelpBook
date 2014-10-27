@@ -25,8 +25,8 @@ public class dynamicWindowMoveEvent implements Listener {
 	/**
 	 * @author JarJarBings12
 	 */
-	public dynamicWindowMoveEvent(Core inCore) {
-		inCore.getServer().getPluginManager().registerEvents(this, inCore);
+	public dynamicWindowMoveEvent(Core core2) {
+		core2.getServer().getPluginManager().registerEvents(this, core2);
 	}
 	@EventHandler
 	public void onInvMove(InventoryClickEvent e) {

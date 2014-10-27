@@ -10,8 +10,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
-import ch.JarJarBings12.helpbook.Windows.dynListener.d;
-
 public class Windows_Item {
 	
 	/**
@@ -27,7 +25,6 @@ public class Windows_Item {
 	public static void setItemAsWindowSlot(String Window, String ObjType, int WindowSlot, ItemStack newItemStack, Player player) {
 		int maxslot = dynFILELIST.s.getInt("windows.window."+Window+".lines")*9;
 		int slot = WindowSlot-1;
-		
 		if(ObjType.equalsIgnoreCase("BOOK")) {
 			if(!(newItemStack.getType() == Material.WRITTEN_BOOK)) {
 				return;

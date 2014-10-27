@@ -18,8 +18,8 @@ public class SignPressEvent implements Listener {
 	/**
 	 * @author JarJarBings12
 	 */
-	public SignPressEvent(Core inCore) {
-		inCore.getServer().getPluginManager().registerEvents(this, inCore);
+	public SignPressEvent(Core core2) {
+		core2.getServer().getPluginManager().registerEvents(this, core2);
 	}
 	
 	

@@ -17,8 +17,8 @@ public class dynamicWindowUserCloseInventory implements Listener {
 	/**
 	 * @author JarJarBings12
 	 */
-	public dynamicWindowUserCloseInventory(Core inCore) {
-		inCore.getServer().getPluginManager().registerEvents(this, inCore);
+	public dynamicWindowUserCloseInventory(Core core) {
+		core.getServer().getPluginManager().registerEvents(this, core);
 	}
 	
 	@EventHandler

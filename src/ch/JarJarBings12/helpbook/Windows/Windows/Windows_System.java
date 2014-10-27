@@ -83,11 +83,11 @@ public class Windows_System extends Windows_Utils {
 	 * @OUTPUT None
 	 */
 	public static void createNewWindow(String Name, int lines) {
-		dynFILELIST.s.set("windows.window."+Name+".displayname", Name);
-		dynFILELIST.s.set("windows.window."+Name+".enabled", true);
-		dynFILELIST.s.set("windows.window."+Name+".windowopensound", true);
-		dynFILELIST.s.set("windows.window."+Name+".lines", lines);
-		dynFILELIST.s.set("windows.window."+Name+".permission", "none");
+		dynFILELIST.s.set("windows.window."+Name+".DISPLAYNAME", Name);
+		dynFILELIST.s.set("windows.window."+Name+".ENABLED", true);
+		dynFILELIST.s.set("windows.window."+Name+".WINDOWOPENSOUND", true);
+		dynFILELIST.s.set("windows.window."+Name+".LINES", lines);
+		dynFILELIST.s.set("windows.window."+Name+".PERMISSION", "none");
 		
 		int x = lines*9;
 		ItemStack d = new ItemStack(Material.AIR);
