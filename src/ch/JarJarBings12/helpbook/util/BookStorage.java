@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
 import ch.JarJarBings12.helpbook.Core.Core;
-import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 
 public class BookStorage {
 	/**

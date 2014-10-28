@@ -16,7 +16,6 @@ import ch.JarJarBings12.helpbook.BookEvent.InventoryMoveEvent;
 import ch.JarJarBings12.helpbook.BookEvent.PlayerBookOpen;
 import ch.JarJarBings12.helpbook.BookEvent.SignPressEvent;
 import ch.JarJarBings12.helpbook.Commands.CMDExecuter;
-import ch.JarJarBings12.helpbook.NotificationCenter.NotificationCenterC;
 import ch.JarJarBings12.helpbook.Windows.BuildWindows;
 import ch.JarJarBings12.helpbook.Windows.HBOS;
 import ch.JarJarBings12.helpbook.Windows.dynConfig;
