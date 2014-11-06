@@ -11,8 +11,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
+import ch.JarJarBings12.helpbookwin.basic.files.filelist;
+import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.labelLoader;
+import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.labelObj;
+import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
 
 public class Windows_System extends Windows_Utils {
 	/**

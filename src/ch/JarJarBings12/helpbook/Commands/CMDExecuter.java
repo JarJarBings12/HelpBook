@@ -1,7 +1,6 @@
 package ch.JarJarBings12.helpbook.Commands;
 
 import ch.JarJarBings12.helpbook.Core.Core;
-import ch.JarJarBings12.helpbook.TabCompleter.CMDCompleter;
 
 
 public class CMDExecuter {
@@ -12,6 +11,6 @@ public class CMDExecuter {
 //		HelpBook uc = new HelpBook(Core.inCore);
 		HelpBook uc = new HelpBook(Core.inCore);
 		Core.inCore.getCommand("HelpBook").setExecutor(uc);
-		Core.inCore.getCommand("HelpBook").setTabCompleter(new CMDCompleter());
+//		Core.inCore.getCommand("HelpBook").setTabCompleter(new CMDCompleter());
 	}  
 }

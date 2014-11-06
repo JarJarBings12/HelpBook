@@ -33,35 +33,75 @@ import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 import ch.JarJarBings12.helpbook.util.util;
+import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.buttonLoader;
+import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.labelLoader;
+import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
+import ch.JarJarBings12.helpbookwin.basic.objects.WinBasic;
+import ch.JarJarBings12.helpbookwin.basic.render.WindowRender;
+import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObj;
+import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObjLoader;
 
 public class Core extends JavaPlugin {
 	/**
 	 * @author JarJarBings12
 	 */
 	public static Core inCore;
+	
 	private static i18n inI18N;
+	
+	private static windowsObjLoader w;
+	
 	private static BookStorage inBookStore;
+	
 	private static ConfigLoader inConfigLoader;
+	
 	private static dynConfig inDynConfig;
+	
 	public static PluginDescriptionFile desc;
 	
+	public static windowsObjLoader d;
+	public static WindowRender dd;
+	/*Startup*/
+	@Override
 	public void onEnable() {
+	
 		inCore = this;
+		dd = new WindowRender(this);
+		d = new windowsObjLoader(this);
+		
 		inI18N = new i18n(this);
+		
 		inBookStore = new BookStorage(this);
+		
 		desc = this.getDescription();
+		
 		inConfigLoader = new ConfigLoader(this);
+		
 		inDynConfig = new dynConfig(this);
+		
 		inDynConfig.createCACHE();
+		
 		inDynConfig.createCONFIG();
+		
 		inDynConfig.createSTORAG();
 		
 		getBookStorage().load_BookFile();
 
+		/* Get Language of of the Configuration */
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
+		
+		/* Define new Locale */
 		Locale locale = new Locale(slocale);
+		
+		
+		d.initializeCacheList();
+		d.loadWindowObjects();
+		for(windowsObj w : JObjects.windows) {
+			System.out.println(w.getDisplayName());
+		}
+		/* Load Language */
 		geti18n().setLanguage(locale);		
-
+		
 //		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 //		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
 //		PlayerBookOpen evPBO = new PlayerBookOpen(this);
@@ -70,13 +110,13 @@ public class Core extends JavaPlugin {
 //		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
 //		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
 //		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
-		
-		
-		
+		/* Execute all Commands */
 		CMDExecuter.load_COMMANDS();
+		
 	}
 	
-
+	/*Shutdown*/
+	@Override
 	public void onDisable() {
 		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
 	}
@@ -114,5 +154,5 @@ public class Core extends JavaPlugin {
 	public PluginDescriptionFile getPluginDescription() {
 		return desc;
 	}
-
+	
 }
