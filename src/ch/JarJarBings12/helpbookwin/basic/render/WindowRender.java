@@ -22,9 +22,13 @@ public class WindowRender {
 		windowsObj w = Window;
 		Inventory TempInv = pl.getServer().createInventory(null, w.getLines()*9, w.getDisplayName());
 		ItemStack leer = new ItemStack(Material.APPLE);
-		for(int i = 0; i < w.getLines()*9; i++) {
-			if(filelist.s.getBoolean("windows.window."+w.getSystemName()+".ObjList.object"+i+".ENABLED") == true) {
-				if(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".TYPE") ==  "BUTTON") {
+		int x = w.getLines()*9;
+		for(int i = 0; i < x; i++) {
+			boolean enabled = filelist.s.getBoolean("windows.window."+w.getSystemName()+".ObjList.object"+i+".ENABLED");
+			if(enabled == true) {
+				String TYPE = filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".TYPE");
+				System.out.println(TYPE+".");
+				if(TYPE ==  "BUTTON") {
 					Material m = Material.getMaterial(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".MATERIAL"));
 					ItemStack item = new ItemStack(m);
 					ItemMeta meta = (ItemMeta)item.getItemMeta();
@@ -32,7 +36,7 @@ public class WindowRender {
 					meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
 					item.setItemMeta(meta);
 					TempInv.setItem(i, item);
-				} else if (filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".TYPE") ==  "LABEL") {
+				} else if (TYPE ==  "LABEL") {
 					Material m = Material.getMaterial(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".MATERIAL"));
 					ItemStack item = new ItemStack(m);
 					ItemMeta meta = (ItemMeta)item.getItemMeta();
@@ -40,7 +44,7 @@ public class WindowRender {
 					meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
 					item.setItemMeta(meta);
 					TempInv.setItem(i, item);
-				} else if (filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".TYPE") ==  "BOOK") {
+				} else if (TYPE==  "BOOK") {
 					ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 					BookMeta meta =(BookMeta) book.getItemMeta();
 					meta.setAuthor(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".AUTHOR"));
@@ -49,8 +53,8 @@ public class WindowRender {
 					book.setItemMeta(meta);
 					TempInv.setItem(i, book);
 				} else {
-					System.out.println();
 					TempInv.setItem(i, leer);
+					System.out.println("Unbekant");
 				}
 			} else {
 				System.out.println("Nicht an");

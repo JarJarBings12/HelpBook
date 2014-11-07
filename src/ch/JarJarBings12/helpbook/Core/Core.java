@@ -61,14 +61,14 @@ public class Core extends JavaPlugin {
 	
 	public static windowsObjLoader d;
 	public static WindowRender dd;
+
 	/*Startup*/
 	@Override
 	public void onEnable() {
-	
 		inCore = this;
 		dd = new WindowRender(this);
 		d = new windowsObjLoader(this);
-		
+	
 		inI18N = new i18n(this);
 		
 		inBookStore = new BookStorage(this);
@@ -86,14 +86,12 @@ public class Core extends JavaPlugin {
 		inDynConfig.createSTORAG();
 		
 		getBookStorage().load_BookFile();
-
 		/* Get Language of of the Configuration */
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		
 		/* Define new Locale */
 		Locale locale = new Locale(slocale);
-		
-		
+
 		d.initializeCacheList();
 		d.loadWindowObjects();
 		for(windowsObj w : JObjects.windows) {

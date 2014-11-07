@@ -2,6 +2,7 @@ package ch.JarJarBings12.helpbookwin.basic.configuration;
 
 import org.bukkit.Bukkit;
 
+import ch.JarJarBings12.helpbookwin.basic.logger.BasicLog;
 import ch.JarJarBings12.helpbookwin.basic.objects.WinBasic;
 import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObjLoader;
 

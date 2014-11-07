@@ -20,7 +20,6 @@ import ch.JarJarBings12.helpbook.inventory.MainInventory.inventorylist;
 import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
-import ch.JarJarBings12.helpbookwin.basic.logger.LogBasic;
 import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
 import ch.JarJarBings12.helpbookwin.basic.objects.WinBasic;
 import ch.JarJarBings12.helpbookwin.basic.render.WindowRender;
