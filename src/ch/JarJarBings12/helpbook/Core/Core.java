@@ -98,7 +98,7 @@ public class Core extends JavaPlugin {
 			System.out.println(w.getDisplayName());
 		}
 		/* Load Language */
-		geti18n().setLanguage(locale);		
+//		geti18n().setLanguage(locale);		
 		
 //		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
 //		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
