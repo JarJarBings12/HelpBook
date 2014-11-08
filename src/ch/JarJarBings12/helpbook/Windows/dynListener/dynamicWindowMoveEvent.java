@@ -20,47 +20,77 @@ import ch.JarJarBings12.helpbook.Windows.dynConfig;
 import ch.JarJarBings12.helpbook.Windows.dynFILELIST;
 import ch.JarJarBings12.helpbook.Windows.dynWindowCore;
 import ch.JarJarBings12.helpbook.Windows.Windows.Windows_Action_System;
+import ch.JarJarBings12.helpbookwin.basic.configuration.cache;
+import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
 
 public class dynamicWindowMoveEvent implements Listener {
 	/**
 	 * @author JarJarBings12
 	 */
-	public dynamicWindowMoveEvent(Core core2) {
-		core2.getServer().getPluginManager().registerEvents(this, core2);
+	
+	/* Class Constructor */
+	public dynamicWindowMoveEvent(Core inCore) {
+		inCore.getServer().getPluginManager().registerEvents(this, inCore);
 	}
+	
+	/** 
+	 * Event Handler section
+	 * Event Type: Inventory Click Event 
+	 * {@link InventoryClickEvent}
+	 * */
 	@EventHandler
 	public void onInvMove(InventoryClickEvent e) {
+		
+		/* Window instance of a Existing HelpBook Window */
+		if(!(JObjects.cache.contains(e.getInventory().getName()))) {
+			return;
+		}
+		
+		/* Check is Item Null when true break the Listener */
 		if(e.getCurrentItem() == null) {
 			return;
 		}
+		
+		/* Get the Clicked Slot (In Raw Slot) */
 		int rawslot = e.getRawSlot();
-		Player pl = (Player) e.getWhoClicked();
-		String type = dynFILELIST.s.getString("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TYPE"); 
+		
+		/* Get the type of the Button HelpBook need this to send it to the 
+		 * Right Action Handler */
+		String type = dynFILELIST.s.getString("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".TYPE"); 
+		
+		/* Switch between the Slot Types
+		 * - Button > Support HelpBook Actions.
+		 * - Label > It's like a Button but is don't Support Actions.
+		 * - Book > Support the Book Meta. */
 		switch (type) {
+
 		case "BUTTON":
-			Windows_Action_System.runAction(pl, rawslot);
+			//TODO Add the Action
+			// Windows_Action_System.runAction(pl, rawslot);
+			System.out.println("DEBUG");
 			e.setCancelled(true);
 			break;
+			
 		case "BOOK":
+			/* Add the  Clicked Book to the Player Inventory */
 			ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
-			BookMeta meta = (BookMeta)item.getItemMeta();
-			meta.setTitle("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".TITLE");
-			meta.setAuthor("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".AUTHOR");			
-			meta.setPages("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".PAGES");
-			List<String> lore = dynFILELIST.s.getStringList("windows.window."+dynWindowCore.INHBSystem.get(e.getWhoClicked())+".ObjList.object"+rawslot+".LORE");
+			BookMeta meta = (BookMeta) item.getItemMeta();
+			meta.setTitle("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".TITLE");
+			meta.setAuthor("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".AUTHOR");
+			meta.setPages("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".PAGES");
+			List<String> lore = dynFILELIST.s.getStringList("windows.window."+e.getInventory().getName()+".ObjList.object"+rawslot+".LORE");
 			meta.setLore(lore);
 			item.setItemMeta(meta);
 			e.getWhoClicked().getInventory().addItem(item);
 			e.setCancelled(true);
 			break;
-		    
+
 		default:
-			System.out.println("@HelpBook.:@GetClickedObject.:@"+dynWindowCore.INHBSystem.get(pl)+".:Object"+rawslot);
+			/* If it is a unknown Type of Slot it Play out this */
+			//TODO Find a better option
+			System.out.println("@HelpBook.:@GetClickedObject.:@"+e.getInventory().getName()+".:Object"+ rawslot);
 			System.out.println("@HelpBook.:@Caused by.:@ObjectActionType{unkown}");
 			break;
-		}
-		if(dynWindowCore.INHBSystem.containsKey(e.getWhoClicked())) {
-			e.setCancelled(true);
 		}
 	}
 }

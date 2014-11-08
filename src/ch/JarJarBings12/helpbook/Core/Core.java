@@ -33,9 +33,12 @@ import ch.JarJarBings12.helpbook.util.BookFiles;
 import ch.JarJarBings12.helpbook.util.BookStorage;
 import ch.JarJarBings12.helpbook.util.ConfigLoader;
 import ch.JarJarBings12.helpbook.util.util;
+import ch.JarJarBings12.helpbookwin.basic.configuration.cache;
+import ch.JarJarBings12.helpbookwin.basic.configuration.storage;
 import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.buttonLoader;
 import ch.JarJarBings12.helpbookwin.basic.item.Objects.loaders.labelLoader;
 import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
+import ch.JarJarBings12.helpbookwin.basic.objects.SubBasic;
 import ch.JarJarBings12.helpbookwin.basic.objects.WinBasic;
 import ch.JarJarBings12.helpbookwin.basic.render.WindowRender;
 import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObj;
@@ -62,6 +65,8 @@ public class Core extends JavaPlugin {
 	public static windowsObjLoader d;
 	public static WindowRender dd;
 
+	
+	private static SubBasic sb;
 	/*Startup*/
 	@Override
 	public void onEnable() {
@@ -85,6 +90,12 @@ public class Core extends JavaPlugin {
 		
 		inDynConfig.createSTORAG();
 		
+		
+		sb = new SubBasic(this);
+		sb.createWindow("HALLO", 1);
+		sb.createWindow("1", 1);
+		sb.createWindow("2", 1);
+		storage.createStorage();
 		getBookStorage().load_BookFile();
 		/* Get Language of of the Configuration */
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
@@ -98,16 +109,11 @@ public class Core extends JavaPlugin {
 			System.out.println(w.getDisplayName());
 		}
 		/* Load Language */
-//		geti18n().setLanguage(locale);		
+		geti18n().setLanguage(locale);		
 		
-//		SignPressEvent evSigenTAGCreate = new SignPressEvent(this);
-//		InventoryMoveEvent evIME = new InventoryMoveEvent(this);	
-//		PlayerBookOpen evPBO = new PlayerBookOpen(this);
-//			
-//		dynamicWindowUserKickEvent evDWUK = new dynamicWindowUserKickEvent(this);
-//		dynamicWindowUserQuitEvent evWUQ  = new dynamicWindowUserQuitEvent(this);
-//		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
-//		dynamicWindowUserCloseInventory evWUCI= new dynamicWindowUserCloseInventory(this);
+		/* Load */	
+		dynamicWindowMoveEvent evWME = new dynamicWindowMoveEvent(this);
+		
 		/* Execute all Commands */
 		CMDExecuter.load_COMMANDS();
 		
@@ -117,6 +123,7 @@ public class Core extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
+		cache.saveCacheToFile();
 	}
 	
 /*/Class returns/*/

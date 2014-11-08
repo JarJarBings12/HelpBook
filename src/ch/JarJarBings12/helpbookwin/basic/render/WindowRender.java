@@ -14,6 +14,7 @@ import ch.JarJarBings12.helpbookwin.basic.objects.JObjects;
 import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObj;
 
 public class WindowRender {
+	
 	public WindowRender(Core inCore) {
 		Core.inCore = inCore;
 	}
@@ -46,33 +47,41 @@ public class WindowRender {
 				
 				/* If the Slot is a Button */
 				if(TYPE.equals("BUTTON")) {
+			
+					String mat = filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".MATERIAL");
+					Material m = Material.getMaterial(mat);
+					
+						/* If the Material is Air skip the Meta options */
+						if(m == Material.AIR) {
+							TempInv.setItem(i, leer);
+						} else {
+							ItemStack item = new ItemStack(m);
+							ItemMeta meta = (ItemMeta)item.getItemMeta();
+							meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".DISPLAYNAME"));
+							meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
+							item.setItemMeta(meta);
+							TempInv.setItem(i, item);	
+						}		
+				
+				/* If the Slot Type is a Label */
+				} else if (TYPE ==  "LABEL") {				
 					
 					String mat = filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".MATERIAL");
 					Material m = Material.getMaterial(mat);
 					
-					/* If the Material is Air skip the Meta options */
-					if(m == Material.AIR) {
-						TempInv.setItem(i, leer);
-					} else {
-						ItemStack item = new ItemStack(m);
-						ItemMeta meta = (ItemMeta)item.getItemMeta();
-						meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".DISPLAYNAME"));
-						meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
-						item.setItemMeta(meta);
-						TempInv.setItem(i, item);	
-					}
+						/* If the Material is Air skip the Meta options */
+						if(m == Material.AIR) {
+							TempInv.setItem(i, leer);
+						} else {
+							ItemStack item = new ItemStack(m);
+							ItemMeta meta = (ItemMeta)item.getItemMeta();
+							meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".DISPLAYNAME"));
+							meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
+							item.setItemMeta(meta);
+							TempInv.setItem(i, item);	
+						}
 				
-					/* If the Slot Type is a Label */
-				} else if (TYPE ==  "LABEL") {				
-					Material m = Material.getMaterial(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".MATERIAL"));
-					ItemStack item = new ItemStack(m);
-					ItemMeta meta = (ItemMeta)item.getItemMeta();
-					meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".DISPLAYNAME"));
-					meta.setDisplayName(filelist.s.getString("windows.window."+w.getSystemName()+".ObjList.object"+i+".LORE"));
-					item.setItemMeta(meta);
-					TempInv.setItem(i, item);
-				
-					/* If the Slot Type is a Book */
+				/* If the Slot Type is a Book */
 				} else if (TYPE==  "BOOK") {
 					ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 					BookMeta meta =(BookMeta) book.getItemMeta();
@@ -82,12 +91,12 @@ public class WindowRender {
 					book.setItemMeta(meta);
 					TempInv.setItem(i, book);
 				
-					/* If the Slot Type is Unknown */
+				/* If the Slot Type is Unknown */
 				} else {
 					TempInv.setItem(i, leer);
 				}
 			
-				/* If the Slot is Disabled */
+			/* If the Slot is Disabled */
 			} else {
 				TempInv.setItem(i, leer);
 			}
@@ -98,7 +107,6 @@ public class WindowRender {
 			}
 			
 			/* Open the TempInv and Open it. */
-			
 			pl.openInventory(TempInv);
 		}
 	}

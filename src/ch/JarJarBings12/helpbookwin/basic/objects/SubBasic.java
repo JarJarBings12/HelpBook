@@ -7,11 +7,15 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import ch.JarJarBings12.helpbook.Core.Core;
 import ch.JarJarBings12.helpbookwin.basic.files.filelist;
 import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObj;
     
 public class SubBasic {
 	
+	public SubBasic(Core inCore) {
+		Core.inCore = inCore;
+	}
 	public void createWindow(String Name, int Lines) {
 		windowsObj obj = new windowsObj(Name, Name, "none", Lines, true, true);
 		
@@ -26,15 +30,12 @@ public class SubBasic {
 		
 		ItemStack d = new ItemStack(Material.AIR);
 		
-		List<String> lore = new ArrayList();
-		lore.add("Lore Input");
-		
 		for(int i = 0; i < Lines*9; i++) {
 			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".TYPE", "LABEL");		
 			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".ENABLED", true);		
 			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".DISPLAYNAME", "DEFAULT" );
 			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".MATERIAL", d.getType().name());	
-			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".LORE", lore);	
+			filelist.s.set("windows.window."+Name+".ObjList.object"+i+".LORE", null);	
 		}
 		save();
 	}
