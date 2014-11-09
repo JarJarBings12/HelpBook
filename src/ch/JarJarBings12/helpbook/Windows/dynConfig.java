@@ -1,4 +1,4 @@
-§package ch.JarJarBings12.helpbook.Windows;
+package ch.JarJarBings12.helpbook.Windows;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -14,9 +14,12 @@ public class windowsObjLoader implements WinConfigInterface {
 	public windowsObjLoader(WinBasic inWindow) {
 		WinBasic.inWindow = inWindow;
 	}
+	
 	public windowsObjLoader(Core core) {
 		Core.inCore = core;
 	}
+	
+	/* Load all Saved Windows out of the Cache File */
 	public void initializeCacheList() {
 		JObjects.cache.clear();
 		if(filelist.ca.getList("windows.cache") != null) {
@@ -29,7 +32,8 @@ public class windowsObjLoader implements WinConfigInterface {
 			System.out.println("[HelpBook:@HelpBookWinBasic]Windows list is Empty");
 		}
 	}
-	/*Load all Window Objects out of the Storage. */
+	
+	/* Load all Windows out of the Storage wiht the Cache list */
 	public void loadWindowObjects() {
 		for(String ws : JObjects.cache) {
 			windowsObj w = new windowsObj(ws, getConfigWindowDisplayName(ws), getConfigPermission(ws), getConfigWindowLines(ws), getConfigWindowEnabled(ws), getConfigWindowOpenSound(ws));
@@ -39,7 +43,7 @@ public class windowsObjLoader implements WinConfigInterface {
 	
 	/* Save all Window Objects in the Storage
 	 * this is doing all X mins and on Stop or reload of the Server.
-	 * Or you add a Command*/
+	 * Or you add a Command */
 	public void saveWindowObjects() {
 		for(windowsObj o : JObjects.windows) {
 			setConfigWindowDisplayName(o);
@@ -55,7 +59,7 @@ public class windowsObjLoader implements WinConfigInterface {
 		}
 	}
 
-	/* Get the Display Name of a Window*/
+	/* Get the Display Name of a Window */
 	@Override
 	public String getConfigWindowDisplayName(String Window) {
 		return filelist.s.getString("windows.window."+Window+".DISPLAYNAME");
@@ -73,7 +77,7 @@ public class windowsObjLoader implements WinConfigInterface {
 		return filelist.s.getBoolean("windows.window."+Window+".ENABLED");
 	}
 	
-	/* Get is Open Sound for this Window Enabled*/
+	/* Get is Open Sound for this Window Enabled */
 	@Override
 	public boolean getConfigWindowOpenSound(String Window) {
 		return filelist.s.getBoolean("windows.window."+Window+".WINDOWOPENSOUND");
@@ -85,25 +89,25 @@ public class windowsObjLoader implements WinConfigInterface {
 		return filelist.s.getString("windows.window."+Window+".PERMISSION");
 	}
 
-	/* Set the DisplayName of a Window*/
+	/* Set the DisplayName of a Window */
 	@Override
 	public void setConfigWindowDisplayName(windowsObj w) {
 		filelist.s.getString("windows.window."+w.getSystemName()+".DISPLAYNAME", w.getDisplayName());
 	}
 	
-	/* Set the Lines of a Window*/
+	/* Set the Lines of a Window */
 	@Override
 	public void setConfigWindowLines(windowsObj w) {
 		filelist.s.set("windows.window."+w.getSystemName()+".LINES", w.getLines());
 	}
 
-	/* Set Windows is Enabled on true or false*/
+	/* Set Windows is Enabled on true or false */
 	@Override
 	public void setConfigWindowEnabled(windowsObj w) {
 		filelist.s.getBoolean("windows.window."+w.getSystemName()+".ENABLED", w.isEnabled());
 	}
 	
-	/* Set the Window Open Sound on false or true*/
+	/* Set the Window Open Sound on false or true */
 	@Override
 	public void setConfigWindowOpenSound(windowsObj w) {
 		filelist.s.set("windows.window."+w.getSystemName()+".WINDOWOPENSOUND", w.hasOpenSound());

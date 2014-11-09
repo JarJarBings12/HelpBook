@@ -11,8 +11,6 @@ import ch.JarJarBings12.helpbookwin.basic.files.filelist;
 import ch.JarJarBings12.helpbookwin.basic.windows.Objects.windowsObj;
 
 public class JObjects {
-	
-	public static ArrayList<Player> inEdit = new ArrayList();
 	public static List<String> cache = new ArrayList();
 	public static List<windowsObj> windows = new ArrayList();
 	

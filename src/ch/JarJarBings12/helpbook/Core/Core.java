@@ -70,8 +70,11 @@ public class Core extends JavaPlugin {
 	/*Startup*/
 	@Override
 	public void onEnable() {
+		
 		inCore = this;
+		
 		dd = new WindowRender(this);
+		
 		d = new windowsObjLoader(this);
 	
 		inI18N = new i18n(this);
@@ -90,24 +93,25 @@ public class Core extends JavaPlugin {
 		
 		inDynConfig.createSTORAG();
 		
-		
-		sb = new SubBasic(this);
-		sb.createWindow("HALLO", 1);
-		sb.createWindow("1", 1);
-		sb.createWindow("2", 1);
+		/* load cache into Cache list */
+		d.initializeCacheList();
+		/* Load with the list of the Cache the Windows*/
+		d.loadWindowObjects();
 		storage.createStorage();
+		
 		getBookStorage().load_BookFile();
+		
 		/* Get Language of of the Configuration */
 		String slocale = BookFiles.yamlbooks.getString("HelpBook.Language");
 		
 		/* Define new Locale */
 		Locale locale = new Locale(slocale);
 
-		d.initializeCacheList();
-		d.loadWindowObjects();
+		/* Print all Windows */
 		for(windowsObj w : JObjects.windows) {
 			System.out.println(w.getDisplayName());
 		}
+		
 		/* Load Language */
 		geti18n().setLanguage(locale);		
 		
@@ -117,13 +121,17 @@ public class Core extends JavaPlugin {
 		/* Execute all Commands */
 		CMDExecuter.load_COMMANDS();
 		
+		SubBasic sub = new SubBasic(this);
+		sub.updateLines("ab", 3);
+		System.out.println("d");
 	}
 	
 	/*Shutdown*/
 	@Override
 	public void onDisable() {
-		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
+		cache.createCache();
 		cache.saveCacheToFile();
+		System.out.println(util.helpbook + "[Info]Save Window and Cache Storage.");
 	}
 	
 /*/Class returns/*/
